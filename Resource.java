@@ -6,11 +6,10 @@ import Enums.Type;
 public class Resource 
 {
 	private Type type;
-	private int cost;
-	public HashMap <String, Type> resources = new HashMap <String, Type> ();
-	public HashMap <Type, String> reverseResources = new HashMap <Type, String> ();
-	
-	public Resource (String t, int c)
+	private HashMap <String, Type> resources = new HashMap <String, Type> ();
+	private HashMap <Type, String> reverseResources = new HashMap <Type, String> ();
+
+	public Resource (String t)
 	{
 		if (resources.size() == 0)
 		{
@@ -29,16 +28,15 @@ public class Resource
 		}
 		
 		type = resources.get(t);
-		cost = c;
-	}
-	
-	public int getCost ()
-	{
-		return cost;
 	}
 	
 	public Type getType ()
 	{
 		return type;
+	}
+	
+	public String toString ()
+	{
+		return reverseResources.get(type);
 	}
 }

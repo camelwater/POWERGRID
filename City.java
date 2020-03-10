@@ -29,13 +29,7 @@ public class City
 	
 	public boolean isAvailable (int step)
 	{
-		if (step == 1 && numOccupants == 1)
-			return false;
-		
-		else if (step == 2 && numOccupants == 2)
-			return false;
-		
-		else if (step == 3 && numOccupants == 3)
+		if (step == numOccupants)
 			return false;
 		
 		return true;

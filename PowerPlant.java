@@ -7,7 +7,7 @@ public class PowerPlant
 	private int numPowered;
 	private ArrayList <Resource> cost;
 	
-	public PowerPlant (int id, int num, ArrayList <Resource> c)
+	public PowerPlant (int num, int id, ArrayList <Resource> c)
 	{
 		ID = id;
 		numPowered = num;
@@ -27,5 +27,10 @@ public class PowerPlant
 	public ArrayList <Resource> getCost ()
 	{
 		return cost;
+	}
+	
+	public String toString ()
+	{
+		return ID + " " + numPowered + " " + cost.toString();
 	}
 }

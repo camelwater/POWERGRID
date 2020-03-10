@@ -41,6 +41,16 @@ public class Player
 		return PowerPlants;
 	}
 	
+	public HashMap <Type, Resource> getResources ()
+	{
+		return resources;
+	}
+	
+	public ArrayList <City> getCities ()
+	{
+		return cities;
+	}
+	
 	public PowerPlant discard (PowerPlant x)
 	{
 		PowerPlants.remove(x);
@@ -55,11 +65,11 @@ public class Player
 		pay(cost);
 	}
 	
-	public void buyResources (Resource res)
+	public void buyResources (Resource res, int cost)
 	{
 		resources.put(res.getType(), res);
 		
-		pay(res.getCost());
+		pay(cost);
 	}
 	
 	public void buyPowerPlant (PowerPlant x)
