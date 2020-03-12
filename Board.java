@@ -37,6 +37,14 @@ public class Board
 		
 		cities = new ArrayList <City> ();
 		
+		resources.put("COAL", new Stack <Resource> ());
+		
+		resources.put("OIL", new Stack <Resource> ());
+		
+		resources.put("TRASH", new Stack <Resource> ());
+		
+		resources.put("URANIUM", new Stack <Resource> ());
+		
 		step = 1;
 		
 		phase = 1;
@@ -44,6 +52,8 @@ public class Board
 		setupGame();
 		
 		setupPlayers();
+		
+		setupResources();
 		
 		updateGameState();
 	}
@@ -91,6 +101,18 @@ public class Board
 	{
 		for (int x = 0; x < 4; x++)
 			players.add(new Player()); 
+	}
+	
+	public void setupResources ()
+	{
+		for (int x = 0; x < 24; x++)
+			resources.get("COAL").push(new Resource("COAL"));				
+		for (int x = 0; x < 18; x++)
+			resources.get("OIL").push(new Resource("OIL"));	
+		for (int x = 0; x < 6; x++)
+			resources.get("TRASH").push(new Resource("TRASH"));
+		
+		resources.get("URANIUM").push(new Resource("URANIUM"));
 	}
 	
 	public void distributeCash ()
@@ -154,7 +176,44 @@ public class Board
 	
 	public void refillResources ()
 	{
+		if (step == 1)
+		{
+			for (int x = 0; x < 5; x++)
+				resources.get("COAL").push(new Resource("COAL"));			
+			for (int x = 0; x < 3; x++)
+				resources.get("OIL").push(new Resource("OIL"));	
+			for (int x = 0; x < 2; x++)
+				resources.get("TRASH").push(new Resource("TRASH"));
+			
+			resources.get("URANIUM").push(new Resource("URANIUM"));
+		}
 		
+		else if (step == 2)
+		{
+			for (int x = 0; x < 4; x++)
+			{
+				resources.get("COAL").push(new Resource("COAL"));			
+				resources.get("OIL").push(new Resource("OIL"));	
+			}
+			
+			for (int x = 0; x < 3; x++)
+				resources.get("TRASH").push(new Resource("TRASH"));
+			for (int x = 0; x < 2; x++)
+				resources.get("URANIUM").push(new Resource("URANIUM"));
+		}
+		
+		else
+		{
+			for (int x = 0; x < 4; x++)
+			{
+				resources.get("COAL").push(new Resource("COAL"));			
+				resources.get("OIL").push(new Resource("OIL"));	
+				resources.get("TRASH").push(new Resource("TRASH"));
+			}
+			
+			for (int x = 0; x < 2; x++)
+				resources.get("URANIUM").push(new Resource("URANIUM"));
+		}
 	}
 	
 	public void updateMarket ()
@@ -164,6 +223,11 @@ public class Board
 		market.remove(0);
 		
 		market.add(deck.remove(0));
+	}
+	
+	public int calculateCost ()
+	{	
+		return 0; 
 	}
 	
 	public void endPhase ()
@@ -200,7 +264,11 @@ public class Board
 		
 		else
 		{
+			market.remove(0);
+			market.remove(0);
 			
+			for (City x : cities)
+				x.incrementCost(); 
 		}
 	}
 	
