@@ -1,7 +1,8 @@
 
 import java.util.ArrayList;
 
-public class PowerPlant 
+@SuppressWarnings("rawtypes")
+public class PowerPlant implements Comparable
 {
 	private int ID;
 	private int numPowered;
@@ -32,5 +33,13 @@ public class PowerPlant
 	public String toString ()
 	{
 		return ID + " " + numPowered + " " + cost.toString();
+	}
+	
+	public int compareTo (Object obj)
+	{
+		int x = getID();
+		int y = ((PowerPlant) obj).getID();
+		
+		return x - y;
 	}
 }

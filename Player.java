@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import Enums.Type;
 
-public class Player 
+@SuppressWarnings("rawtypes")
+public class Player implements Comparable
 {
 	private ArrayList <PowerPlant> PowerPlants;
 	private ArrayList <City> cities;
@@ -72,13 +73,27 @@ public class Player
 		pay(cost);
 	}
 	
-	public void buyPowerPlant (PowerPlant x)
+	public void buyPowerPlant (PowerPlant x, int cost)
 	{
 		if (PowerPlants.size() != 3)
 		{
 			PowerPlants.add(x);
-			pay(x.getID());
+			pay(cost);
 		}
+	}
+	
+	public int compareTo (Object obj)
+	{       
+        int x = getPowerPlants().size();
+		int y = ((Player) obj).getPowerPlants().size();
+		
+		if (x != y)
+			return x - y;
+		
+		x = getPowerPlants().get(0).getID();
+		y = ((Player) obj).getPowerPlants().get(0).getID();
+		
+		return x - y;
 	}
 }
 
