@@ -1,7 +1,9 @@
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -51,6 +53,8 @@ public class Board
 		
 		setupGame();
 		
+		setupCities();
+		
 		setupPlayers();
 		
 		setupResources();
@@ -95,6 +99,44 @@ public class Board
 		}
 		
 		Collections.shuffle(deck);
+	}
+	
+	public void setupCities () throws IOException
+	{
+		Scanner input = new Scanner (new File (DATA_PATH + "cities.txt"));
+		
+		HashMap <City, HashMap <City, Integer>> map = new HashMap <City, HashMap <City, Integer>> ();
+		
+		while (input.hasNext())
+		{
+			String [] attributes = input.nextLine().split("\\s{0,}[\"|\"]{1}\\s{0,}");
+			
+			String name = attributes[0];
+			
+			City start = new City (name);
+			
+			HashMap <City, Integer> connections = new HashMap <City, Integer> ();
+			
+			cities.add(start);
+			
+			for (int x = 1; x <= attributes.length - 1; x++)
+			{
+				String [] connectingCity = attributes[x].split(", ");
+				
+				connections.put(new City (connectingCity[1]), Integer.parseInt(connectingCity[0]));
+			}
+			
+			map.put(start, connections);
+		}
+		
+		graph = new Map (map);
+		
+		System.out.println("\n\n");
+		
+		for (City x : cities)
+		{
+			System.out.println(x.getName() + " " + graph.getConnections(x)); 
+		}
 	}
 	
 	public void setupPlayers ()

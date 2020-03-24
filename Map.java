@@ -1,17 +1,22 @@
 
-
+import java.util.HashMap;
 
 public class Map 
 {
-	private Node graph;
+	private HashMap <City, HashMap <City, Integer>> cities;
 	
-	public Map ()
+	public Map (HashMap <City, HashMap <City, Integer>> connections)
 	{
-		
+		cities = connections;
 	}
 	
-	public Node getMap ()
+	public int getCost (City start, City end)
 	{
-		return graph;
+		return cities.get(start).get(end);
+	}
+	
+	public HashMap <City, Integer> getConnections (City x)
+	{
+		return cities.get(x);
 	}
 }

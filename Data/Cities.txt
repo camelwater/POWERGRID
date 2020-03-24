@@ -1,0 +1,42 @@
+Seattle | 3, Portland | 12, Boise | 9, Billings
+Portland | 3, Seattle | 13, Boise | 24, San Francisco
+Boise | 12, Seattle | 13, Portland | 23, San Francisco | 8, Salt Lake City | 24, Cheyenne | 12, Billings
+Billings | 9, Seattle | 12, Boise | 9, Cheyenne | 18, Minneapolis | 17, Fargo
+Cheyenne | 9, Billings | 24, Boise | 14, Omaha | 18, Minneapolis | 0, Denver
+Denver | 21, Salt Lake City | 13, Santa Fe | 0, Cheyenne | 16, Kansas City
+Omaha | 13, Chicago | 5, Kansas City | 14, Cheyenne | 8, Minneapolis
+San Francisco | 9, Los Angeles | 14, Las Vegas | 27, Salt Lake City | 23, Boise | 24, Portland
+Los Angeles | 9, San Francisco | 9, Las Vegas | 3, San Diego
+San Diego | 9, Las Vegas | 14, Phoenix | 3, Los Angeles
+Las Vegas | 14, San Francisco | 9, Los Angeles | 9, San Diego | 15, Phoenix | 27, Santa Fe | 18, Salt Lake City
+Phoenix | 14, San Diego | 15, Las Vegas | 18, Santa Fe
+Salt Lake City | 8, Boise | 27, San Francisco | 28, Santa Fe | 18, Las Vegas | 21, Denver
+Santa Fe | 18, Phoenix | 27, Las Vegas | 13, Denver | 28, Salt Lake City | 16, Kansas City | 15, Oklahoma City | 16, Dallas | 21, Houston
+Kansas City | 16, Denver | 16, Santa Fe | 5, Omaha | 8, Oklahoma City | 12, Memphis | 6, St. Louis | 8, Chicago
+Oklahoma City | 15, Santa Fe | 3, Dallas | 8, Kansas City | 14, Memphis
+Dallas | 16, Santa Fe | 3, Oklahoma City | 5, Houston | 12, New Orleans | 12, Memphis
+Houston | 5, Dallas | 8, New Orleans | 21, Santa Fe
+Memphis | 7, New Orleans | 6, Birmingham | 12, Dallas | 14, Oklahoma City | 12, Kansas City | 7, St. Louis
+New Orleans | 8, Houston | 12, Dallas | 7, Memphis | 11, Birmingham | 16, Jacksonville
+Birmingham | 3, Atlanta | 9, Jacksonville | 11, New Orleans | 6, Memphis
+Fargo | 17, Billings | 6, Minneapolis | 6, Duluth
+Minneapolis | 5, Duluth | 6, Fargo | 18, Billings | 18, Cheyenne | 8, Omaha | 8, Chicago
+Duluth | 6, Fargo | 5, Minneapolis | 12, Chicago | 15, Detroit
+Chicago | 12, Diluth | 8, Minneapolis | 13, Omaha | 8, Kansas City | 10, St. Louis | 7, Cincinnati | 7, Detroit
+St. Louis | 6, Kansas City | 7, Memphis | 10, Chicago | 12, Cincinnati | 12, Atlanta
+Cincinnati | 12, St. Louis | 7, Chicago | 4, Detroit | 6, Knoxville | 7, Pittsburgh | 15, Raleigh
+Knoxville | 5, Atlanta | 6, Cincinnati
+Detroit | 15, Duluth | 7, Chicago | 4, Cincinnati | 6, Pittsburgh | 7, Buffalo
+PittsBurgh | 6, Detroit | 7, Cincinnati | 7, Raleigh | 6, Washington D.C. | 7, Buffalo
+Buffalo | 7, Detroit | 7, Pittsburgh | 8, New York
+Washington D.C. | 6, PittsBurgh | 3, Philadelphia | 5, Norfolk
+Philadelhia | 3, Washington D.C. | 0, New York
+New York | 8, Buffalo | 0, Philadeplhia | 3, Boston
+Boston | 3, New York
+Norfolk | 5, Washington D.C. | 3, Raleigh
+Raleigh | 7, Pittsburgh | 15, Cincinnati | 3, Norfolk | 7, Atlanta | 7, Savannah
+Atlanta | 5, Knoxville | 12, St. Louis | 3, Birmingham | 7, Savannah | 7, Raleigh
+Savannah | 7, Raleigh | 7, Atlanta | 0, JacksonVille
+Jacksonville | 9, Birmingham | 0, Savannah | 4, Tampa | 16, New Orleans
+Tampa | 4, Jacksonville | 4, Miami
+Miami | 4, Tampa

@@ -3,11 +3,13 @@
 
 public class City 
 {
+	private String name;
 	private int numOccupants;
 	private int cost;
 	
-	public City ()
+	public City (String n)
 	{
+		name = n;
 		numOccupants = 0;
 		cost = 10;
 	}
@@ -22,6 +24,11 @@ public class City
 		return numOccupants;
 	}
 	
+	public String getName ()
+	{
+		return name;
+	}
+	
 	public void incrementCost ()
 	{
 		cost += 5;
@@ -34,4 +41,24 @@ public class City
 		
 		return true;
 	}
+	
+	public String toString ()
+	{
+		return name + " ";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
