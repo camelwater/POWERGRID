@@ -16,7 +16,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	public GraphicsRunner(Board g)
 	{
 		 JFrame frame = new JFrame("POWERGRID");
-		 frame.setBackground(Color.white);
+		 //frame.setBackground(Color.white);
 		 setVisible(true);
 		 //frame.getContentPane().setBackground(Color.orange);
 		 bg = new ImageIcon("bg.jpg");
