@@ -1,3 +1,3 @@
 # POWERGRID
-powergrid project
+powergrid project \n
 remember to pull before you change anything just in case
