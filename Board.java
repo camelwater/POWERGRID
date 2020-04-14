@@ -144,6 +144,10 @@ public class Board
 		for (int x = 0; x < 4; x++)
 			players.add(new Player()); 
 	}
+	public ArrayList<Player> getPlayers()
+	{
+		return players;
+	}
 	
 	public void setupResources ()
 	{

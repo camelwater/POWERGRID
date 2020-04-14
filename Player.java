@@ -10,8 +10,9 @@ public class Player implements Comparable
 	private ArrayList <City> cities;
 	private HashMap <Type, Resource> resources;
 	private int cash;
+	private String name;
 	
-	public Player ()
+	public Player (String n)
 	{
 		PowerPlants = new ArrayList <PowerPlant> ();
 		
@@ -20,11 +21,17 @@ public class Player implements Comparable
 		resources = new HashMap <Type, Resource> ();
 		
 		cash = 50;
+		name = n;
 	}
 	
 	public void addCash (int x)
 	{
 		cash += x;
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 	
 	public void pay (int x)
@@ -96,46 +103,3 @@ public class Player implements Comparable
 		return x - y;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
