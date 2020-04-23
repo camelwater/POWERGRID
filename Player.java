@@ -21,6 +21,7 @@ public class Player implements Comparable
 		resources = new HashMap <Type, Resource> ();
 		
 		cash = 50;
+		
 		name = n;
 	}
 	

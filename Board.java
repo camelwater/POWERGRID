@@ -141,8 +141,8 @@ public class Board
 	
 	public void setupPlayers ()
 	{
-		for (int x = 0; x < 4; x++)
-			players.add(new Player()); 
+		for (int x = 1; x < 5; x++)
+			players.add(new Player("" + x)); 
 	}
 	public ArrayList<Player> getPlayers()
 	{
