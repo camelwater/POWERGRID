@@ -29,6 +29,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 frame.setResizable(true);
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 frame.setVisible(true);
+		 
 	}
 	public void paintComponent(Graphics g)
 	{
