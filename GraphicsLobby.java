@@ -13,7 +13,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 	public GraphicsLobby()
 	{
 		JFrame frame = new JFrame("POWERGRID");
-		 frame.setBackground(Color.blue);
+		 frame.setBackground(Color.cyan);
 		 setVisible(true);
 		 //frame.getContentPane().setBackground(Color.orange);
 //		 map = new ImageIcon("map.png");
@@ -30,10 +30,35 @@ public class GraphicsLobby extends JPanel implements MouseListener
 	{
 //		g.drawImage(map.toImage(), 460, 190, 1000, 700, null);
 		g.setColor(Color.black);
-		g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
-		g.drawString("POWERGRID", 300, 100);
-		g.setFont(new Font("Times New Roman", Font.ITALIC | Font.BOLD, 25));
-		g.drawString("Choose the 4 regions", 250, 250);
+		g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 150));
+		g.drawString("POWERGRID", 500, 150);
+		g.setFont(new Font("Times New Roman", Font.ITALIC | Font.BOLD, 50));
+		g.drawString("Choose the 4 regions", 750, 215);
+	}
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		System.out.println("X: "+e.getX()+ "Y: "+e.getY());
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	 
 }
