@@ -1,11 +1,10 @@
-
-import java.io.IOException;
+import java.io.*;
 
 public class Runner 
 {
-	@SuppressWarnings("unused")
-	public static void main (String [] args) throws IOException
+	public static void main(String [] args) throws IOException
 	{
-		Board test = new Board ();
+		//Board test = new Board ();
+		GraphicsLobby g = new GraphicsLobby();
 	}
 }
