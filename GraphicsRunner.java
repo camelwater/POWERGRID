@@ -11,11 +11,14 @@ import javax.swing.ImageIcon;
 public class GraphicsRunner extends JPanel implements MouseListener
 {
 	private Board game;
+	private String regions;
 	private ImageIcon bg;
 	private ImageIcon logo;
 	private int page = 0;
-	public GraphicsRunner(Board g)
+	public GraphicsRunner(Board g, String r)
 	{
+		game = g;
+		regions = r;
 		 JFrame frame = new JFrame("POWERGRID");
 		 //frame.setBackground(Color.white);
 		 setVisible(true);
@@ -47,15 +50,15 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
 			
 			g.drawString(game.getPlayers().get(page).getName(), 500, 50);	//player name
-			g.drawString(game.getStep(), 500, 200);	//step
-			g.drawString(game.getPhase(), 500, 250); //phase
+			g.drawString(game.getStep()+"", 500, 200);	//step
+			g.drawString(game.getPhase()+"", 500, 250); //phase
 			
 			for(int i = 0 ; i < game.getPlayers().get(page).getPowerPlants().size(); i++)
 			{
 				g.drawImage(game.getPlayers().get(page).getPowerPlants().get(i).getImage().getImage(), 50 + (144 * i), 750, 144, 220, null); //power plants
 			}
 			
-			g.drawString("Cash: " + game.getPlayers().get(page).getCash(), 100, 500); //cash			
+			g.drawString("Cash: " + game.getPlayers().get(page).balance(), 100, 500); //cash			
 			g.drawString("Coal: " + game.getPlayers().get(page).getCoal(), 100, 600); //other resources
 			g.drawString("Oil: " + game.getPlayers().get(page).getOil(), 100, 700);
 			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 800);

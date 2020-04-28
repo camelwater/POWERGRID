@@ -27,6 +27,7 @@ public class Board
 	private int step;
 	private int phase;
 	
+	private boolean isOver = false;
 	public Board () throws IOException
 	{
 		deck = new ArrayList <PowerPlant> ();
@@ -317,12 +318,22 @@ public class Board
 				x.incrementCost(); 
 		}
 	}
-	
+	public int getStep()
+	{
+		return step;
+	}
+	public int getPhase()
+	{
+		return phase;
+	}
 	public void endGame ()
 	{
 		
 	}
-	
+	public boolean isOver()
+	{
+		return isOver;
+	}
 	public void updateGameState ()
 	{
 		

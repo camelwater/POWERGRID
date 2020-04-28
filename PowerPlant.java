@@ -1,9 +1,13 @@
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("rawtypes")
 public class PowerPlant implements Comparable
 {
+	private BufferedImage img;
 	private int ID;
 	private int numPowered;
 	private ArrayList <Resource> cost;
@@ -35,6 +39,10 @@ public class PowerPlant implements Comparable
 		return ID + " " + numPowered + " " + cost.toString();
 	}
 	
+//	public BufferedImage getImage()
+//	{
+//		
+//	}
 	public int compareTo (Object obj)
 	{
 		int x = getID();

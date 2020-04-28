@@ -54,7 +54,25 @@ public class Player implements Comparable
 	{
 		return resources;
 	}
-	
+
+	//NEED TO CHANGE SO GRAPHICS CAN READ AMOUNT THAT EACH RESOURCE IS
+
+	//	public int getTrash() 
+//	{
+//		return resources.get(Type.Trash);
+//	}
+//	public int getUranium()
+//	{
+//		return resources.get(Type.Uranium);
+//	}
+//	public int getCoal()
+//	{
+//		return resources.get(Type.Coal);
+//	}
+//	public int getOil()
+//	{
+//		return resources.get(Type.Oil);
+//	}
 	public ArrayList <City> getCities ()
 	{
 		return cities;
