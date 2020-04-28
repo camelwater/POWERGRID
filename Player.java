@@ -73,6 +73,7 @@ public class Player implements Comparable
 //	{
 //		return resources.get(Type.Oil);
 //	}
+	
 	public ArrayList <City> getCities ()
 	{
 		return cities;
