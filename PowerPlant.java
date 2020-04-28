@@ -1,6 +1,9 @@
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings({ "rawtypes", "unused" })
@@ -38,11 +41,15 @@ public class PowerPlant implements Comparable
 		return ID + " " + numPowered + " " + cost.toString();
 	}
 	
-//	public BufferedImage getImage()
-//	{
-//		
-//	}
-	
+	public BufferedImage getImage()
+	{
+		return img;
+	}
+	public void setImage() throws IOException
+	{
+		//System.out.println(name+".png");
+		img = ImageIO.read(getClass().getResource(ID+".png"));
+	}
 	public int compareTo (Object obj)
 	{
 		int x = getID();
