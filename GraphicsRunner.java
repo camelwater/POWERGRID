@@ -20,10 +20,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		game = g;
 		regions = r;
 		 JFrame frame = new JFrame("POWERGRID");
-		 //frame.setBackground(Color.white);
+		 frame.setBackground(Color.orange);
 		 setVisible(true);
 		 //frame.getContentPane().setBackground(Color.orange);
-		 bg = new ImageIcon("bg.jpg");
+		 bg = new ImageIcon("Powergridmap.jpeg");
 		 logo = new ImageIcon("logo.png");
 		 addMouseListener(this);
 		 
@@ -40,32 +40,34 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		{
 			g.drawImage(bg.getImage(), 0, 0, 1920, 1080, null); //background
 			g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
-			//add end game stuff later
+			
+			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
+			//g.drawString("Winner: "+game.getWinner(), 500, 500);
 		}
 		else
-		{
-			g.drawImage(bg.getImage(), 0, 0, 1920, 1080, null); //background
+		{    
+			g.drawImage(bg.getImage(), 0, 0, 1920, 1060, null); //background
 			g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
 			
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
 			
-			g.drawString(game.getPlayers().get(page).getName(), 500, 50);	//player name
+			g.drawString("Player "+game.getPlayers().get(page).getName(), 500, 50);	//player name
 			g.drawString(game.getStep()+"", 500, 200);	//step
 			g.drawString(game.getPhase()+"", 500, 250); //phase
 			
 			for(int i = 0 ; i < game.getPlayers().get(page).getPowerPlants().size(); i++)
 			{
-				g.drawImage(game.getPlayers().get(page).getPowerPlants().get(i).getImage().getImage(), 50 + (144 * i), 750, 144, 220, null); //power plants
+				g.drawImage(game.getPlayers().get(page).getPowerPlants().get(i).getImage(), 50 + (144 * i), 750, 144, 220, null); //power plants
 			}
 			
 			g.drawString("Cash: " + game.getPlayers().get(page).balance(), 100, 500); //cash			
-			g.drawString("Coal: " + game.getPlayers().get(page).getCoal(), 100, 600); //other resources
-			g.drawString("Oil: " + game.getPlayers().get(page).getOil(), 100, 700);
-			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 800);
-			g.drawString("Uranium: " + game.getPlayers().get(page).getUranium(), 100, 900);
+//			g.drawString("Coal: " + game.getPlayers().get(page).getCoal(), 100, 600); //other resources
+//			g.drawString("Oil: " + game.getPlayers().get(page).getOil(), 100, 700);
+//			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 800);
+//			g.drawString("Uranium: " + game.getPlayers().get(page).getUranium(), 100, 900);
 			
-			g.drawImage(new ImageIcon("arrow.png").getImage(), 464, 201, 120, 91, null); //arrows
-			g.drawImage(new ImageIcon("arrow.png").getImage(), 897, 290, -120, -91, null);
+			g.drawImage(new ImageIcon("arrow2.png").getImage(), 1725, 949, 120, 91, null); //arrows
+			g.drawImage(new ImageIcon("arrow2.png").getImage(), 1700, 1040, -120, -91, null);
 			
 		}
 		
