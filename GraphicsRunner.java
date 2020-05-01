@@ -32,14 +32,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 frame.setResizable(true);
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 frame.setVisible(true);
-		 
+		
 	}
 	public void paintComponent(Graphics g)
 	{
 		if(game.isOver())
 		{
-			g.drawImage(bg.getImage(), 0, 0, 1920, 1080, null); //background
-			g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
+			g.drawImage(bg.getImage(), 0, 0, 1920, 1080, null); 
+			//g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
 			
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
 			//g.drawString("Winner: "+game.getWinner(), 500, 500);
@@ -47,7 +47,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		else
 		{    
 			g.drawImage(bg.getImage(), 0, 0, 1920, 1060, null); //background
-			g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
+			//g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
 			
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
 			
@@ -103,5 +103,27 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	public void mouseReleased(MouseEvent e) 
 	{
 		System.out.println("X: "+e.getX()+ ", Y: "+e.getY());
+		
+		//ARROWS
+		if(e.getX() >= 1595 && e.getX() <= 1690 && e.getY() >= 955 && e.getY() <= 1045)
+		{
+			if(page == 0)
+				page = 3;
+			else
+				page-=1;
+			repaint();
+		}
+		if(e.getX() >= 1725 && e.getX() <= 1840 && e.getY() >= 955 && e.getY() <= 1045)
+		{
+			if(page == 3)
+				page = 0;
+			else
+				page+=1;
+			repaint();
+		}
+		
+		//CURRENT PLAYER TO PLAY
+//		if(game.getTurn() == page) 
+			
 	}
 }
