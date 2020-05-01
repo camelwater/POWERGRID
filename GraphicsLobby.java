@@ -156,7 +156,6 @@ public class GraphicsLobby extends JPanel implements MouseListener
 	@Override
 	public void mouseReleased(MouseEvent e) 
 	{
-
 		
 		System.out.println("X: "+e.getX()+ ", Y: "+e.getY());
 		

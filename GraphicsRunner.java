@@ -51,16 +51,17 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
 			
-			g.drawString("Player "+game.getPlayers().get(page).getName(), 500, 50);	//player name
-			g.drawString(game.getStep()+"", 500, 200);	//step
-			g.drawString(game.getPhase()+"", 500, 250); //phase
+			g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);	//player name
+			g.drawString("Step: "+game.getStep(), 900, 50);	//step
+			g.drawString("Phase: "+game.getPhase(), 875, 100); //phase
 			
 			for(int i = 0 ; i < game.getPlayers().get(page).getPowerPlants().size(); i++)
 			{
 				g.drawImage(game.getPlayers().get(page).getPowerPlants().get(i).getImage(), 50 + (144 * i), 750, 144, 220, null); //power plants
 			}
 			
-			g.drawString("Cash: " + game.getPlayers().get(page).balance(), 100, 500); //cash			
+			g.drawImage(new ImageIcon("cash.png").getImage(), 50, 650, 50, 50, null);
+			g.drawString(""+game.getPlayers().get(page).balance(), 110, 700); //cash			
 //			g.drawString("Coal: " + game.getPlayers().get(page).getCoal(), 100, 600); //other resources
 //			g.drawString("Oil: " + game.getPlayers().get(page).getOil(), 100, 700);
 //			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 800);
@@ -99,7 +100,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		System.out.println(e.getX());
+	public void mouseReleased(MouseEvent e) 
+	{
+		System.out.println("X: "+e.getX()+ ", Y: "+e.getY());
 	}
 }
