@@ -45,11 +45,13 @@ public class PowerPlant implements Comparable
 	{
 		return img;
 	}
+	
 	public void setImage() throws IOException
 	{
 		//System.out.println(name+".png");
 		img = ImageIO.read(getClass().getResource(ID+".png"));
 	}
+	
 	public int compareTo (Object obj)
 	{
 		int x = getID();
