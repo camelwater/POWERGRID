@@ -62,6 +62,13 @@ public class Board
 		setupResources();
 		
 		updateGameState();
+		
+		play();
+	}
+	
+	public void play()
+	{
+		
 	}
 	
 	public void setupGame () throws IOException
@@ -274,7 +281,7 @@ public class Board
 		market.add(deck.remove(0));
 	}
 	
-	public int calculateCost ()
+	public int calculateCost () //Shortest Path Algorithm
 	{	
 		return 0; 
 	}
@@ -331,9 +338,55 @@ public class Board
 		return phase;
 	}
 	
-	public void endGame ()
-	{
+	public Player endGame ()
+	{		
+		Player winner = null;
+		Player temp = null;
 		
+		boolean tie = false;
+		
+		int mostPowered = Integer.MIN_VALUE;
+		
+		for (Player x : players)
+		{
+			int current = 0;
+			
+			for (PowerPlant y : x.getPowerPlants())
+			{
+				if (y.isPowered())
+					current += y.getNumPowered();
+			}
+			
+			if (current == mostPowered)
+			{
+				temp = x;
+				tie = true;
+			}
+			
+			else if (current > mostPowered)
+			{
+				mostPowered = current;
+				winner = x;
+				tie = false;
+				temp = null;
+			}
+		}
+		
+		if (tie)
+		{	
+			if (temp.balance() > winner.balance())
+			{
+				winner = temp;
+			}
+			
+			else if (temp.balance() == winner.balance())
+			{
+				if (winner.getCities().size() < temp.getCities().size())
+					winner = temp;
+			}
+		}
+		
+		return winner;
 	}
 	
 	public boolean isOver()

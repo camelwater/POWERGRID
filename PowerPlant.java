@@ -14,6 +14,8 @@ public class PowerPlant implements Comparable
 	private int numPowered;
 	private ArrayList <Resource> cost;
 	
+	private boolean powered;
+	
 	public PowerPlant (int num, int id, ArrayList <Resource> c)
 	{
 		ID = id;
@@ -29,6 +31,16 @@ public class PowerPlant implements Comparable
 	public int getNumPowered ()
 	{
 		return numPowered;
+	}
+	
+	public void setPoweredStatus (boolean status)
+	{
+		powered = status;
+	}
+	
+	public boolean isPowered ()
+	{
+		return powered;
 	}
 	
 	public ArrayList <Resource> getCost ()
