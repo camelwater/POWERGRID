@@ -16,10 +16,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	private ImageIcon bg;
 	private ImageIcon logo;
 	private int page = 0;
+	
 	public GraphicsRunner(Board g, String r)
 	{
 		game = g;
 		regions = r;
+//		game.setRegions();
 		 JFrame frame = new JFrame("POWERGRID");
 		 frame.setBackground(Color.orange);
 		 setVisible(true);
@@ -33,6 +35,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 frame.setResizable(true);
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 frame.setVisible(true);
+		 
 		
 	}
 	public void paintComponent(Graphics g)
@@ -63,10 +66,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			
 			g.drawImage(new ImageIcon("cash.png").getImage(), 50, 650, 50, 50, null);
 			g.drawString(""+game.getPlayers().get(page).balance(), 110, 700); //cash			
-//			g.drawString("Coal: " + game.getPlayers().get(page).getCoal(), 100, 600); //other resources
-//			g.drawString("Oil: " + game.getPlayers().get(page).getOil(), 100, 700);
-//			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 800);
-//			g.drawString("Uranium: " + game.getPlayers().get(page).getUranium(), 100, 900);
+			g.drawString("Coal: " + game.getPlayers().get(page).getCoal(), 100, 600); //other resources
+			g.drawString("Oil: " + game.getPlayers().get(page).getOil(), 100, 700);
+			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 800);
+			g.drawString("Uranium: " + game.getPlayers().get(page).getUranium(), 100, 900);
 			
 			g.drawImage(new ImageIcon("arrow2.png").getImage(), 1725, 949, 120, 91, null); //arrows
 			g.drawImage(new ImageIcon("arrow2.png").getImage(), 1700, 1040, -120, -91, null);

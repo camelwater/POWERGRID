@@ -72,7 +72,7 @@ public class Board
 		{
 			if (phase == 1 && step != 0) //Determining Player Order
 			{
-//				calculatePlayerOrder();
+				//calculatePlayerOrder();
 			}
 			
 			else if (step == 0) //First time phase 1 is being played
@@ -545,30 +545,3 @@ public class Board
 		return elements;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

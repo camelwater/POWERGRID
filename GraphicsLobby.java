@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -36,6 +35,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 	
 	JFrame frame;
 	boolean lobbyDone = false;
+	
 	public GraphicsLobby(Board game)
 	{
 		this.game = game;
@@ -44,7 +44,6 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		 setVisible(true);
 		 //frame.getContentPane().setBackground(Color.orange);
 		 map = new ImageIcon("map.png");
-//		 logo = new ImageIcon("logo.png");
 		 addMouseListener(this);
 		 
 		 frame.add(this);
@@ -52,6 +51,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		 frame.setResizable(true);
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 frame.setVisible(true);
+		 System.out.println("HELLO GRAPHICS LOBBY");
 	}
 	public void paintComponent(Graphics g)
 	{
