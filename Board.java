@@ -63,7 +63,7 @@ public class Board
 		
 		updateGameState();
 		
-		play();
+		//play();
 	}
 	
 	public void play() 
