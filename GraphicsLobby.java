@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 @SuppressWarnings({ "unused", "serial" })
 public class GraphicsLobby extends JPanel implements MouseListener
 {
+	private static String path = "Misc\\";
 	Board game;
 	GraphicsRunner gr;
 	String regions = "";
@@ -43,7 +44,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		 frame.setBackground(Color.white);
 		 setVisible(true);
 		 //frame.getContentPane().setBackground(Color.orange);
-		 map = new ImageIcon("map.png");
+		 map = new ImageIcon(path+"map.png");
 		 addMouseListener(this);
 		 
 		 frame.add(this);
@@ -91,7 +92,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		g.fillOval(1180, 590, 50, 50);
 		g.fillOval(1255, 420, 50, 50);
 		
-		ImageIcon check = new ImageIcon("check.png");
+		ImageIcon check = new ImageIcon(path+"check.png");
 		if(r1)
 		{
 			g.drawImage(check.getImage(), 750, 360, 25, 25, null);

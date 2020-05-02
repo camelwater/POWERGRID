@@ -26,8 +26,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 frame.setBackground(Color.orange);
 		 setVisible(true);
 		 //frame.getContentPane().setBackground(Color.orange);
-		 bg = new ImageIcon("Powergridmap.jpeg");
-		 logo = new ImageIcon("logo.png");
+		 bg = new ImageIcon("Misc\\Powergridmap.jpeg");
+		 //logo = new ImageIcon("logo.png");
 		 addMouseListener(this);
 		 
 		 frame.add(this);
@@ -71,8 +71,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 800);
 			g.drawString("Uranium: " + game.getPlayers().get(page).getUranium(), 100, 900);
 			
-			g.drawImage(new ImageIcon("arrow2.png").getImage(), 1725, 949, 120, 91, null); //arrows
-			g.drawImage(new ImageIcon("arrow2.png").getImage(), 1700, 1040, -120, -91, null);
+			g.drawImage(new ImageIcon("Misc\\arrow2.png").getImage(), 1725, 949, 120, 91, null); //arrows
+			g.drawImage(new ImageIcon("Misc\\arrow2.png").getImage(), 1700, 1040, -120, -91, null);
 			
 		}
 		
