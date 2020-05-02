@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
+
 import Enums.Type;
 
 @SuppressWarnings("rawtypes")
@@ -8,9 +10,9 @@ public class Player implements Comparable
 {
 	private ArrayList <PowerPlant> PowerPlants;
 	private ArrayList <City> cities;
-	private HashMap <Type, Resource> resources;
-	private int cash;
+	private HashMap <Type, Stack <Resource>> resources;
 	private String name;
+	private int cash;
 	
 	public Player (String n)
 	{
@@ -18,7 +20,7 @@ public class Player implements Comparable
 		
 		cities = new ArrayList <City> ();
 		
-		resources = new HashMap <Type, Resource> ();
+		resources = new HashMap <Type, Stack <Resource>> ();
 		
 		cash = 50;
 		
@@ -50,29 +52,30 @@ public class Player implements Comparable
 		return PowerPlants;
 	}
 	
-	public HashMap <Type, Resource> getResources ()
+	public HashMap <Type, Stack <Resource>> getResources ()
 	{
 		return resources;
 	}
 
-	//NEED TO CHANGE SO GRAPHICS CAN READ AMOUNT THAT EACH RESOURCE IS
-
-	//	public int getTrash() 
-//	{
-//		return resources.get(Type.Trash);
-//	}
-//	public int getUranium()
-//	{
-//		return resources.get(Type.Uranium);
-//	}
-//	public int getCoal()
-//	{
-//		return resources.get(Type.Coal);
-//	}
-//	public int getOil()
-//	{
-//		return resources.get(Type.Oil);
-//	}
+	public int getTrash() 
+	{
+		return resources.get(Type.Trash).size();
+	}
+	
+	public int getUranium()
+	{
+		return resources.get(Type.Uranium).size();
+	}
+	
+	public int getCoal()
+	{
+		return resources.get(Type.Coal).size();
+	}
+	
+	public int getOil()
+	{
+		return resources.get(Type.Oil).size();
+	}
 	
 	public ArrayList <City> getCities ()
 	{
@@ -95,7 +98,7 @@ public class Player implements Comparable
 	
 	public void buyResources (Resource res, int cost)
 	{
-		resources.put(res.getType(), res);
+		resources.get(res.getType()).push(res);
 		
 		pay(cost);
 	}

@@ -48,7 +48,6 @@ public class PowerPlant implements Comparable
 	
 	public void setImage() throws IOException
 	{
-		//System.out.println(name+".png");
 		img = ImageIO.read(getClass().getResource(ID+".png"));
 	}
 	

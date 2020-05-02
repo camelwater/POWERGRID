@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings({"serial", "unused"})
 public class GraphicsRunner extends JPanel implements MouseListener
 {
 	private Board game;

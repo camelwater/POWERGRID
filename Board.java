@@ -341,9 +341,16 @@ public class Board
 		return isOver;
 	}
 	
-	public void updateGameState ()
+	public ArrayList <Object> updateGameState ()
 	{
+		ArrayList <Object> elements = new ArrayList <Object> ();
 		
+		elements.add(deck);
+		elements.add(resources);
+		elements.add(players);
+		elements.add(market);
+		
+		return elements;
 	}
 }
 
