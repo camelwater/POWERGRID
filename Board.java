@@ -49,7 +49,7 @@ public class Board
 		
 		resources.put("URANIUM", new Stack <Resource> ());
 		
-		step = 1;
+		step = 0;
 		
 		phase = 1;
 		
@@ -68,7 +68,144 @@ public class Board
 	
 	public void play()
 	{
+		if (step == 0)
+		{
+			Collections.shuffle(players);
+			step = 1;
+		}
 		
+		while (!isOver)
+		{
+			if (phase == 1) //Determining Player Order
+			{
+				calculatePlayerOrder();
+			}
+			
+			else if (phase == 2) //Auctioning Power Plants
+			{
+				boolean allPassed = true;
+				
+				for (Player x : players)
+				{
+					PowerPlant purchase = null; //This will be set to the power plant the player chooses to buy
+					
+					int cost = 0; //This will be set to the final cost of the power plant after bidding
+					
+					if (x.balance() >= cost)
+					{
+						x.buyPowerPlant(purchase, cost);
+						
+						market.remove(purchase);
+						
+						market.add(deck.remove(0));
+						
+						Collections.sort(market, Collections.reverseOrder());
+						
+						allPassed = false;
+					}
+				}
+				
+				if (allPassed)
+				{
+					updateMarket();
+					
+					for (PowerPlant x : market)
+					{
+						if (x.getName().equals("Step 3"))
+						{
+							step = 3;
+							market.remove(x);
+							market.remove(0);
+						}
+					}
+				}
+			}
+			
+			else if (phase == 3) //Buying Resources
+			{
+				Collections.sort(players, Collections.reverseOrder());
+				
+				for (Player x : players)
+				{
+					ArrayList <Resource> purchase = new ArrayList <Resource> (); //This will be filled with all of the resources the player chooses to buy
+					
+					int cost = 0; //This will be set to the final cost of the resources
+					
+					if (x.balance() >= cost)
+					{
+						for (Resource y : purchase)
+						{
+							x.buyResources(y);
+							
+							resources.get(y.toString()).pop();
+						}
+						
+						x.pay(cost);
+					}
+				}
+			}
+			
+			else if (phase == 4) //Building Cities
+			{
+				int highestCityCount = Integer.MIN_VALUE;
+				
+				for (Player x : players)
+				{
+					ArrayList <City> purchase = new ArrayList <City> (); //This will be filled with all of the cities the player chooses to buy
+					
+					int cost = 0; //This will be set to the final cost of all the cities the player wants to buy
+					
+					if (x.balance() >= cost)
+					{
+						for (City y : purchase)
+						{
+							x.buyCity(y, calculateCost(y));
+						}
+					}
+					
+					if (x.getCities().size() >= 7 && step == 1)
+						endStep();
+					
+					else if (x.getCities().size() == 17 && step == 3)
+						endGame();
+					
+					if (x.getCities().size() > highestCityCount)
+						highestCityCount = x.getCities().size();
+				}
+				
+				while (highestCityCount >= market.get(0).getID())
+				{
+					market.remove(0);
+					market.add(deck.remove(0));
+					Collections.sort(market, Collections.reverseOrder());
+				}
+				
+				for (PowerPlant x : market)
+				{
+					if (x.getName().equals("Step 3"))
+					{
+						step = 3;
+						market.remove(x);
+						market.remove(0);
+					}
+				}
+			}
+			
+			else if (phase == 5)
+			{
+				endRound();
+				
+				for (PowerPlant x : market)
+				{
+					if (x.getName().equals("Step 3"))
+					{
+						step = 3;
+						market.remove(x);
+						market.remove(0);
+					}
+				}
+			}
+		}
 	}
 	
 	public void setupGame () throws IOException
@@ -102,10 +239,15 @@ public class Board
 			deck.add(new PowerPlant (id, numPowered, cost));
 		}
 		
+		deck.add(new PowerPlant ("Step 3", Integer.MAX_VALUE));
+		
 		for (PowerPlant x : deck)
 		{
 			System.out.println(x);
 		}
+		
+		for (int x = 0; x < 8; x++)
+			market.add(deck.remove(x));
 		
 		Collections.shuffle(deck);
 	}
@@ -274,14 +416,14 @@ public class Board
 	
 	public void updateMarket ()
 	{
-		Collections.sort(market, Collections.reverseOrder());
-		
 		market.remove(0);
 		
 		market.add(deck.remove(0));
+		
+		Collections.sort(market, Collections.reverseOrder());
 	}
 	
-	public int calculateCost () //Shortest Path Algorithm
+	public int calculateCost (City buy) //Shortest Path Algorithm
 	{	
 		return 0; 
 	}
@@ -314,17 +456,8 @@ public class Board
 		{
 			updateMarket();
 			
-			for (City x : cities)
-				x.incrementCost(); 
-		}
-		
-		else
-		{
-			market.remove(0);
-			market.remove(0);
-			
-			for (City x : cities)
-				x.incrementCost(); 
+//			for (City x : cities)
+//				x.incrementCost(); 
 		}
 	}
 	
@@ -338,8 +471,10 @@ public class Board
 		return phase;
 	}
 	
-	public Player endGame ()
+	public void endGame ()
 	{		
+		isOver = true;
+		
 		Player winner = null;
 		Player temp = null;
 		
@@ -386,7 +521,11 @@ public class Board
 			}
 		}
 		
-		return winner;
+		for (Player x : players)
+		{
+			if (x != winner)
+				players.remove(x);
+		}
 	}
 	
 	public boolean isOver()

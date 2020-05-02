@@ -29,6 +29,11 @@ public class City
 		return name;
 	}
 	
+	public void incrementNumOccupants ()
+	{
+		numOccupants++;
+	}
+	
 	public void incrementCost ()
 	{
 		cost += 5;

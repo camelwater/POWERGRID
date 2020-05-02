@@ -94,13 +94,15 @@ public class Player implements Comparable
 		cities.add(x);
 		
 		pay(cost);
+		
+		x.incrementNumOccupants();
+		
+		x.incrementCost();
 	}
 	
-	public void buyResources (Resource res, int cost)
+	public void buyResources (Resource res)
 	{
 		resources.get(res.getType()).push(res);
-		
-		pay(cost);
 	}
 	
 	public void buyPowerPlant (PowerPlant x, int cost)

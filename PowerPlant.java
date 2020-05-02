@@ -14,6 +14,8 @@ public class PowerPlant implements Comparable
 	private int numPowered;
 	private ArrayList <Resource> cost;
 	
+	private String name;
+	
 	private boolean powered;
 	
 	public PowerPlant (int num, int id, ArrayList <Resource> c)
@@ -21,6 +23,18 @@ public class PowerPlant implements Comparable
 		ID = id;
 		numPowered = num;
 		cost = c;
+		name = "";
+	}
+	
+	public PowerPlant (String n, int id)
+	{
+		name = n;
+		ID = id;
+	}
+	
+	public String getName ()
+	{
+		return name;
 	}
 	
 	public int getID ()
