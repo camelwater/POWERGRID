@@ -30,6 +30,8 @@ public class PowerPlant implements Comparable
 	{
 		name = n;
 		ID = id;
+		numPowered = 0;
+		cost = null;
 	}
 	
 	public String getName ()
@@ -64,7 +66,10 @@ public class PowerPlant implements Comparable
 	
 	public String toString ()
 	{
-		return ID + " " + numPowered + " " + cost.toString();
+		if (numPowered != 0 && cost != null)
+			return ID + " " + numPowered + " " + cost.toString();
+		
+		return "";
 	}
 	
 	public BufferedImage getImage()

@@ -66,19 +66,19 @@ public class Board
 		play();
 	}
 	
-	public void play()
-	{
-		if (step == 0)
-		{
-			Collections.shuffle(players);
-			step = 1;
-		}
-		
+	public void play() 
+	{		
 		while (!isOver)
 		{
-			if (phase == 1) //Determining Player Order
+			if (phase == 1 && step != 0) //Determining Player Order
 			{
 				calculatePlayerOrder();
+			}
+			
+			else if (step == 0) //First time phase 1 is being played
+			{
+				Collections.shuffle(players);
+				step = 1;
 			}
 			
 			else if (phase == 2) //Auctioning Power Plants
