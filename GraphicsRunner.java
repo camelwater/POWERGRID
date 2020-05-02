@@ -53,8 +53,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		{    
 			g.drawImage(bg.getImage(), 0, 0, 1920, 1060, null); //background
 			//g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
+			g.setColor(Color.orange);
+			
+			g.fillRect(25, 930, 1330, 110);
 			
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
+			g.setColor(Color.black);
 			
 			g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);	//player name
 			g.drawString("Step: "+game.getStep(), 900, 50);	//step
@@ -65,12 +69,20 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				g.drawImage(game.getPlayers().get(page).getPowerPlants().get(i).getImage(), 50 + (144 * i), 750, 144, 220, null); //power plants
 			}
 			
+			
+			g.setFont(new Font("Times New Roman", Font.ITALIC, 50));
+			
 			g.drawImage(new ImageIcon(path+"cash.png").getImage(), 50, 650, 50, 50, null);
-			g.drawString(""+game.getPlayers().get(page).balance(), 110, 700); //cash			
-//			g.drawString("Coal: " + game.getPlayers().get(page).getCoal(), 100, 600); //other resources
-//			g.drawString("Oil: " + game.getPlayers().get(page).getOil(), 100, 700);
-//			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 800);
-//			g.drawString("Uranium: " + game.getPlayers().get(page).getUranium(), 100, 900);
+			g.drawString(""+game.getPlayers().get(page).balance(), 110, 700); //cash	
+			//other resources
+			
+			g.drawString("Coal: " + game.getPlayers().get(page).getCoal(), 110,750); 
+			
+			g.drawString("Oil: " + game.getPlayers().get(page).getOil(), 100, 800);
+			
+			g.drawString("Trash: " + game.getPlayers().get(page).getTrash(), 100, 850);
+			
+			g.drawString("Uranium: " + game.getPlayers().get(page).getUranium(), 100,900 );
 			
 			g.drawImage(new ImageIcon("Misc\\arrow2.png").getImage(), 1725, 949, 120, 91, null); //arrows
 			g.drawImage(new ImageIcon("Misc\\arrow2.png").getImage(), 1700, 1040, -120, -91, null);

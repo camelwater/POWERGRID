@@ -25,6 +25,11 @@ public class Player implements Comparable
 		cash = 50;
 		
 		name = n;
+		
+		resources.put(Type.Coal,  new Stack<Resource>());
+		resources.put(Type.Oil,  new Stack<Resource>());
+		resources.put(Type.Trash,  new Stack<Resource>());
+		resources.put(Type.Uranium,  new Stack<Resource>());
 	}
 	
 	public void addCash (int x)

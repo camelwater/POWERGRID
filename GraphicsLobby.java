@@ -52,7 +52,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		 frame.setResizable(true);
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 frame.setVisible(true);
-		 System.out.println("HELLO GRAPHICS LOBBY");
+		 
 	}
 	public void paintComponent(Graphics g)
 	{
