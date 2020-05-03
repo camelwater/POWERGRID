@@ -8,7 +8,7 @@ public class City
 	
 	public City (String n)
 	{
-	    	region=n.substring(0,n.indexOf(" "));
+	    region=n.substring(0,n.indexOf(" "));
 		name = n.substring(n.indexOf(" "));
 		numOccupants = 0;
 		cost = 10;
