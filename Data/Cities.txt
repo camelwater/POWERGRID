@@ -24,19 +24,19 @@ Yellow Minneapolis | 5, Yellow Duluth | 6, Yellow Fargo | 18, Purple Billings | 
 Yellow Duluth | 6, Yellow Fargo | 5, Yellow Minneapolis | 12, Yellow Chicago | 15, Brown Detroit
 Yellow Chicago | 12, Yellow Duluth | 8, Yellow Minneapolis | 13, Purple Omaha | 8, Red Kansas City | 10, Yellow St. Louis | 7, Yellow Cincinnati | 7, Brown Detroit
 Yellow St. Louis | 6, Red Kansas City | 7, Red Memphis | 10, Yellow Chicago | 12, Yellow Cincinnati | 12, Green Atlanta
-Yellow Cincinnati | 12, Yellow St. Louis | 7, Yellow Chicago | 4, Brown Detroit | 6, Yellow Knoxville | 7, Brown Pittsburgh | 15, Raleigh Green
+Yellow Cincinnati | 12, Yellow St. Louis | 7, Yellow Chicago | 4, Brown Detroit | 6, Yellow Knoxville | 7, Brown Pittsburgh | 15, Green Raleigh
 Yellow Knoxville | 5, Green Atlanta | 6, Yellow Cincinnati
 Brown Detroit | 15, Yellow Duluth | 7, Yellow Chicago | 4, Yellow Cincinnati | 6, Brown Pittsburgh | 7, Brown Buffalo
-Brown Pittsburgh | 6, Brown Detroit | 7, Yellow Cincinnati | 7, Raleigh Green | 6, Brown Washington D.C. | 7, Brown Buffalo
+Brown Pittsburgh | 6, Brown Detroit | 7, Yellow Cincinnati | 7, Green Raleigh | 6, Brown Washington D.C. | 7, Brown Buffalo
 Brown Buffalo | 7, Brown Detroit | 7, Brown Pittsburgh | 8, Brown New York
 Brown Washington D.C. | 6, Brown Pittsburgh | 3, Brown Philadelphia | 5, Green Norfolk
 Brown Philadelphia | 3, Brown Washington D.C. | 0, Brown New York
-Brown New York | 8, Brown Buffalo | 0, Brown Philadelphia | 3, Boston Brown
-Boston Brown | 3, Brown New York
-Green Norfolk | 5, Brown Washington D.C. | 3, Raleigh Green
-Raleigh Green | 7, Brown Pittsburgh | 15, Yellow Cincinnati | 3, Green Norfolk | 7, Green Atlanta | 7, Green Savannah
-Green Atlanta | 5, Yellow Knoxville | 12, Yellow St. Louis | 3, Red Birmingham | 7, Green Savannah | 7, Raleigh Green
-Green Savannah | 7, Raleigh Green | 7, Green Atlanta | 0, Green Jacksonville
+Brown New York | 8, Brown Buffalo | 0, Brown Philadelphia | 3, Brown Boston
+Brown Boston | 3, Brown New York
+Green Norfolk | 5, Brown Washington D.C. | 3, Green Raleigh
+Green Raleigh | 7, Brown Pittsburgh | 15, Yellow Cincinnati | 3, Green Norfolk | 7, Green Atlanta | 7, Green Savannah
+Green Atlanta | 5, Yellow Knoxville | 12, Yellow St. Louis | 3, Red Birmingham | 7, Green Savannah | 7, Green Raleigh
+Green Savannah | 7, Green Raleigh | 7, Green Atlanta | 0, Green Jacksonville
 Green Jacksonville | 9, Red Birmingham | 0, Green Savannah | 4, Green Tampa | 16, Red New Orleans
 Green Tampa | 4, Green Jacksonville | 4, Green Miami
 Green Miami | 4, Green Tampa
