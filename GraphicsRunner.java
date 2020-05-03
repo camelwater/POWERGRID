@@ -10,6 +10,10 @@ import javax.swing.border.Border;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -19,44 +23,21 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	private static String path = "Misc\\";
 	private Board game;
 	private String regions;
-	private ImageIcon bg;
-	private ImageIcon logo;
+	private BufferedImage bg;
+	BufferedImage cash;
+	BufferedImage coal;
+	BufferedImage oil;
+	BufferedImage uranium;
+	BufferedImage trash;
+	
 	
 	private int page = 0;
 	private int index = -1;
 	private boolean ppVisible = false;
 	
+
 	
-//	private static class RoundedBorder implements Border 
-//	{
-//
-//	    private int radius;
-//
-//	    RoundedBorder(int radius) 
-//	    {
-//	        this.radius = radius;
-//	    }
-//
-//
-//	    public Insets getBorderInsets(Component c) 
-//	    {
-//	        return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
-//	    }
-//
-//
-//	    public boolean isBorderOpaque() 
-//	    {
-//	        return true;
-//	    }
-//
-//
-//	    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) 
-//	    {
-//	        g.drawRoundRect(x, y, width-1, height-1, radius, radius);
-//	    }
-//	}
-	
-	public GraphicsRunner(Board g, String r)
+	public GraphicsRunner(Board g, String r) throws IOException
 	{
 		game = g;
 		regions = r;
@@ -64,9 +45,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 JFrame frame = new JFrame("POWERGRID");
 		 frame.setBackground(Color.orange);
 		 setVisible(true);
-		 //frame.getContentPane().setBackground(Color.orange);
-		 bg = new ImageIcon("Misc\\Powergridmap-Edited.jpg");
-		 //logo = new ImageIcon("logo.png");
+
+		 bg = ImageIO.read(getClass().getResource("Powergridmap-Edited.png"));
+		 cash = ImageIO.read(getClass().getResource("cash.png"));
+		 coal = ImageIO.read(getClass().getResource("coal.png"));
+		 oil = ImageIO.read(getClass().getResource("oil.png"));
+		 trash = ImageIO.read(getClass().getResource("trash.png"));
+		 uranium = ImageIO.read(getClass().getResource("uranium.png"));
+		
 		 addMouseListener(this);
 		 
 		 frame.add(this);
@@ -113,18 +99,24 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//game.phase2();
 				
 				//auctioning power plants
-				g.setColor(Color.orange);
+				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
 				paintMarket(g);
 				//which card is being auctioned
+				BufferedImage check = null;
+				
+				try {
+					check = ImageIO.read(getClass().getResource("check.png"));
+				} catch (IOException e) {}
+				
 				if(index == 0)
-					g.drawImage(new ImageIcon(path+"check.png").getImage(), 300, 100, 25, 25, null);
+					g.drawImage(check, 300, 100, 25, 25, null);
 				if(index == 1)
-					g.drawImage(new ImageIcon(path+"check.png").getImage(), 700, 100, 25, 25, null);
+					g.drawImage(check, 700, 100, 25, 25, null);
 				if(index == 2)
-					g.drawImage(new ImageIcon(path+"check.png").getImage(), 1100, 100, 25, 25, null);
+					g.drawImage(check, 1100, 100, 25, 25, null);
 				if(index == 3)
-					g.drawImage(new ImageIcon(path+"check.png").getImage(), 1500, 100, 25, 25, null);
+					g.drawImage(check, 1500, 100, 25, 25, null);
 				
 				paintOrder(g, 100, 100); //player order thing
 				g.setFont(new Font("Roboto", Font.BOLD, 75));
@@ -132,13 +124,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				g.drawString("highest bid: 25", 700, 550);
 				g.setFont(new Font("Arial", Font.BOLD, 25));
 				g.setColor(Color.white);
-				g.drawString("bal: $"+game.getCurrentPlayer().balance(), 330, 550);
+				g.drawString("bal: $"+game.getPlayers().get(0).balance(), 330, 550);
+				//g.drawString("bal: $"+game.getCurrentPlayer().balance(), 330, 550);
 				
 				g.drawString("bid", 620, 550);
 				g.drawString("pass", 1250, 550);
 				
-				if(game.getCurrentPlayer().getPowerPlants().size()>0)
-					paintPlants(g);
+//				if(game.getCurrentPlayer().getPowerPlants().size()>0)
+//					paintPlants(g);
 				//IN BOARD MAKE WHERE YOU CAN GET PASS OR BID AFTER MOUSE CLICK AND FROM THERE GIVE POWER PLANTS (3 IN A ROW PASS = WIN)
 				
 //				if(game.auctionDone())
@@ -152,7 +145,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//buying resources
 				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
-				paintResources(g);
+				try {
+					paintResources(g);
+				} catch (IOException e) {}
+				
 				paintOrder(g, 100, 100);
 				g.setColor(Color.white);
 				//g.drawString("pay $"+game.resourceCost(), 850, 500); add resource cost method or something in board
@@ -174,7 +170,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				else
 				{
 					//city building
-					g.drawImage(bg.getImage(), 0, 0, 1920, 1060, null); //map
+					g.drawImage(bg, 0, 0, 1920, 1060, null); //map
 					//g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
 					g.setColor(Color.orange);
 				
@@ -197,26 +193,37 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					//cash
 					g.setFont(new Font("Times New Roman", Font.ITALIC, 50));
 				
-					g.drawImage(new ImageIcon(path+"cash.png").getImage(), 50, 620, 50, 50, null);
+					g.drawImage(cash, 50, 620, 50, 50, null);
 					g.drawString(""+game.getPlayers().get(page).balance(), 110, 665); 	
 				
 					//other resources
-					g.drawImage(new ImageIcon(path+"coal.png").getImage(), 50, 660, 50, 50, null);
+					g.drawImage(coal, 50, 660, 50, 50, null);
 					g.drawString(""+game.getPlayers().get(page).getCoal(), 110, 710); 
 				
-					g.drawImage(new ImageIcon(path+"oil.png").getImage(), 50, 720, 50, 50, null);
+					g.drawImage(oil, 50, 720, 50, 50, null);
 					g.drawString(""+game.getPlayers().get(page).getOil(), 110, 760);
 				
-					g.drawImage(new ImageIcon(path+"trash.png").getImage(), 50, 780, 50, 50, null);
+					g.drawImage(trash, 50, 780, 50, 50, null);
 					g.drawString(""+game.getPlayers().get(page).getTrash(), 110, 825);
 				
-					g.drawImage(new ImageIcon(path+"uranium.png").getImage(), 50, 850, 50, 50, null);
+					g.drawImage(uranium, 50, 850, 50, 50, null);
 					g.drawString(""+game.getPlayers().get(page).getUranium(), 110, 890);
 				
-					g.drawImage(new ImageIcon("Misc\\arrow3.png").getImage(), 1825, 949, -90, 91, null); //arrows
-					g.drawImage(new ImageIcon("Misc\\arrow3.png").getImage(), 1625, 1040, 90, -91, null);
-				
-					g.drawImage(new ImageIcon(path+"factory.png").getImage(), 1600, 625, 200, 200, null);
+					//g.drawImage(new ImageIcon("Misc\\arrow3.png").getImage(), 1825, 949, -90, 91, null); //arrows
+					//g.drawImage(new ImageIcon("Misc\\arrow3.png").getImage(), 1625, 1040, 90, -91, null);
+					try 
+					{
+						g.drawImage(ImageIO.read(getClass().getResource("arrow3.png")), 1625, 1040, 90, -91, null);
+					} catch (IOException e) {e.printStackTrace();}
+					
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource("arrow3.png")), 1825, 949, -90, 91, null);
+					} catch (IOException e) {e.printStackTrace();}
+					
+					try
+					{
+						g.drawImage(ImageIO.read(getClass().getResource("factory.png")), 1600, 625, 200, 200, null);
+					} catch (IOException e) {}
 				
 				}
 				
@@ -255,12 +262,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	{
 		
 	}
-	public void paintResources(Graphics g)
+	public void paintResources(Graphics g) throws IOException
 	{
 		for(int i = 0;i<4;i++)
-			g.drawImage(new ImageIcon(path+"minus.png").getImage(), 450+i*300, 300, 25, 20, null);
+			g.drawImage(ImageIO.read(getClass().getResource("minus.png")), 450+i*300, 300, 25, 20, null);
 		for(int i = 0;i<4;i++)
-			g.drawImage(new ImageIcon(path+"plus.png").getImage(), 450 +i*300, 200, 25, 25, null);
+			g.drawImage(ImageIO.read(getClass().getResource("plus.png")), 450 +i*300, 200, 25, 25, null);
 		g.setFont(new Font("Arial", Font.BOLD, 20));
 		g.setColor(Color.black);
 		//price
@@ -273,11 +280,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.drawString("$5", 1050, 340);
 		g.drawString("$5", 1350, 340);
 		//images
-		g.drawImage(new ImageIcon(path+"coal.png").getImage(), 443, 234, 40, 40, null);
-		g.drawImage(new ImageIcon(path+"oil.png").getImage(), 743, 237, 40, 40, null);
-		g.drawImage(new ImageIcon(path+"trash.png").getImage(), 1043, 237, 40, 40, null);
-		g.drawImage(new ImageIcon(path+"uranium.png").getImage(), 1343, 237, 40, 40, null);
-		g.drawImage(new ImageIcon(path+"pay.png").getImage(), 540, 300, 750, 350, null);
+		g.drawImage(coal, 443, 234, 40, 40, null);
+		g.drawImage(oil, 743, 237, 40, 40, null);
+		g.drawImage(trash, 1043, 237, 40, 40, null);
+		g.drawImage(uranium, 1343, 237, 40, 40, null);
+		g.drawImage(ImageIO.read(getClass().getResource("pay.png")), 540, 300, 750, 350, null);
 		
 		//amount purchased and left
 //		g.drawString("x"+game.getCurrentPlayer().getCoalPurchased()+"/"+game.getResources().get(Type.Coal).size(), 500, 250);

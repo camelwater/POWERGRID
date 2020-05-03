@@ -5,8 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings({ "unused", "serial" })
@@ -16,8 +19,8 @@ public class GraphicsLobby extends JPanel implements MouseListener
 	Board game;
 	GraphicsRunner gr;
 	String regions = "";
-	ImageIcon map;
-	ImageIcon logo;
+	BufferedImage map;
+
 	boolean r1 = false;
 	boolean r2 = false;
 	boolean r3 = false;
@@ -44,7 +47,10 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		 frame.setBackground(Color.white);
 		 setVisible(true);
 		 //frame.getContentPane().setBackground(Color.orange);
-		 map = new ImageIcon(path+"map.png");
+		 try {
+			map = ImageIO.read(getClass().getResource("map.png"));
+		} catch (IOException e) {}
+		 
 		 addMouseListener(this);
 		 
 		 frame.add(this);
@@ -72,12 +78,15 @@ public class GraphicsLobby extends JPanel implements MouseListener
 				regions+="6, ";
 			
 			
-			gr = new GraphicsRunner(game, regions);
+			try {
+				gr = new GraphicsRunner(game, regions);
+			} catch (IOException e) {}
+			
 			System.out.println(regions);
 			frame.setVisible(false); 
 			frame.dispose();
 		}
-		g.drawImage(map.getImage(), 85, 190, 1750, 700, null);
+		g.drawImage(map, 85, 190, 1750, 700, null);
 		g.setColor(Color.black);
 		g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 150));
 		g.drawString("POWERGRID", 500, 150);
@@ -92,35 +101,38 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		g.fillOval(1180, 590, 50, 50);
 		g.fillOval(1255, 420, 50, 50);
 		
-		ImageIcon check = new ImageIcon(path+"check.png");
+		BufferedImage check = null;
+		try {
+			check = ImageIO.read(getClass().getResource("check.png"));
+		} catch (IOException e) {}
 		if(r1)
 		{
-			g.drawImage(check.getImage(), 750, 360, 25, 25, null);
+			g.drawImage(check, 750, 360, 25, 25, null);
 			//System.out.println("1");
 		}
 		if(r2)
 		{
-			g.drawImage(check.getImage(), 1012, 400, 25, 25, null);
+			g.drawImage(check, 1012, 400, 25, 25, null);
 			//System.out.println("2");
 		}
 		if(r3)
 		{
-			g.drawImage(check.getImage(), 640, 510, 25, 25, null);
+			g.drawImage(check, 640, 510, 25, 25, null);
 			//System.out.println("3");
 		}
 		if(r4)
 		{
-			g.drawImage(check.getImage(), 940, 590, 25, 25, null);
+			g.drawImage(check, 940, 590, 25, 25, null);
 			//System.out.println("4");
 		}
 		if(r5)
 		{
-			g.drawImage(check.getImage(), 1180, 590, 25, 25, null);
+			g.drawImage(check, 1180, 590, 25, 25, null);
 			//System.out.println("5");
 		}
 		if(r6)
 		{
-			g.drawImage(check.getImage(), 1255, 415, 25, 25, null);
+			g.drawImage(check, 1255, 415, 25, 25, null);
 			//System.out.println("6");
 		}
 		
