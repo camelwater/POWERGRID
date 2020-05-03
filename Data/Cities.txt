@@ -31,7 +31,7 @@ Brown Pittsburgh | 6, Brown Detroit | 7, Yellow Cincinnati | 7, Raleigh Green | 
 Brown Buffalo | 7, Brown Detroit | 7, Brown Pittsburgh | 8, Brown New York
 Brown Washington D.C. | 6, Brown Pittsburgh | 3, Brown Philadelphia | 5, Green Norfolk
 Brown Philadelphia | 3, Brown Washington D.C. | 0, Brown New York
-Brown New York | 8, Brown Buffalo | 0, Philadeplhia | 3, Boston Brown
+Brown New York | 8, Brown Buffalo | 0, Brown Philadelphia | 3, Boston Brown
 Boston Brown | 3, Brown New York
 Green Norfolk | 5, Brown Washington D.C. | 3, Raleigh Green
 Raleigh Green | 7, Brown Pittsburgh | 15, Yellow Cincinnati | 3, Green Norfolk | 7, Green Atlanta | 7, Green Savannah
