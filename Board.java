@@ -70,11 +70,7 @@ public class Board
 		
 		updateGameState();
 		
-<<<<<<< HEAD
-//		play();
-=======
 		//play();
->>>>>>> branch 'master' of https://github.com/dewd69/POWERGRID
 	}
 	
 	public void play() 
@@ -83,11 +79,7 @@ public class Board
 		{
 			if (phase == 1 && step != 0) //Determining Player Order
 			{
-<<<<<<< HEAD
-				calculatePlayerOrder();
-=======
 				//calculatePlayerOrder();
->>>>>>> branch 'master' of https://github.com/dewd69/POWERGRID
 			}
 			
 			else if (step == 0) //First time phase 1 is being played
