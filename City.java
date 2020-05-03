@@ -4,12 +4,14 @@
 public class City 
 {
 	private String name;
+	private String region;
 	private int numOccupants;
 	private int cost;
 	
 	public City (String n)
 	{
-		name = n;
+		name = n.substring(0, n.indexOf(" "));
+		region=n.substring(n.indexOf(" ")+1);
 		numOccupants = 0;
 		cost = 10;
 	}
@@ -29,6 +31,10 @@ public class City
 		return name;
 	}
 	
+	public String getRegion()
+	{
+	    return region;
+	}
 	public void incrementNumOccupants ()
 	{
 		numOccupants++;
