@@ -1,6 +1,4 @@
 
-
-
 public class City 
 {
 	private String name;
@@ -10,7 +8,8 @@ public class City
 	
 	public City (String n)
 	{
-		name = n;
+	    	region=n.substring(0,n.indexOf(" "));
+		name = n.substring(n.indexOf(" "));
 		numOccupants = 0;
 		cost = 10;
 	}
