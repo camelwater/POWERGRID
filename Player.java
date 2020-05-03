@@ -13,6 +13,7 @@ public class Player implements Comparable
 	private HashMap <Type, Stack <Resource>> resources;
 	private String name;
 	private int cash;
+	private boolean finished;
 	
 	public Player (String n)
 	{
@@ -25,6 +26,11 @@ public class Player implements Comparable
 		cash = 50;
 		
 		name = n;
+		
+		resources.put(Type.Coal,  new Stack<Resource>());
+		resources.put(Type.Oil,  new Stack<Resource>());
+		resources.put(Type.Trash,  new Stack<Resource>());
+		resources.put(Type.Uranium,  new Stack<Resource>());
 	}
 	
 	public void addCash (int x)
@@ -42,6 +48,10 @@ public class Player implements Comparable
 		cash -= x;
 	}
 	
+	public boolean isFinished()
+	{
+		return finished;
+	}
 	public int balance ()
 	{
 		return cash;

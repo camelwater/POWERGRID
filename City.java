@@ -1,9 +1,8 @@
 
-
-
 public class City 
 {
 	private String name;
+	private String region;
 	private int numOccupants;
 	private int cost;
 	
@@ -29,6 +28,10 @@ public class City
 		return name;
 	}
 	
+	public String getRegion()
+	{
+	    return region;
+	}
 	public void incrementNumOccupants ()
 	{
 		numOccupants++;

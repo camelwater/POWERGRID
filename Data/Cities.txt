@@ -1,42 +1,42 @@
-Seattle | 3, Portland | 12, Boise | 9, Billings
-Portland | 3, Seattle | 13, Boise | 24, San Francisco
-Boise | 12, Seattle | 13, Portland | 23, San Francisco | 8, Salt Lake City | 24, Cheyenne | 12, Billings
-Billings | 9, Seattle | 12, Boise | 9, Cheyenne | 18, Minneapolis | 17, Fargo
-Cheyenne | 9, Billings | 24, Boise | 14, Omaha | 18, Minneapolis | 0, Denver
-Denver | 21, Salt Lake City | 13, Santa Fe | 0, Cheyenne | 16, Kansas City
-Omaha | 13, Chicago | 5, Kansas City | 14, Cheyenne | 8, Minneapolis
-San Francisco | 9, Los Angeles | 14, Las Vegas | 27, Salt Lake City | 23, Boise | 24, Portland
-Los Angeles | 9, San Francisco | 9, Las Vegas | 3, San Diego
-San Diego | 9, Las Vegas | 14, Phoenix | 3, Los Angeles
-Las Vegas | 14, San Francisco | 9, Los Angeles | 9, San Diego | 15, Phoenix | 27, Santa Fe | 18, Salt Lake City
-Phoenix | 14, San Diego | 15, Las Vegas | 18, Santa Fe
-Salt Lake City | 8, Boise | 27, San Francisco | 28, Santa Fe | 18, Las Vegas | 21, Denver
-Santa Fe | 18, Phoenix | 27, Las Vegas | 13, Denver | 28, Salt Lake City | 16, Kansas City | 15, Oklahoma City | 16, Dallas | 21, Houston
-Kansas City | 16, Denver | 16, Santa Fe | 5, Omaha | 8, Oklahoma City | 12, Memphis | 6, St. Louis | 8, Chicago
-Oklahoma City | 15, Santa Fe | 3, Dallas | 8, Kansas City | 14, Memphis
-Dallas | 16, Santa Fe | 3, Oklahoma City | 5, Houston | 12, New Orleans | 12, Memphis
-Houston | 5, Dallas | 8, New Orleans | 21, Santa Fe
-Memphis | 7, New Orleans | 6, Birmingham | 12, Dallas | 14, Oklahoma City | 12, Kansas City | 7, St. Louis
-New Orleans | 8, Houston | 12, Dallas | 7, Memphis | 11, Birmingham | 16, Jacksonville
-Birmingham | 3, Atlanta | 9, Jacksonville | 11, New Orleans | 6, Memphis
-Fargo | 17, Billings | 6, Minneapolis | 6, Duluth
-Minneapolis | 5, Duluth | 6, Fargo | 18, Billings | 18, Cheyenne | 8, Omaha | 8, Chicago
-Duluth | 6, Fargo | 5, Minneapolis | 12, Chicago | 15, Detroit
-Chicago | 12, Diluth | 8, Minneapolis | 13, Omaha | 8, Kansas City | 10, St. Louis | 7, Cincinnati | 7, Detroit
-St. Louis | 6, Kansas City | 7, Memphis | 10, Chicago | 12, Cincinnati | 12, Atlanta
-Cincinnati | 12, St. Louis | 7, Chicago | 4, Detroit | 6, Knoxville | 7, Pittsburgh | 15, Raleigh
-Knoxville | 5, Atlanta | 6, Cincinnati
-Detroit | 15, Duluth | 7, Chicago | 4, Cincinnati | 6, Pittsburgh | 7, Buffalo
-PittsBurgh | 6, Detroit | 7, Cincinnati | 7, Raleigh | 6, Washington D.C. | 7, Buffalo
-Buffalo | 7, Detroit | 7, Pittsburgh | 8, New York
-Washington D.C. | 6, PittsBurgh | 3, Philadelphia | 5, Norfolk
-Philadelhia | 3, Washington D.C. | 0, New York
-New York | 8, Buffalo | 0, Philadeplhia | 3, Boston
-Boston | 3, New York
-Norfolk | 5, Washington D.C. | 3, Raleigh
-Raleigh | 7, Pittsburgh | 15, Cincinnati | 3, Norfolk | 7, Atlanta | 7, Savannah
-Atlanta | 5, Knoxville | 12, St. Louis | 3, Birmingham | 7, Savannah | 7, Raleigh
-Savannah | 7, Raleigh | 7, Atlanta | 0, JacksonVille
-Jacksonville | 9, Birmingham | 0, Savannah | 4, Tampa | 16, New Orleans
-Tampa | 4, Jacksonville | 4, Miami
-Miami | 4, Tampa
+Seattle Purple | 3, Portland Purple | 12, Boise Purple | 9, Billings Purple
+Portland Purple | 3, Seattle Purple | 13, Boise Purple | 24, San Francisco Blue
+Boise Purple | 12, Seattle Purple | 13, Portland Purple | 23, San Francisco Blue | 8, Salt Lake City Blue | 24, Cheyenne Purple | 12, Billings Purple
+Billings Purple | 9, Seattle Purple | 12, Boise Purple | 9, Cheyenne Purple | 18, Minneapolis Yellow | 17, Fargo Yellow
+Cheyenne Purple | 9, Billings Purple | 24, Boise Purple | 14, Omaha Purple | 18, Minneapolis Yellow | 0, Denver Purple
+Denver Purple | 21, Salt Lake City Blue | 13, Santa Fe Blue | 0, Cheyenne Purple | 16, Kansas City Red
+Omaha Purple | 13, Chicago Yellow | 5, Kansas City Red | 14, Cheyenne Purple | 8, Minneapolis Yellow
+San Francisco Blue | 9, Los Angeles Blue | 14, Las Vegas Blue | 27, Salt Lake City Blue | 23, Boise Purple | 24, Portland Purple
+Los Angeles Blue | 9, San Francisco Blue | 9, Las Vegas Blue | 3, San Diego Blue
+San Diego Blue | 9, Las Vegas Blue | 14, Phoenix Blue | 3, Los Angeles Blue
+Las Vegas Blue | 14, San Francisco Blue | 9, Los Angeles Blue | 9, San Diego Blue | 15, Phoenix Blue | 27, Santa Fe Blue | 18, Salt Lake City Blue
+Phoenix Blue | 14, San Diego Blue | 15, Las Vegas Blue | 18, Santa Fe Blue
+Salt Lake City Blue | 8, Boise Purple | 27, San Francisco Blue | 28, Santa Fe Blue | 18, Las Vegas Blue | 21, Denver Purple
+Santa Fe Blue | 18, Phoenix Blue | 27, Las Vegas Blue | 13, Denver Purple | 28, Salt Lake City Blue | 16, Kansas City Red | 15, Oklahoma City Red | 16, Dallas Red | 21, Houston Red
+Kansas City Red | 16, Denver Purple | 16, Santa Fe Blue | 5, Omaha Purple | 8, Oklahoma City Red | 12, Memphis Red | 6, St. Louis Yellow | 8, Chicago Yellow
+Oklahoma City Red | 15, Santa Fe Blue | 3, Dallas Red | 8, Kansas City Red | 14, Memphis Red
+Dallas Red | 16, Santa Fe Blue | 3, Oklahoma City Red | 5, Houston Red | 12, New Orleans Red | 12, Memphis Red
+Houston Red | 5, Dallas Red | 8, New Orleans Red | 21, Santa Fe Blue
+Memphis Red | 7, New Orleans Red | 6, Birmingham Red | 12, Dallas Red | 14, Oklahoma City Red | 12, Kansas City Red | 7, St. Louis Yellow
+New Orleans Red | 8, Houston Red | 12, Dallas Red | 7, Memphis Red | 11, Birmingham Red | 16, Jacksonville Green
+Birmingham Red | 3, Atlanta Green | 9, Jacksonville Green | 11, New Orleans Red | 6, Memphis Red
+Fargo Yellow | 17, Billings Purple | 6, Minneapolis Yellow | 6, Duluth Yellow
+Minneapolis Yellow | 5, Duluth Yellow | 6, Fargo Yellow | 18, Billings Purple | 18, Cheyenne Purple | 8, Omaha Purple | 8, Chicago Yellow
+Duluth Yellow | 6, Fargo Yellow | 5, Minneapolis Yellow | 12, Chicago Yellow | 15, Detroit Brown
+Chicago Yellow | 12, Duluth Yellow | 8, Minneapolis Yellow | 13, Omaha Purple | 8, Kansas City Red | 10, St. Louis Yellow | 7, Cincinnati Yellow | 7, Detroit Brown
+St. Louis Yellow | 6, Kansas City Red | 7, Memphis Red | 10, Chicago Yellow | 12, Cincinnati Yellow | 12, Atlanta Green
+Cincinnati Yellow | 12, St. Louis Yellow | 7, Chicago Yellow | 4, Detroit Brown | 6, Knoxville Yellow | 7, Pittsburgh Brown | 15, Raleigh Green
+Knoxville Yellow | 5, Atlanta Green | 6, Cincinnati Yellow
+Detroit Brown | 15, Duluth Yellow | 7, Chicago Yellow | 4, Cincinnati Yellow | 6, Pittsburgh Brown | 7, Buffalo Brown
+Pittsburgh Brown | 6, Detroit Brown | 7, Cincinnati Yellow | 7, Raleigh Green | 6, Washington Brown D.C. | 7, Buffalo Brown
+Buffalo Brown | 7, Detroit Brown | 7, Pittsburgh Brown | 8, New York Brown
+Washington Brown D.C. | 6, Pittsburgh Brown | 3, Philadelphia Brown | 5, Norfolk Green
+Philadelhia | 3, Washington Brown D.C. | 0, New York Brown
+New York Brown | 8, Buffalo Brown | 0, Philadeplhia | 3, Boston Brown
+Boston Brown | 3, New York Brown
+Norfolk Green | 5, Washington Brown D.C. | 3, Raleigh Green
+Raleigh Green | 7, Pittsburgh Brown | 15, Cincinnati Yellow | 3, Norfolk Green | 7, Atlanta Green | 7, Savannah Green
+Atlanta Green | 5, Knoxville Yellow | 12, St. Louis Yellow | 3, Birmingham Red | 7, Savannah Green | 7, Raleigh Green
+Savannah Green | 7, Raleigh Green | 7, Atlanta Green | 0, Jacksonville Green
+Jacksonville Green | 9, Birmingham Red | 0, Savannah Green | 4, Tampa Green | 16, New Orleans Red
+Tampa Green | 4, Jacksonville Green | 4, Miami Green
+Miami Green | 4, Tampa Green
