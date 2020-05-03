@@ -102,6 +102,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
 				paintMarket(g);
+				
 				//which card is being auctioned
 				BufferedImage check = null;
 				
@@ -118,17 +119,23 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(index == 3)
 					g.drawImage(check, 1500, 100, 25, 25, null);
 				
+				
 				paintOrder(g, 100, 100); //player order thing
 				g.setFont(new Font("Roboto", Font.BOLD, 75));
 				g.setColor(Color.black);
 				g.drawString("highest bid: 25", 700, 550);
 				g.setFont(new Font("Arial", Font.BOLD, 25));
 				g.setColor(Color.white);
-				g.drawString("bal: $"+game.getPlayers().get(0).balance(), 330, 550);
+				g.drawString("bal: $"+game.getPlayers().get(0).balance(), 500, 550);
 				//g.drawString("bal: $"+game.getCurrentPlayer().balance(), 330, 550);
 				
-				g.drawString("bid", 620, 550);
-				g.drawString("pass", 1250, 550);
+				g.setColor(Color.black);
+				
+				g.fillOval(600, 500, 75, 50);
+				g.fillOval(1250, 500, 75, 50);
+				g.setColor(Color.white);
+				g.drawString("bid", 620, 533);
+				g.drawString("pass", 1262, 533);
 				
 //				if(game.getCurrentPlayer().getPowerPlants().size()>0)
 //					paintPlants(g);
@@ -333,12 +340,27 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		System.out.println("X: "+e.getX()+ ", Y: "+e.getY());
 		
 		
-		//PHASE 2 PP AUCTIONING
+		//PHASE 2 PP AUCTIONING PP
 		if(game.getPhase()==2)
 		{
+			//choosing which pp to bid
+			//if()
 			
+			//bidding
+			if(e.getX() >= 600 && e.getX() <= 675 && e.getY() >= 500 && e.getY() <= 550)
+			{
+				System.out.println("BID");
+				//game.getCurrentPlayer().bid();
+				
+			}
+			if(e.getX() >= 1250 && e.getX() <= 1325 && e.getY() >= 500 && e.getY() <= 550)
+			{
+				System.out.println("PASS");
+				//game.getCurrentPlayer().pass();
+			}
 		}
-		//PHASE 3 RESOURCES
+		
+		//PHASE 3 RESOURCE BUYING
 		if(game.getPhase()==3)
 		{
 			if(e.getX() >= 450 && e.getX() <= 470 && e.getY() >= 300 && e.getY() <= 320)
