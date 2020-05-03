@@ -24,10 +24,13 @@ public class Board
 	private ArrayList <City> cities;
 	private Map graph;
 	
-	private int step;
-	private int phase;
+	public int step;
+	public int phase;
+	public int turn;
+	public int round;
 	
 	private boolean isOver = false;
+	private Player currentPlayer;
 	
 	public Board () throws IOException
 	{
@@ -51,7 +54,11 @@ public class Board
 		
 		step = 0;
 		
+		round = 1;
+		
 		phase = 1;
+		
+		turn = 0;
 		
 		setupGame();
 		
@@ -301,6 +308,13 @@ public class Board
 		return players;
 	}
 	
+	public void start()
+	{
+		Collections.shuffle(players);
+		step = 1;
+		phase = 2;
+		currentPlayer = players.get(0);
+	}
 	public void setupResources ()
 	{
 		for (int x = 0; x < 24; x++)
@@ -370,6 +384,7 @@ public class Board
 		}
 		
 		Collections.sort(players);
+		currentPlayer = players.get(0);
 	}
 	
 	public void refillResources ()
@@ -428,6 +443,12 @@ public class Board
 		return 0; 
 	}
 	
+	public void nextTurn()
+	{
+		turn++;
+		
+		currentPlayer = players.get(turn);
+	}
 	public void endPhase ()
 	{
 		if (phase == 5)
@@ -437,8 +458,13 @@ public class Board
 			phase++;
 	}
 	
+	public int getRound()
+	{
+		return round;
+	}
 	public void endRound ()
 	{
+		round++;
 		phase = 1;
 		
 		updateMarket();
@@ -448,10 +474,21 @@ public class Board
 		refillResources();
 	}
 	
+	public Player getCurrentPlayer()
+	{
+		return currentPlayer;
+	}
+	
+	public int getTurn()
+	{
+		return turn;
+	}
+	
 	public void endStep ()
 	{
 		step++;
-		
+		round = 1;
+		phase = 1;
 		if (step == 2)
 		{
 			updateMarket();
