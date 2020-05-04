@@ -33,6 +33,7 @@ public class Board
 	public int origBal = 0;
 	public int cost = 0;
 	public int passC = 0;
+	public int numFin = 0;
 	
 	private boolean auctionDone = false;
 	private boolean resourceDone = false;
@@ -340,7 +341,7 @@ public class Board
 	public void start()
 	{
 		Collections.shuffle(players);
-		step = 1;
+		//step = 1;
 		phase = 2;
 		currentPlayer = players.get(0);
 	}
@@ -359,17 +360,47 @@ public class Board
 	{
 		return auctionDone;
 	}
-	
+	public int numFin()
+	{
+		return numFin;
+	}
 	public void pass (int i)
 	{
+		if(step>0&&i==-1)
+		{
+			currentPlayer.isFinished();
+			nextTurn();
+			return;
+		}
 		passC++;
 		
-		if(passC == 3)
+		if(numFin==3)
+		{
+			currentPlayer.isFinished();
+			auctionDone = true;
+			numFin++;
+			if(step == 0)
+				step++;
+			return;
+		}
+		if(passC == 3-numFin)
 		{
 			nextTurn();
 			currentPlayer.buyPowerPlant(market.get(i), cost);
-			auctionDone = true;
+			currentPlayer.finished();
+			numFin++;
 		}
+			
+//		int f = 0;
+//		for(int z = 0;z<4;z++)
+//			if(players.get(f).isFinished())
+//				f++;
+//		if(f == 4)
+//		{
+//			auctionDone = true;
+//			step = 1;
+//			return;
+//		}
 		
 		nextTurn();
 		
@@ -377,7 +408,7 @@ public class Board
 	
 	public void bid(int i, String x)
 	{
-		//origBal = currentPlayer.balance(); add something to keep trach of original balance
+		
 		if(i == -1)
 			return;
 		if(x.equals("first"))
@@ -390,9 +421,18 @@ public class Board
 		
 		boolean h = currentPlayer.bid(cost);
 		
-		if(!h)
+		if(!h || currentPlayer.getPowerPlants().size()==3)
 		{
-			System.out.println("CAN'T BID THAT AMOUNT");
+			System.out.println("CAN'T BID");
+			return;
+		}
+		if(numFin == 3)
+		{
+			currentPlayer.isFinished();
+			auctionDone = true;
+			numFin++;
+			if(step ==0)
+				step++;
 			return;
 		}
 		nextTurn();
@@ -556,13 +596,25 @@ public class Board
 	
 	public void nextTurn()
 	{
-		if (turn == 3)
-			turn = 0;
-		
+		if(phase == 3)
+		{
+//			if(turn == 0)
+//				turn = 3;
+//			else
+				turn--;
+		}
 		else
-			turn++;
+		{
+			if (turn == 3)
+				turn = 0;
+			
+			else
+				turn++;		
+		}
 		
 		currentPlayer = players.get(turn);
+		if(currentPlayer.isFinished())
+			nextTurn();
 	}
 	
 	public void endPhase ()
@@ -572,6 +624,15 @@ public class Board
 		
 		else
 			phase++;
+		
+		if(phase == 1 || phase == 4|| phase == 5)
+			turn = 0;
+		else 
+			turn = 3;
+		
+		numFin = 0;
+		for(int i = 0;i<4;i++)
+			players.get(i).finished = false;
 	}
 	
 	public int getRound()

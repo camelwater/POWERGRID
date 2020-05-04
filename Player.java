@@ -14,7 +14,7 @@ public class Player implements Comparable
 	private String name;
 	
 	private int cash;
-	private boolean finished;
+	public boolean finished = false;
 	
 	public Player (String n)
 	{
@@ -56,7 +56,10 @@ public class Player implements Comparable
 	{
 		return finished;
 	}
-	
+	public void finished()
+	{
+		finished = true;
+	}
 	public int balance ()
 	{
 		return cash;
@@ -108,7 +111,7 @@ public class Player implements Comparable
 	{
 		if(amount<=cash)
 		{
-			pay(amount);
+			//pay(amount);
 			return true;
 		}
 		return false;

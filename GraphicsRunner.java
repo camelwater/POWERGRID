@@ -36,6 +36,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	private boolean ppVisible = false;
 	private boolean first = true;
 	boolean ppChosen = false;
+	private int numFin = 0;
 
 	
 	public GraphicsRunner(Board g, String r) throws IOException
@@ -89,7 +90,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				game.calculatePlayerOrder();
 				game.endPhase();
 			}
-			if(game.getStep() == 0)
+			if(game.getStep() == 0 && game.getPhase()==1)
 			{
 				game.start();
 				//game.endPhase();
@@ -97,7 +98,19 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			if(game.getPhase() == 2)//add mouse listener part for this
 			{
 				if(game.auctionDone())
+				{
 					game.endPhase();
+					numFin = 0;
+				}
+				
+				if(numFin<game.numFin())
+				{
+					first = true;
+					index = -1;
+					game.cost = 0;
+					numFin++;
+					
+				}
 				
 				//auctioning power plants
 				g.setColor(new Color(0,138,138));
@@ -148,7 +161,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			if(game.getPhase() == 3)//add mouse listener for this
 			{
 				if(game.resourceDone())
+				{
 					game.endPhase();
+					numFin = 0;
+				}
 				
 				//buying resources
 				g.setColor(new Color(0,138,138));
@@ -172,7 +188,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			if(game.getPhase() == 4)//add mouse listener to build cities
 			{
 				if(game.citiesDone())
+				{
 					game.endPhase();
+					numFin = 0;
+				}
 				
 				System.out.println(ppVisible);
 				if(ppVisible) //look at powerplants
@@ -336,10 +355,24 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	public void paintOrder(Graphics g, int startX, int startY)
 	{
 		g.setColor(Color.black);
-		g.drawString(game.getPlayers().get(0).getName(), 100, 100);
-		g.drawString(game.getPlayers().get(1).getName(), 100, 120);
-		g.drawString(game.getPlayers().get(2).getName(), 100, 140);
-		g.drawString(game.getPlayers().get(3).getName(), 100, 160);
+		g.setFont(new Font("Arial", Font.ITALIC, 15));
+		
+		g.drawString("P"+game.getPlayers().get(0).getName(), 100, 100);
+		g.drawString("P"+game.getPlayers().get(1).getName(), 100, 120);
+		g.drawString("P"+game.getPlayers().get(2).getName(), 100, 140);
+		g.drawString("P"+game.getPlayers().get(3).getName(), 100, 160);
+		
+		
+		if(game.getPlayers().get(0).isFinished())
+			g.drawString("done", 120, 100);
+		if(game.getPlayers().get(1).isFinished())
+			g.drawString("done", 120, 120);
+		if(game.getPlayers().get(2).isFinished())
+			g.drawString("done", 120, 140);
+		if(game.getPlayers().get(3).isFinished())
+			g.drawString("done", 120, 160);
+		
+		g.drawString("<--", 120, game.getTurn()*20+100);
 	}
 	
 	
@@ -377,8 +410,15 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		//PHASE 2 PP AUCTIONING PP
 		if(game.getPhase()==2)
 		{
-			
-			
+//			if(numFin<game.numFin())
+//			{
+//				first = true;
+//				index = -1;
+//				game.cost = 0;
+//				numFin++;
+//				
+//			}
+				
 			if(first)//choosing which pp to bid
 			{
 				
@@ -410,9 +450,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					repaint();
 					System.out.println("3 chosen");
 				}
+				//first bid or pass
 				if(ppChosen && e.getX() >= 600 && e.getX() <= 675 && e.getY() >= 500 && e.getY() <= 550)
 				{
-					System.out.println("first bid on"+ index);
+					System.out.println("first bid on "+ index);
 					first = false;
 					game.bid(index, "first");
 					repaint();
@@ -421,6 +462,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				{
 					System.out.println("first pass");
 					game.pass(-1);
+					index = -1;
 					repaint();
 				}
 				
