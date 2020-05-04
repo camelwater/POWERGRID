@@ -4,12 +4,24 @@ import java.util.HashMap;
 public class Map 
 {
 	private HashMap <City, HashMap <City, Integer>> cities;
+	
 	static final int V = 42; 
 	
 	public Map (HashMap <City, HashMap <City, Integer>> connections)
 	{
 		cities = connections;
 	}
+	
+	public int getCost (City start, City end, String region)
+	{
+		return cities.get(start).get(end);
+	}
+	
+	public HashMap <City, Integer> getConnections (City x)
+	{
+		return cities.get(x);
+	}
+	
 	public int minDistance(int dist[], Boolean sptSet[]) 
 	{ 
 	  /*      int min = Integer.MAX_VALUE, min_index = -1; 
@@ -47,14 +59,5 @@ public class Map
 	                    dist[v] = dist[u] + graph[u][v]; 
 	        } */
 	        
-	}
-	public int getCost (City start, City end, String region)
-	{
-		return cities.get(start).get(end);
-	}
-	
-	public HashMap <City, Integer> getConnections (City x)
-	{
-		return cities.get(x);
 	}
 }

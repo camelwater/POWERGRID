@@ -12,6 +12,7 @@ public class Player implements Comparable
 	private ArrayList <City> cities;
 	private HashMap <Type, Stack <Resource>> resources;
 	private String name;
+	
 	private int cash;
 	private boolean finished;
 	
@@ -23,14 +24,17 @@ public class Player implements Comparable
 		
 		resources = new HashMap <Type, Stack <Resource>> ();
 		
+		resources.put(Type.Coal,  new Stack<Resource>());
+		
+		resources.put(Type.Oil,  new Stack<Resource>());
+		
+		resources.put(Type.Trash,  new Stack<Resource>());
+		
+		resources.put(Type.Uranium,  new Stack<Resource>());
+		
 		cash = 50;
 		
 		name = n;
-		
-		resources.put(Type.Coal,  new Stack<Resource>());
-		resources.put(Type.Oil,  new Stack<Resource>());
-		resources.put(Type.Trash,  new Stack<Resource>());
-		resources.put(Type.Uranium,  new Stack<Resource>());
 	}
 	
 	public void addCash (int x)
@@ -52,6 +56,7 @@ public class Player implements Comparable
 	{
 		return finished;
 	}
+	
 	public int balance ()
 	{
 		return cash;

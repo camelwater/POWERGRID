@@ -22,6 +22,7 @@ public class Board
 	private ArrayList <Player> players;
 	private ArrayList <PowerPlant> market;
 	private ArrayList <City> cities;
+	private HashMap <Integer, Integer> costs;
 	private Map graph;
 	
 	public int step;
@@ -37,6 +38,7 @@ public class Board
 	private boolean resourceDone = false;
 	private boolean citiesDone = false;
 	private boolean isOver = false;
+	
 	private Player currentPlayer;
 	
 	public Board () throws IOException
@@ -51,6 +53,8 @@ public class Board
 		
 		cities = new ArrayList <City> ();
 		
+		costs = new HashMap <Integer, Integer> ();
+		
 		resources.put("COAL", new Stack <Resource> ());
 		
 		resources.put("OIL", new Stack <Resource> ());
@@ -58,6 +62,19 @@ public class Board
 		resources.put("TRASH", new Stack <Resource> ());
 		
 		resources.put("URANIUM", new Stack <Resource> ());
+		
+		costs.put(1, 8);
+		costs.put(2, 7);
+		costs.put(3, 6);
+		costs.put(4, 5);
+		costs.put(5, 4);
+		costs.put(6, 3);
+		costs.put(7, 2);
+		costs.put(8, 1);
+		costs.put(11, 16);
+		costs.put(12, 14);
+		costs.put(13, 12);
+		costs.put(14, 10);
 		
 		step = 0;
 		
@@ -86,7 +103,7 @@ public class Board
 		{
 			if (phase == 1 && step != 0) //Determining Player Order
 			{
-				//calculatePlayerOrder();
+				calculatePlayerOrder();
 			}
 			
 			else if (step == 0) //First time phase 1 is being played
@@ -173,7 +190,7 @@ public class Board
 					{
 						for (City y : purchase)
 						{
-							x.buyCity(y, calculateCost(y));
+						//	x.buyCity(y, graph.calculateCost());		//The second parameter will be determined by the shortest path method
 						}
 					}
 					
@@ -314,6 +331,7 @@ public class Board
 	{
 		return market;
 	}
+	
 	public ArrayList<Player> getPlayers()
 	{
 		return players;
@@ -331,6 +349,7 @@ public class Board
 	{
 		return resourceDone;
 	}
+	
 	public boolean citiesDone()
 	{
 		return citiesDone;
@@ -340,18 +359,22 @@ public class Board
 	{
 		return auctionDone;
 	}
-	public void pass(int i)
+	
+	public void pass (int i)
 	{
 		passC++;
+		
 		if(passC == 3)
 		{
 			nextTurn();
 			currentPlayer.buyPowerPlant(market.get(i), cost);
 			auctionDone = true;
 		}
+		
 		nextTurn();
 		
 	}
+	
 	public void bid(int i, String x)
 	{
 		//origBal = currentPlayer.balance(); add something to keep trach of original balance
@@ -374,6 +397,7 @@ public class Board
 		}
 		nextTurn();
 	}
+	
 	public void setupResources ()
 	{
 		for (int x = 0; x < 24; x++)
@@ -497,20 +521,50 @@ public class Board
 		Collections.sort(market, Collections.reverseOrder());
 	}
 	
-	public int calculateCost (City buy) //Shortest Path Algorithm
-	{	
-		return 0; 
+	public int calculateCost (Type type) //Calculates the cost of the given resource
+	{				
+		if (type == Type.Uranium)
+		{
+			if (resources.get(type.toString()).size() > 4)
+			{
+				return costs.get((resources.get(type.toString()).size() - 4));
+			}
+			
+			else if (resources.get(type.toString()).size() != 0)
+			{
+				return costs.get((resources.get(type.toString()).size() + 10));
+			}
+		}
+		
+		else if (resources.get(type.toString()).size() != 0)
+		{		
+			int index = 1;
+			
+			for (int x = 3; x <= 24; x += 3)
+			{
+				if (resources.get(type.toString()).size() <= x)
+				{
+					return costs.get(index);
+				}
+				
+				index++;
+			}
+		}
+		
+		return 0;
 	}
 	
 	public void nextTurn()
 	{
-		if(turn ==3)
+		if (turn == 3)
 			turn = 0;
+		
 		else
 			turn++;
 		
 		currentPlayer = players.get(turn);
 	}
+	
 	public void endPhase ()
 	{
 		if (phase == 5)
@@ -524,9 +578,11 @@ public class Board
 	{
 		return round;
 	}
+	
 	public void endRound ()
 	{
 		round++;
+		
 		phase = 1;
 		
 		updateMarket();
