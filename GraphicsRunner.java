@@ -97,6 +97,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			if (game.getPhase() == 1 && game.getStep() != 0 && game.getRound()!=1)
 			{
 				game.calculatePlayerOrder();
+				paintOrder(g, 920, 400);
 				game.endPhase();
 			}
 			
@@ -104,6 +105,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			if(game.getStep() == 0 && game.getPhase()==1)
 			{
 				game.start();
+				g.setColor(new Color(0,138,138));
+				g.fillRect(0, 0, 1920, 1080);
+				paintOrder(g, 920, 400);
 				//game.endPhase();
 			}
 			
@@ -410,24 +414,43 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	public void paintOrder(Graphics g, int startX, int startY) //paints player order
 	{
 		g.setColor(Color.black);
-		g.setFont(new Font("Arial", Font.ITALIC, 15));
 		
-		g.drawString("P"+game.getPlayers().get(0).getName(), 100, 100);
-		g.drawString("P"+game.getPlayers().get(1).getName(), 100, 120);
-		g.drawString("P"+game.getPlayers().get(2).getName(), 100, 140);
-		g.drawString("P"+game.getPlayers().get(3).getName(), 100, 160);
+		if(game.getPhase()==2 || game.getPhase()==3)
+		{
+			g.setFont(new Font("Arial", Font.ITALIC, 15));
+		
+			g.drawString("P"+game.getPlayers().get(0).getName(), 100, 100);
+			g.drawString("P"+game.getPlayers().get(1).getName(), 100, 120);
+			g.drawString("P"+game.getPlayers().get(2).getName(), 100, 140);
+			g.drawString("P"+game.getPlayers().get(3).getName(), 100, 160);
 		
 		
-		if(game.getPlayers().get(0).isFinished())
-			g.drawString("done", 120, 100);
-		if(game.getPlayers().get(1).isFinished())
-			g.drawString("done", 120, 120);
-		if(game.getPlayers().get(2).isFinished())
+			if(game.getPlayers().get(0).isFinished())
+				g.drawString("done", 120, 100);
+			if(game.getPlayers().get(1).isFinished())
+				g.drawString("done", 120, 120);
+			if(game.getPlayers().get(2).isFinished())
 			g.drawString("done", 120, 140);
-		if(game.getPlayers().get(3).isFinished())
-			g.drawString("done", 120, 160);
+			if(game.getPlayers().get(3).isFinished())
+				g.drawString("done", 120, 160);
 		
-		g.drawString("<--", 120, game.getTurn()*20+100);
+			g.drawString("<--", 120, game.getTurn()*20+100);
+		}
+		else if(game.getPhase() == 1)
+		{
+			g.setFont(new Font("Roboto", Font.BOLD | Font.ITALIC, 35));
+			
+			g.drawString("Player Order: ", 850, 250);
+			
+			g.drawString("P"+game.getPlayers().get(0).getName(), 940, 300);
+			g.drawString("P"+game.getPlayers().get(1).getName(), 940, 350);
+			g.drawString("P"+game.getPlayers().get(2).getName(), 940, 400);
+			g.drawString("P"+game.getPlayers().get(3).getName(), 940, 450);
+		}
+//		else if (game.getPhase()==4)
+//		{
+//			g.drawImage(red
+//		}
 	}
 	
 	
@@ -461,7 +484,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	{
 		System.out.println("X: "+e.getX()+ ", Y: "+e.getY());
 		
-		
+		if(game.getPhase()==1)
+		{
+			if(e.getX()>=0 && e.getX()<=1920 && e.getY()>=0 && e.getY()<=1080)
+			{
+				game.phase++;
+				repaint();
+			}
+		}
 		//PHASE 2 PP AUCTIONING 
 		if(game.getPhase()==2)
 		{
