@@ -396,6 +396,7 @@ public class Board
 		{
 			currentPlayer.isFinished();
 			auctionDone = true;
+
 			numFin++;
 			if(step == 0)
 				step++;
@@ -611,9 +612,16 @@ public class Board
 	{
 		if(phase == 3)
 		{
-//			if(turn == 0)
-//				turn = 3;
-//			else
+			if(turn == 0)
+				resourceDone = true;
+			else
+				turn--;
+		}
+		else if(phase == 4)
+		{
+			if(turn == 0)
+				citiesDone = true;
+			else
 				turn--;
 		}
 		else
@@ -634,7 +642,6 @@ public class Board
 	{
 		if (phase == 5)
 			endRound();
-		
 		else
 			phase++;
 		
@@ -646,6 +653,7 @@ public class Board
 		numFin = 0;
 		for(int i = 0;i<4;i++)
 			players.get(i).finished = false;
+		currentPlayer = players.get(turn);
 	}
 	
 	public int getRound()
@@ -657,7 +665,9 @@ public class Board
 	{
 		round++;
 		
-		phase = 1;
+		phase = 0;
+		
+		endPhase();
 		
 		updateMarket();
 		
@@ -680,7 +690,9 @@ public class Board
 	{
 		step++;
 		round = 1;
-		phase = 1;
+		phase = 0;
+		endPhase();
+		
 		if (step == 2)
 		{
 			updateMarket();

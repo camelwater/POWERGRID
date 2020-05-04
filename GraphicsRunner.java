@@ -165,12 +165,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(game.getCurrentPlayer().getPowerPlants().size()>0)
 					paintPlants(g);
 				
-				
-				
 			}
+			
 			
 			if(game.getPhase() == 3)//add mouse listener for this
 			{
+				System.out.println("TURN: "+game.getTurn());
+				
 				if(game.resourceDone())
 				{
 					game.endPhase();
@@ -193,6 +194,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				g.drawString("cost: $20", 880, 375);
 				//g.drawString("cost: "+game.getCurrentPlayer().spent(), 880, 375);
 				
+				//System.out.println("HAND SIZE: "+game.getCurrentPlayer().getPowerPlants().size());
 				if(game.getCurrentPlayer().getPowerPlants().size()>0)
 					paintPlants(g);
 				
@@ -222,9 +224,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
 					g.setColor(Color.black);
 				
-					g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);	//player name
+					g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);//player name
+					
 					g.drawString("Step: "+game.getStep(), 900, 50);	//step
 					g.drawString("Phase: "+game.getPhase(), 875, 100); //phase
+					g.setFont(new Font("Times New Roman", Font.ITALIC, 25));
+					if(game.getPlayers().get(page).getName().equals(game.getCurrentPlayer().getName()))
+						g.drawString("current player",1635, 850);
 				
 //					for(int i = 0 ; i < game.getPlayers().get(page).getPowerPlants().size(); i++)
 //					{
@@ -282,16 +288,50 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		
 	}
 	//FINISH THESE METHODS
-	public void paintPlants(Graphics g) //make it divide the screen so it looks better rather than static coordinates
+	public void paintPlants(Graphics g) 
 	{
 		int i = 1;
-		for(PowerPlant p: game.getCurrentPlayer().getPowerPlants())
+		if(game.getPhase()!=4)
 		{
-			
-			try {
-				g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (960/game.getCurrentPlayer().getPowerPlants().size())+i*(960/game.getCurrentPlayer().getPowerPlants().size()), 750, 100, 150, null);
-			} catch (IOException e) {}
-			i++;
+			int s = game.getCurrentPlayer().getPowerPlants().size();
+			for(PowerPlant p: game.getCurrentPlayer().getPowerPlants())
+			{
+				//System.out.println("made it here");
+				if(s ==1)
+				{
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 835, 725, 250, 250, null); 
+					} catch (IOException e) {}
+				}
+				else
+				{
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (835/s)+i*(960/s), 725, 250, 250, null); 
+					} catch (IOException e) {}
+				}
+				i++;
+			}
+		}
+		else
+		{
+			int s = game.getPlayers().get(page).getPowerPlants().size();
+			for(PowerPlant p: game.getPlayers().get(page).getPowerPlants())
+			{
+				//System.out.println("made it here");
+				if(s ==1)
+				{
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 835, 725, 250, 250, null); 
+					} catch (IOException e) {}
+				}
+				else
+				{
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (835/s)+i*(960/s), 725, 250, 250, null); 
+					} catch (IOException e) {}
+				}
+				i++;
+			}
 		}
 	}
 	public void paintPP(Graphics g)
@@ -300,12 +340,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.setColor(new Color(0,138,138));
 		g.fillRect(0, 0, 1920, 1080);
 		
-		//paintPlants(g);
+		paintPlants(g);
 		
 		g.setFont(new Font("Roboto", Font.BOLD, 50));
 		g.setColor(Color.black);
-		g.drawString("X", 900, 760);
-		g.drawString("Player" + (page+1), 500, 500);
+		g.drawString("X", 960, 660);
+		g.drawString("Player " + game.getPlayers().get(page).getName(), 500, 500);
 		
 	}
 	public void paintMarket(Graphics g)
@@ -316,16 +356,16 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		{
 			if(i==4)
 			{
-				
+				//System.out.println(p.getID());
 				try {
-					g.drawImage(ImageIO.read(getClass().getResource("10.png")), 350*c+300, 280, 200, 200, null);
+					g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 350*c+300, 280, 200, 200, null);
 				} catch (IOException e) {}
 				c++;
 			}
 			else
 			{
 				try {
-					g.drawImage(ImageIO.read(getClass().getResource("10.png")), 350*i+300, 50, 200, 200, null);
+					g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 350*i+300, 50, 200, 200, null);
 				} catch (IOException e) {}
 			
 				i++;
@@ -569,6 +609,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					game.numFin++;
 					game.getCurrentPlayer().isFinished();
 					game.nextTurn();
+					
+					coalC = 0;
+					trashC = 0;
+					uranC = 0;
+					oilC = 0;
+					
 				}
 					
 				
@@ -592,7 +638,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			
 			repaint();
 		}
-		if(game.getPhase() == 4 && ppVisible && e.getX() >= 895 && e.getX() <= 945 && e.getY() >= 715 && e.getY() <= 765)
+		if(game.getPhase() == 4 && ppVisible && e.getX() >= 960 && e.getX() <= 995 && e.getY() >= 620 && e.getY() <= 660)
 		{
 			ppVisible = false;
 			repaint();
