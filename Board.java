@@ -398,8 +398,8 @@ public class Board
 			auctionDone = true;
 
 			numFin++;
-			if(step == 0)
-				step++;
+//			if(step == 0)
+//				step++;
 			return;
 		}
 		if(passC == 3-numFin)
@@ -442,8 +442,8 @@ public class Board
 			currentPlayer.isFinished();
 			auctionDone = true;
 			numFin++;
-			if(step ==0)
-				step++;
+//			if(step ==0)
+//				step++;
 			return;
 		}
 		nextTurn();
@@ -613,7 +613,10 @@ public class Board
 		if(phase == 3)
 		{
 			if(turn == 0)
+			{
 				resourceDone = true;
+				return;
+			}
 			else
 				turn--;
 		}
