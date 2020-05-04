@@ -99,6 +99,16 @@ public class Player implements Comparable
 		return x;
 	}
 	
+	public boolean bid(int amount)
+	{
+		if(amount<=cash)
+		{
+			pay(amount);
+			return true;
+		}
+		return false;
+	}
+	
 	public void buyCity (City x, int cost)
 	{
 		cities.add(x);

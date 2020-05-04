@@ -29,6 +29,13 @@ public class Board
 	public int turn;
 	public int round;
 	
+	public int origBal = 0;
+	public int cost = 0;
+	public int passC = 0;
+	
+	private boolean auctionDone = false;
+	private boolean resourceDone = false;
+	private boolean citiesDone = false;
 	private boolean isOver = false;
 	private Player currentPlayer;
 	
@@ -303,6 +310,10 @@ public class Board
 			players.add(new Player("" + x)); 
 	}
 	
+	public ArrayList<PowerPlant> getMarket()
+	{
+		return market;
+	}
 	public ArrayList<Player> getPlayers()
 	{
 		return players;
@@ -314,6 +325,54 @@ public class Board
 		step = 1;
 		phase = 2;
 		currentPlayer = players.get(0);
+	}
+	
+	public boolean resourceDone()
+	{
+		return resourceDone;
+	}
+	public boolean citiesDone()
+	{
+		return citiesDone;
+	}
+	
+	public boolean auctionDone()
+	{
+		return auctionDone;
+	}
+	public void pass(int i)
+	{
+		passC++;
+		if(passC == 3)
+		{
+			nextTurn();
+			currentPlayer.buyPowerPlant(market.get(i), cost);
+			auctionDone = true;
+		}
+		nextTurn();
+		
+	}
+	public void bid(int i, String x)
+	{
+		//origBal = currentPlayer.balance(); add something to keep trach of original balance
+		if(i == -1)
+			return;
+		if(x.equals("first"))
+			cost = market.get(i).getID();
+		else
+			cost++;
+		
+		passC = 0;
+		currentPlayer = players.get(turn);
+		
+		boolean h = currentPlayer.bid(cost);
+		
+		if(!h)
+		{
+			System.out.println("CAN'T BID THAT AMOUNT");
+			return;
+		}
+		nextTurn();
 	}
 	public void setupResources ()
 	{
@@ -445,7 +504,10 @@ public class Board
 	
 	public void nextTurn()
 	{
-		turn++;
+		if(turn ==3)
+			turn = 0;
+		else
+			turn++;
 		
 		currentPlayer = players.get(turn);
 	}
