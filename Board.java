@@ -364,6 +364,24 @@ public class Board
 	{
 		return numFin;
 	}
+	
+	public void buyRes(Type t, int x)
+	{
+		if(Type.Oil.equals(t))
+			for(int i = 0;i<x;i++)
+				currentPlayer.buyResources(new Resource("OIL"));
+		if(Type.Coal.equals(t))
+			for(int i = 0;i<x;i++)
+				currentPlayer.buyResources(new Resource("COAL"));
+		if(Type.Uranium.equals(t))
+			for(int i = 0;i<x;i++)
+				currentPlayer.buyResources(new Resource("URANIUM"));
+		if(Type.Trash.equals(t))
+			for(int i = 0;i<x;i++)
+				currentPlayer.buyResources(new Resource("TRASH"));
+		if(numFin == 4)
+			resourceDone = true;
+	}
 	public void pass (int i)
 	{
 		if(step>0&&i==-1)
@@ -387,25 +405,15 @@ public class Board
 		{
 			nextTurn();
 			currentPlayer.buyPowerPlant(market.get(i), cost);
+			market.remove(i);
 			currentPlayer.finished();
 			numFin++;
 		}
 			
-//		int f = 0;
-//		for(int z = 0;z<4;z++)
-//			if(players.get(f).isFinished())
-//				f++;
-//		if(f == 4)
-//		{
-//			auctionDone = true;
-//			step = 1;
-//			return;
-//		}
 		
 		nextTurn();
 		
 	}
-	
 	public void bid(int i, String x)
 	{
 		
@@ -428,6 +436,8 @@ public class Board
 		}
 		if(numFin == 3)
 		{
+			currentPlayer.buyPowerPlant(market.get(i), cost);
+			market.remove(i);
 			currentPlayer.isFinished();
 			auctionDone = true;
 			numFin++;
@@ -509,7 +519,10 @@ public class Board
 		Collections.sort(players);
 		currentPlayer = players.get(0);
 	}
-	
+	public TreeMap <String, Stack <Resource>> getResources()
+	{
+		return resources;
+	}
 	public void refillResources ()
 	{
 		if (step == 1)

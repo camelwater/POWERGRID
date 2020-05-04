@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import Enums.Type;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -33,10 +35,17 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	
 	private int page = 0;
 	private int index = -1;
+	
 	private boolean ppVisible = false;
 	private boolean first = true;
 	boolean ppChosen = false;
+	
 	private int numFin = 0;
+	
+	private int coalC = 0;
+	private int oilC = 0;
+	private int trashC = 0;
+	private int uranC = 0;
 
 	
 	public GraphicsRunner(Board g, String r) throws IOException
@@ -95,6 +104,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				game.start();
 				//game.endPhase();
 			}
+			
 			if(game.getPhase() == 2)//add mouse listener part for this
 			{
 				if(game.auctionDone())
@@ -106,6 +116,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(numFin<game.numFin())
 				{
 					first = true;
+					ppChosen = false;
 					index = -1;
 					game.cost = 0;
 					numFin++;
@@ -153,7 +164,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				
 				if(game.getCurrentPlayer().getPowerPlants().size()>0)
 					paintPlants(g);
-				//IN BOARD MAKE WHERE YOU CAN GET PASS OR BID AFTER MOUSE CLICK AND FROM THERE GIVE POWER PLANTS (3 IN A ROW PASS = WIN)
+				
 				
 				
 			}
@@ -179,8 +190,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				g.setFont(new Font("Arial", Font.BOLD, 25));
 				//g.drawString("bal: $"+game.getPlayers().get(0).balance(), 900, 600);
 				g.drawString("bal: $"+game.getCurrentPlayer().balance(), 900, 600);
-				//g.drawString("cost: $20", 880, 375);
+				g.drawString("cost: $20", 880, 375);
 				//g.drawString("cost: "+game.getCurrentPlayer().spent(), 880, 375);
+				
+				if(game.getCurrentPlayer().getPowerPlants().size()>0)
+					paintPlants(g);
 				
 				
 			}
@@ -190,7 +204,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(game.citiesDone())
 				{
 					game.endPhase();
-					numFin = 0;
+					game.numFin = 0;
 				}
 				
 				System.out.println(ppVisible);
@@ -343,14 +357,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.drawImage(ImageIO.read(getClass().getResource("pay.png")), 540, 300, 750, 350, null);
 		
 		//amount purchased and left
-//		g.drawString("x"+game.getCurrentPlayer().getCoalPurchased()+"/"+game.getResources().get(Type.Coal).size(), 500, 250);
-//		g.drawString("x"+game.getCurrentPlayer().getOilPurchased()+"/"+game.getResources().get(Type.Oil).size(), 800, 250);
-//		g.drawString("x"+game.getCurrentPlayer().getTrashPurchased()+"/"+game.getResources().get(Type.Trash).size(), 1100, 250);
-//		g.drawString("x"+game.getCurrentPlayer().getUraniumPurchased()+"/"+game.getResources().get(Type.Uranium).size(), 1400, 250);
-		g.drawString("x2/7", 500, 260);
-		g.drawString("x1/7", 800, 260);
-		g.drawString("x3/7", 1100, 260);
-		g.drawString("x0/7", 1400, 260);
+		g.drawString("x"+coalC+"/"+game.getResources().get("COAL").size(), 500, 260);
+		g.drawString("x"+oilC+"/"+game.getResources().get("OIL").size(), 800, 260);
+		g.drawString("x"+trashC+"/"+game.getResources().get("TRASH").size(), 1100, 260);
+		g.drawString("x"+uranC+"/"+game.getResources().get("URANIUM").size(), 1400, 260);
+//		g.drawString("x2/7", 500, 260);
+//		g.drawString("x1/7", 800, 260);
+//		g.drawString("x3/7", 1100, 260);
+//		g.drawString("x0/7", 1400, 260);
 	}
 	public void paintOrder(Graphics g, int startX, int startY)
 	{
@@ -443,7 +457,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					repaint();
 					System.out.println("2 chosen");
 				}
-				if(e.getX() >= 1350 && e.getX() <= 1500 && e.getY() >= 50 && e.getY() <= 250)
+				if(e.getX() >= 1350 && e.getX() <= 1550 && e.getY() >= 50 && e.getY() <= 250)
 				{
 					index = 3;
 					ppChosen = true;
@@ -451,7 +465,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					System.out.println("3 chosen");
 				}
 				//first bid or pass
-				if(ppChosen && e.getX() >= 600 && e.getX() <= 675 && e.getY() >= 500 && e.getY() <= 550)
+				if(ppChosen && index!=-1 && e.getX() >= 600 && e.getX() <= 675 && e.getY() >= 500 && e.getY() <= 550)
 				{
 					System.out.println("first bid on "+ index);
 					first = false;
@@ -491,44 +505,75 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		{
 			if(e.getX() >= 450 && e.getX() <= 470 && e.getY() >= 300 && e.getY() <= 320)
 			{
-//				-1 coal
+				if(coalC!=0)
+					coalC--;
 			}
 			if(e.getX() >= 450 && e.getX() <= 470 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				//+1 coal
+				if(coalC<game.getResources().get("COAL").size())
+					coalC++;
 			}
 			
 			if(e.getX() >= 750 && e.getX() <= 770 && e.getY() >= 300 && e.getY() <= 320)
 			{
-				//-1 oil
+				if(oilC!=0)
+					oilC--;
 			}
 			if(e.getX() >= 750 && e.getX() <= 770 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				//+1 oil
+				if(oilC<game.getResources().get("OIL").size())
+					oilC++;
 			}
 				
 			if(e.getX() >= 1050 && e.getX() <= 1070 && e.getY() >= 300 && e.getY() <= 320)
 			{
-				//-1 trash
+				if(trashC!=0)
+					trashC--;
 			}
 			if(e.getX() >=1050 && e.getX() <= 1070 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				//+1 trash
+				if(trashC<game.getResources().get("TRASH").size())
+					trashC++;
 			}
 			
 			if(e.getX() >= 1350 && e.getX() <= 1370 && e.getY() >= 300 && e.getY() <= 320)
 			{
-				//-1 uranium
+				if(uranC!=0)
+					uranC--;
 			}
 			if(e.getX() >= 1350 && e.getX() <= 1370 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				//+1 uranium
+				if(uranC<game.getResources().get("URANIUM").size())
+					uranC++;
 			}
 				
-			if(e.getX() >= 755 && e.getX() <= 1110 && e.getY() >= 932 && e.getY() <= 947)
+			if(e.getX() >= 755 && e.getX() <= 1110 && e.getY() >= 395 && e.getY() <= 550)
 			{
-				//finish transaction and move on to next player
+				if(coalC+oilC+trashC+uranC == 0)
+				{
+					game.numFin++;
+					game.getCurrentPlayer().isFinished();
+					game.nextTurn();
+				}
+				else
+				{
+					if(coalC!=0)
+						game.buyRes(Type.Coal, coalC);
+					if(oilC!=0)
+						game.buyRes(Type.Oil, oilC);
+					if(trashC!=0)
+						game.buyRes(Type.Trash, trashC);
+					if(uranC!=0)
+						game.buyRes(Type.Uranium, uranC);
+					
+					game.numFin++;
+					game.getCurrentPlayer().isFinished();
+					game.nextTurn();
+				}
+					
+				
 			}
+			repaint();
 				
 		}
 		//CURRENT PLAYER IN PHASE 4

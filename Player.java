@@ -128,9 +128,9 @@ public class Player implements Comparable
 		x.incrementCost();
 	}
 	
-	public void buyResources (Resource res)
+	public void buyResources (Resource r)
 	{
-		resources.get(res.getType()).push(res);
+		resources.get(r.getType()).push(r);
 	}
 	
 	public void buyPowerPlant (PowerPlant x, int cost)
