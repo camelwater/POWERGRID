@@ -512,13 +512,98 @@ public class Board
 	
 	public void calculatePlayerOrder ()
 	{
-		for (Player x : players)
+		if(step ==0 && phase == 3)
 		{
-			Collections.sort(x.getPowerPlants());
+			for (Player x : players)
+			{
+				Collections.sort(x.getPowerPlants());
+			}
+		
+			Collections.sort(players);
+			Collections.reverse(players);
+			currentPlayer = players.get(3);
+		}
+		else if(step == 1 && round == 1 && phase == 4)
+		{
+			for (Player x : players)
+			{
+				Collections.sort(x.getPowerPlants());
+			}
+		
+			Collections.sort(players);
+			Collections.reverse(players);
+			currentPlayer = players.get(3);
+		}
+		else if(step!=0 && (phase == 1 ||phase == 2))
+		{
+			citySort();
+			currentPlayer = players.get(0);
+		}
+		else if(step!=0 && round!=0 && (phase == 3 || phase == 4))
+		{
+			citySort();
+			currentPlayer = players.get(3);
 		}
 		
-		Collections.sort(players);
-		currentPlayer = players.get(0);
+	}
+	
+	public void citySort()
+	{
+		int o0 = players.get(0).getCities().size(); 
+		int o1= players.get(1).getCities().size(); 
+		int o2= players.get(2).getCities().size(); 
+		int o3= players.get(3).getCities().size();
+		
+		int[] x = new int[4];
+		
+		x[0] = o0;
+		x[1] = o1;
+		x[2] = o2;
+		x[3] = o3;
+		
+		Arrays.sort(x);
+		
+		ArrayList<Player>temp = new ArrayList<Player>();
+		
+		if(x[3]==o0)
+			temp.add(players.get(0));
+		else if(x[3]==o1)
+			temp.add(players.get(1));
+		else if(x[3]==o2)
+			temp.add(players.get(2));
+		else if(x[3]==o3)
+			temp.add(players.get(3));
+
+		if(x[2]==o0)
+			temp.add(players.get(0));
+		else if(x[2]==o1)
+			temp.add(players.get(1));
+		else if(x[2]==o2)
+			temp.add(players.get(2));
+		else if(x[2]==o3)
+			temp.add(players.get(3));
+		
+		if(x[1]==o0)
+			temp.add(players.get(0));
+		else if(x[1]==o1)
+			temp.add(players.get(1));
+		else if(x[1]==o2)
+			temp.add(players.get(2));
+		else if(x[1]==o3)
+			temp.add(players.get(3));
+		
+		if(x[0]==o0)
+			temp.add(players.get(0));
+		else if(x[0]==o1)
+			temp.add(players.get(1));
+		else if(x[0]==o2)
+			temp.add(players.get(2));
+		else if(x[0]==o3)
+			temp.add(players.get(3));
+	
+		
+		players = temp;
+		
 	}
 	public TreeMap <String, Stack <Resource>> getResources()
 	{
@@ -623,7 +708,10 @@ public class Board
 		else if(phase == 4)
 		{
 			if(turn == 0)
+			{
 				citiesDone = true;
+				return;
+			}
 			else
 				turn--;
 		}
@@ -648,7 +736,7 @@ public class Board
 		else
 			phase++;
 		
-		if(phase == 1 || phase == 4|| phase == 5)
+		if(phase == 1 || phase == 2 || phase == 5)
 			turn = 0;
 		else 
 			turn = 3;
