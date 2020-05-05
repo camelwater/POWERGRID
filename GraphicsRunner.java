@@ -46,7 +46,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	private int oilC = 0;
 	private int trashC = 0;
 	private int uranC = 0;
-
+	
+	boolean free = false;
+	int pC = 0;
+	int pO = 0;
+	int pT = 0;
+	int pU = 0;
+	int pH = 0;
+	boolean fi = true;
 	
 	public GraphicsRunner(Board g, String r) throws IOException
 	{
@@ -599,6 +606,27 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		//PHASE 3 RESOURCE BUYING
 		if(game.getPhase()==3)
 		{
+			if(fi)
+			{
+				for(PowerPlant p : game.getCurrentPlayer().getPowerPlants())
+				{
+					if(p.capType().equals("Coal"))
+						pC+=p.getCapacity();
+					if(p.capType().equals("Oil"))
+						pO+=p.getCapacity();
+					if(p.capType().equals("Trash"))
+						pT+=p.getCapacity();
+					if(p.capType().equals("Uran"))
+						pU+=p.getCapacity();
+					if(p.capType().equals("Hybrid"))
+						pH+=4;
+					if(p.capType().equals("Free"))
+						free = true;
+				}
+				fi = false;
+			}
+			
+			
 			//choose resources to buy
 			if(e.getX() >= 450 && e.getX() <= 470 && e.getY() >= 300 && e.getY() <= 320)
 			{
@@ -607,7 +635,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			}
 			if(e.getX() >= 450 && e.getX() <= 470 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				if(coalC<game.getResources().get("COAL").size())
+				if(coalC<game.getResources().get("COAL").size() && (coalC<pC ||coalC+oilC<pH))
 					coalC++;
 			}
 			
@@ -618,7 +646,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			}
 			if(e.getX() >= 750 && e.getX() <= 770 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				if(oilC<game.getResources().get("OIL").size())
+				if(oilC<game.getResources().get("OIL").size() && (oilC<pO ||coalC+oilC<pH))
 					oilC++;
 			}
 				
@@ -629,7 +657,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			}
 			if(e.getX() >=1050 && e.getX() <= 1070 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				if(trashC<game.getResources().get("TRASH").size())
+				if(trashC<game.getResources().get("TRASH").size() && trashC< pT)
 					trashC++;
 			}
 			
@@ -640,21 +668,33 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			}
 			if(e.getX() >= 1350 && e.getX() <= 1370 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				if(uranC<game.getResources().get("URANIUM").size())
+				if(uranC<game.getResources().get("URANIUM").size() && uranC<pU)
 					uranC++;
 			}
 			
 			//finish transaction and pay
 			if(e.getX() >= 755 && e.getX() <= 1110 && e.getY() >= 395 && e.getY() <= 550)
 			{
+				//System.out.println(free);
 				if(coalC+oilC+trashC+uranC == 0)
 				{
-					if(game.step!=0)
-					{	
+					if(game.step == 0 && free)
+					{
 						game.numFin++;
+						free = false;
 						game.getCurrentPlayer().isFinished();
 						game.nextTurn();
+						fi = true;
 					}
+					else if (game.step!=0 && free && game.getCurrentPlayer().getPowerPlants().size() == 1)
+					{
+						game.numFin++;
+						free = false;
+						game.getCurrentPlayer().isFinished();
+						game.nextTurn();
+						fi = true;
+					}
+					
 				}
 				else
 				{
@@ -676,9 +716,15 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					uranC = 0;
 					oilC = 0;
 					
+					pC = 0;
+					pO = 0;
+					pT = 0;
+					pU = 0;
+					pH = 0;
+					
+					fi = true;
 				}
 					
-				
 			}
 			repaint();
 				

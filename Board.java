@@ -253,7 +253,7 @@ public class Board
 			
 			String [] resources = attributes[2].split(", ");
 			
-			ArrayList <Resource> cost = new ArrayList <Resource> ();
+			ArrayList <String> cost = new ArrayList <String> ();
 			
 			for (int x = 0; x < resources.length; x++)
 			{
@@ -263,7 +263,7 @@ public class Board
 				{
 					for (int y = 0; y < Integer.parseInt(individualResource[0]); y++)
 					{
-						cost.add(new Resource(individualResource[1].toUpperCase()));
+						cost.add(individualResource[1].toUpperCase());
 					}
 				}
 			}

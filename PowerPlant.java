@@ -6,24 +6,31 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import Enums.Type;
+
 @SuppressWarnings({ "rawtypes", "unused" })
 public class PowerPlant implements Comparable
 {
 	private BufferedImage img;
 	private int ID;
 	private int numPowered;
-	private ArrayList <Resource> cost;
+	private ArrayList <String> cost;
 	
 	private String name;
 	
 	private boolean powered;
 	
-	public PowerPlant (int num, int id, ArrayList <Resource> c)
+	public int maxCapacity = -1;
+	public String capType = "not set";
+	
+	public PowerPlant (int num, int id, ArrayList <String> c)
 	{
 		ID = id;
 		numPowered = num;
 		cost = c;
 		name = "";
+		setCapacity();
+		System.out.println("power plant "+ id+ " costs " + cost.toString());
 	}
 	
 	public PowerPlant (String n, int id)
@@ -33,7 +40,52 @@ public class PowerPlant implements Comparable
 		numPowered = 0;
 		cost = null;
 	}
-	
+	public int getCapacity()
+	{
+		return maxCapacity;
+	}
+	public String capType()
+	{
+		System.out.println("cost: "+cost+", type: "+capType);
+		System.out.println("capacity: "+maxCapacity);
+		return capType;
+	}
+	public void setCapacity()
+	{
+		if(cost.size()!=0)
+		{
+			if(cost.contains("COAL") && cost.contains("OIL"))
+			{
+				capType = "Hybrid";
+				maxCapacity = cost.size();
+			}
+			else if (cost.contains("COAL"))
+			{
+				capType = "Coal";
+				maxCapacity = cost.size()*2;
+			}
+			else if (cost.contains("OIL"))
+			{
+				capType = "Oil";
+				maxCapacity = cost.size()*2;
+			}
+			else if (cost.contains("TRASH"))
+			{
+				capType = "Trash";
+				maxCapacity = cost.size()*2;
+			}
+			else if (cost.contains("URANIUM"))
+			{
+				capType = "Uran";
+				maxCapacity = cost.size()*2;
+			}
+		}
+		else
+		{
+			capType = "Free";
+			maxCapacity = 0;
+		}
+	}
 	public String getName ()
 	{
 		return name;
@@ -59,7 +111,7 @@ public class PowerPlant implements Comparable
 		return powered;
 	}
 	
-	public ArrayList <Resource> getCost ()
+	public ArrayList <String> getCost ()
 	{
 		return cost;
 	}
