@@ -52,10 +52,12 @@ public class Player implements Comparable
 		if(name.equals("4"))
 			house = "yellow";
 	}
+	
 	public String getHouse()
 	{
 		return house;
 	}
+	
 	public void addCash (int x)
 	{
 		cash += x;
@@ -75,10 +77,12 @@ public class Player implements Comparable
 	{
 		return finished;
 	}
+	
 	public void finished()
 	{
 		finished = true;
 	}
+	
 	public int balance ()
 	{
 		return cash;

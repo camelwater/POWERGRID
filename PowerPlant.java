@@ -40,10 +40,12 @@ public class PowerPlant implements Comparable
 		numPowered = 0;
 		cost = null;
 	}
+	
 	public int getCapacity()
 	{
 		return maxCapacity;
 	}
+	
 	public String capType()
 	{
 //		System.out.println("cost: "+cost+", type: "+capType);
@@ -86,6 +88,7 @@ public class PowerPlant implements Comparable
 			maxCapacity = 0;
 		}
 	}
+	
 	public String getName ()
 	{
 		return name;

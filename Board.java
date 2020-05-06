@@ -224,7 +224,7 @@ public class Board
 				}
 			}
 			
-			else if (phase == 5)
+			else if (phase == 5) //Bureaucracy 		We also need to prompt the players on what cities they want to power
 			{
 				endRound();
 				
@@ -272,6 +272,7 @@ public class Board
 			deck.add(new PowerPlant (id, numPowered, cost));
 			//System.out.println(deck.toString());
 		}
+		
 		for (int x = 0; x < 8; x++)
 			market.add(deck.remove(0));
 		
@@ -281,6 +282,7 @@ public class Board
 				z = deck.remove(i);
 
 		Collections.shuffle(deck);
+		
 		deck.add(0, z);
 		
 		deck.add(new PowerPlant ("Step 3", Integer.MAX_VALUE));
@@ -366,10 +368,12 @@ public class Board
 	{
 		return auctionDone;
 	}
+	
 	public int numFin()
 	{
 		return numFin;
 	}
+	
 	public boolean cityA(String x)
 	{
 		City c = null;
@@ -381,6 +385,7 @@ public class Board
 		System.out.println(cities.toString());
 		return c.isAvailable(step, currentPlayer);
 	}
+	
 	public void buyCity(String x)
 	{
 		City c = null;
@@ -449,6 +454,7 @@ public class Board
 		if(numFin == 4)
 			resourceDone = true;
 	}
+	
 	public void pass (int i)
 	{
 		if(step>0&&i==-1)
@@ -484,6 +490,7 @@ public class Board
 		nextTurn();
 		
 	}
+	
 	public boolean bid(int i, String x)
 	{
 		
@@ -521,7 +528,6 @@ public class Board
 		return true;
 	}
 	
-	
 	public void setupResources ()
 	{
 		for (int x = 0; x < 24; x++)
@@ -538,47 +544,55 @@ public class Board
 	{
 		for (Player x : players)
 		{
-			if (x.getPowerPlants().size() == 0)
+			int numPowered = 0;
+			
+			for (PowerPlant y : x.getPowerPlants())
+			{
+				if (y.isPowered())
+					numPowered++;
+			}
+				
+			if (numPowered == 0)
 				x.addCash(10);
-			else if (x.getPowerPlants().size() == 1)
+			else if (numPowered == 1)
 				x.addCash(22);
-			else if (x.getPowerPlants().size() == 2)
+			else if (numPowered == 2)
 				x.addCash(33);
-			else if (x.getPowerPlants().size() == 3)
+			else if (numPowered == 3)
 				x.addCash(44);
-			else if (x.getPowerPlants().size() == 4)
+			else if (numPowered == 4)
 				x.addCash(54);			
-			else if (x.getPowerPlants().size() == 5)
+			else if (numPowered == 5)
 				x.addCash(64);			
-			else if (x.getPowerPlants().size() == 6)
+			else if (numPowered == 6)
 				x.addCash(73);			
-			else if (x.getPowerPlants().size() == 7)
+			else if (numPowered == 7)
 				x.addCash(82);			
-			else if (x.getPowerPlants().size() == 8)
+			else if (numPowered == 8)
 				x.addCash(90);			
-			else if (x.getPowerPlants().size() == 9)
+			else if (numPowered == 9)
 				x.addCash(98);			
-			else if (x.getPowerPlants().size() == 10)
+			else if (numPowered == 10)
 				x.addCash(105);			
-			else if (x.getPowerPlants().size() == 11)
+			else if (numPowered == 11)
 				x.addCash(112);
-			else if (x.getPowerPlants().size() == 12)
+			else if (numPowered == 12)
 				x.addCash(118);
-			else if (x.getPowerPlants().size() == 13)
+			else if (numPowered == 13)
 				x.addCash(124);
-			else if (x.getPowerPlants().size() == 14)
+			else if (numPowered == 14)
 				x.addCash(129);
-			else if (x.getPowerPlants().size() == 15)
+			else if (numPowered == 15)
 				x.addCash(134);
-			else if (x.getPowerPlants().size() == 16)
+			else if (numPowered == 16)
 				x.addCash(138);
-			else if (x.getPowerPlants().size() == 17)
+			else if (numPowered == 17)
 				x.addCash(142);
-			else if (x.getPowerPlants().size() == 18)
+			else if (numPowered == 18)
 				x.addCash(145);
-			else if (x.getPowerPlants().size() == 19)
+			else if (numPowered == 19)
 				x.addCash(148);
-			else if (x.getPowerPlants().size() == 20)
+			else if (numPowered == 20)
 				x.addCash(150);
 		}
 	}
@@ -697,10 +711,12 @@ public class Board
 		players = temp;
 		
 	}
+	
 	public TreeMap <String, Stack <Resource>> getResources()
 	{
 		return resources;
 	}
+	
 	public void refillResources ()
 	{
 		if (step == 1)
