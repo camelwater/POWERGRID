@@ -13,6 +13,8 @@ public class Player implements Comparable
 	private HashMap <Type, Stack <Resource>> resources;
 	private String name;
 	
+	private String house;
+	
 	private int cash;
 	public boolean finished = false;
 	
@@ -35,8 +37,25 @@ public class Player implements Comparable
 		cash = 50;
 		
 		name = n;
+		
+		setHouse();
 	}
 	
+	public void setHouse()
+	{
+		if(name.equals("1"))
+			house = "red";
+		if(name.equals("2"))
+			house = "blue";
+		if(name.equals("3"))
+			house = "green";
+		if(name.equals("4"))
+			house = "yellow";
+	}
+	public String getHouse()
+	{
+		return house;
+	}
 	public void addCash (int x)
 	{
 		cash += x;

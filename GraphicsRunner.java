@@ -34,6 +34,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	BufferedImage uranium;
 	BufferedImage trash;
 	
+	BufferedImage blueHouse;
+	BufferedImage greenHouse;
+	BufferedImage redHouse;
+	BufferedImage yellowHouse;
+	
 	JButton b = null;
 	private int page = 3;
 	private int index = -1;
@@ -71,11 +76,17 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 setVisible(true);
 
 		 bg = ImageIO.read(getClass().getResource("Powergridmap-Edited.png"));
+		 
 		 cash = ImageIO.read(getClass().getResource("cash.png"));
 		 coal = ImageIO.read(getClass().getResource("coal.png"));
 		 oil = ImageIO.read(getClass().getResource("oil.png"));
 		 trash = ImageIO.read(getClass().getResource("trash.png"));
 		 uranium = ImageIO.read(getClass().getResource("uranium.png"));
+		 
+		 blueHouse = ImageIO.read(getClass().getResource("blue_house.png"));
+		 redHouse = ImageIO.read(getClass().getResource("red_house.png"));
+		 greenHouse = ImageIO.read(getClass().getResource("green_house.png"));
+		 yellowHouse = ImageIO.read(getClass().getResource("yellow_house.png"));
 		
 		 addMouseListener(this);
 		 
@@ -274,6 +285,15 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				
 					g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);//player name
 					
+					if(game.getPlayers().get(page).getHouse().equals("red"))
+						g.drawImage(redHouse, 1705, 915, 17, 17, null);
+					if(game.getPlayers().get(page).getHouse().equals("blue"))
+						g.drawImage(blueHouse, 1705, 915, 17, 17, null);
+					if(game.getPlayers().get(page).getHouse().equals("green"))
+						g.drawImage(greenHouse, 1705, 915, 17, 17, null);
+					if(game.getPlayers().get(page).getHouse().equals("yellow"))
+							g.drawImage(yellowHouse, 1705, 915, 17, 17, null);
+					
 					g.drawString("Step: "+game.getStep(), 900, 50);	//step
 					g.drawString("Phase: "+game.getPhase(), 875, 100); //phase
 					g.setFont(new Font("Times New Roman", Font.ITALIC, 25));
@@ -285,7 +305,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					g.setFont(new Font("Arial", Font.BOLD, 25));
 					g.drawString("Finish", 925, 900);
 					paintOrder(g);
-				
+					
+					paintCities(g);
 					//cash
 					g.setFont(new Font("Times New Roman", Font.ITALIC, 50));
 					g.setColor(Color.black);
@@ -341,7 +362,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		}
 		
 	}
-	
+	public void paintCities(Graphics g)
+	{
+		
+	}
 	public void paintBuy(Graphics g, int x, int y)
 	{
 		g.setColor(Color.white);
@@ -489,10 +513,22 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		{
 			g.setFont(new Font("Arial", Font.ITALIC, 15));
 		
-			g.drawString("P"+game.getPlayers().get(0).getName(), 100, 100);
-			g.drawString("P"+game.getPlayers().get(1).getName(), 100, 120);
-			g.drawString("P"+game.getPlayers().get(2).getName(), 100, 140);
-			g.drawString("P"+game.getPlayers().get(3).getName(), 100, 160);
+			g.drawString("P"+game.getPlayers().get(0).getName(), 80, 100);
+			g.drawString("P"+game.getPlayers().get(1).getName(), 80, 120);
+			g.drawString("P"+game.getPlayers().get(2).getName(), 80, 140);
+			g.drawString("P"+game.getPlayers().get(3).getName(), 80, 160);
+			
+			for(int i = 0;i<4;i++)
+			{
+				if(game.getPlayers().get(i).getHouse().equals("red"))
+					g.drawImage(redHouse, 100, 86+i*20, 17, 17, null);
+				if(game.getPlayers().get(i).getHouse().equals("blue"))
+					g.drawImage(blueHouse, 100, 86+i*20, 17, 17, null);
+				if(game.getPlayers().get(i).getHouse().equals("green"))
+					g.drawImage(greenHouse, 100, 86+i*20, 17, 17, null);
+				if(game.getPlayers().get(i).getHouse().equals("yellow"))
+					g.drawImage(yellowHouse, 100, 86+i*20, 17, 17, null);
+			}
 		
 		
 			if(game.getPlayers().get(0).isFinished())
@@ -512,10 +548,22 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			
 			g.drawString("Player Order: ", 850, 250);
 			
-			g.drawString("P"+game.getPlayers().get(0).getName(), 940, 300);
-			g.drawString("P"+game.getPlayers().get(1).getName(), 940, 350);
-			g.drawString("P"+game.getPlayers().get(2).getName(), 940, 400);
-			g.drawString("P"+game.getPlayers().get(3).getName(), 940, 450);
+			g.drawString("P"+game.getPlayers().get(0).getName(), 915, 300);
+			g.drawString("P"+game.getPlayers().get(1).getName(), 915, 350);
+			g.drawString("P"+game.getPlayers().get(2).getName(), 915, 400);
+			g.drawString("P"+game.getPlayers().get(3).getName(), 915, 450);
+			
+			for(int i = 0;i<4;i++)
+			{
+				if(game.getPlayers().get(i).getHouse().equals("red"))
+					g.drawImage(redHouse, 970, 275+i*50, 25, 25, null);
+				else if(game.getPlayers().get(i).getHouse().equals("blue"))
+					g.drawImage(blueHouse, 970, 275+i*50, 25, 25, null);
+				else if(game.getPlayers().get(i).getHouse().equals("green"))
+					g.drawImage(greenHouse, 970, 275+i*50, 25, 25, null);
+				else if(game.getPlayers().get(i).getHouse().equals("yellow"))
+					g.drawImage(yellowHouse, 970, 275+i*50, 25, 25, null);
+			}
 		}
 		else if (game.getPhase()==4)
 		{
@@ -527,7 +575,19 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			g.drawString("P"+game.getPlayers().get(1).getName(), 100, 40);
 			g.drawString("P"+game.getPlayers().get(2).getName(), 150, 40);
 			g.drawString("P"+game.getPlayers().get(3).getName(), 200, 40);
-			g.drawString("^", game.getTurn()*50+50, 60);
+			
+			for(int i = 0;i<4;i++)
+			{
+				if(game.getPlayers().get(i).getHouse().equals("red"))
+					g.drawImage(redHouse, 50+i*50, 45, 25, 25, null);
+				else if(game.getPlayers().get(i).getHouse().equals("blue"))
+					g.drawImage(blueHouse, 50+i*50, 45, 25, 25, null);
+				else if(game.getPlayers().get(i).getHouse().equals("green"))
+					g.drawImage(greenHouse, 50+i*50, 45, 25, 25, null);
+				else if(game.getPlayers().get(i).getHouse().equals("yellow"))
+					g.drawImage(yellowHouse, 50+i*50, 45, 25, 25, null);
+			}
+			g.drawString("^", game.getTurn()*50+50, 100);
 			g.setFont(new Font("Arial",  Font.ITALIC, 15));
 			if(game.getPlayers().get(0).isFinished())
 				g.drawString("done", 60, 60);
@@ -703,8 +763,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(coalC<game.getResources().get("COAL").size() && coalC+oilC+game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC+pO))
 						coalC++;
 				}
-
-					if(coalC<game.getResources().get("COAL").size() && (coalC+game.getCurrentPlayer().getCoal()<pC ||coalC+oilC+game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC+pO)))
+				else
+					if(coalC<game.getResources().get("COAL").size() && (coalC+game.getCurrentPlayer().getCoal()<pC ||coalC+oilC+game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<pH))
 						coalC++;
 
 			}
@@ -721,7 +781,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(oilC<game.getResources().get("OIL").size() && coalC+oilC+game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH)
 						oilC++;
 				}
-				
+				else
 					if(oilC<game.getResources().get("OIL").size() && (oilC+game.getCurrentPlayer().getOil()<pO ||coalC+oilC+game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH))
 						oilC++;
 				
@@ -834,211 +894,211 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					buying = true;
 					cityBuy = "Seattle";
 				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Portland";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "San Francisco";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Los Angeles";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "San Diego";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Boise";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Las Vegas";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Pheonix";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Salt Lake City";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Billings";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Cheyenne";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Denver";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Santa Fe";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Fargo";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Duluth";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Minneapolis";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Omaha";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Kansas City";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Oklahoma City";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Dallas";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Houston";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Chicago";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "St. Louis";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Memphis";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "New Orleans";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Birmingham";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Detroit";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Cincinnati";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Knoxville";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Atlanta";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Buffalo";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Pittsburgh";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Boston";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "New York";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Philadelphia";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Washington D.C";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Norfolk";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Raleigh";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Savannah";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Jacksonville";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Tampa";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Miami";
-//				}
+				else if(e.getX() >= 60 && e.getX() <= 130 && e.getY() >= 240 && e.getY() <= 300)  
+				{
+					buying = true;
+					cityBuy = "Portland";
+				}
+				else if(e.getX() >= 61 && e.getX() <= 125 && e.getY() >= 515 && e.getY() <= 575)  
+				{
+					buying = true;
+					cityBuy = "San Francisco";
+				}
+				else if(e.getX() >= 183 && e.getX() <= 245 && e.getY() >= 630 && e.getY() <= 685)  
+				{
+					buying = true;
+					cityBuy = "Los Angeles";
+				}
+				else if(e.getX() >= 260 && e.getX() <= 315 && e.getY() >= 695 && e.getY() <= 748)  
+				{
+					buying = true;
+					cityBuy = "San Diego";
+				}
+				else if(e.getX() >= 308 && e.getX() <= 360 && e.getY() >= 310 && e.getY() <= 366)  
+				{
+					buying = true;
+					cityBuy = "Boise";
+				}
+				else if(e.getX() >= 325 && e.getX() <= 400 && e.getY() >= 565 && e.getY() <= 615)  
+				{
+					buying = true;
+					cityBuy = "Las Vegas";
+				}
+				else if(e.getX() >= 450 && e.getX() <= 500 && e.getY() >= 665 && e.getY() <= 715)  
+				{
+					buying = true;
+					cityBuy = "Phoenix";
+				}
+				else if(e.getX() >= 450 && e.getX() <= 505 && e.getY() >= 430 && e.getY() <= 487)  
+				{
+					buying = true;
+					cityBuy = "Salt Lake City";
+				}
+				else if(e.getX() >= 575 && e.getX() <= 650 && e.getY() >= 255 && e.getY() <= 305)  
+				{
+					buying = true;
+					cityBuy = "Billings";
+				}
+				else if(e.getX() >= 695 && e.getX() <= 755 && e.getY() >= 385 && e.getY() <= 440)  
+				{
+					buying = true;
+					cityBuy = "Cheyenne";
+				}
+				else if(e.getX() >= 675 && e.getX() <= 740 && e.getY() >= 455 && e.getY() <= 505)  
+				{
+					buying = true;
+					cityBuy = "Denver";
+				}
+				else if(e.getX() >= 650 && e.getX() <= 700 && e.getY() >= 580 && e.getY() <= 655)  
+				{
+					buying = true;
+					cityBuy = "Santa Fe";
+				}
+				else if(e.getX() >= 940 && e.getX() <= 1005 && e.getY() >= 220 && e.getY() <= 270)  
+				{
+					buying = true;
+					cityBuy = "Fargo";
+				}
+				else if(e.getX() >= 1080 && e.getX() <= 1155 && e.getY() >= 195 && e.getY() <= 245)  
+				{
+					buying = true;
+					cityBuy = "Duluth";
+				}
+				else if(e.getX() >= 1060 && e.getX() <= 1120 && e.getY() >= 265 && e.getY() <= 325)  
+				{
+					buying = true;
+					cityBuy = "Minneapolis";
+				}
+				else if(e.getX() >= 966 && e.getX() <= 1026 && e.getY() >= 400 && e.getY() <= 455)  
+				{
+					buying = true;
+					cityBuy = "Omaha";
+				}
+				else if(e.getX() >= 1010 && e.getX() <= 1065 && e.getY() >= 485 && e.getY() <= 545)  
+				{
+					buying = true;
+					cityBuy = "Kansas City";
+				}
+				else if(e.getX() >= 940 && e.getX() <= 642 && e.getY() >= 592 && e.getY() <= 642)  
+				{
+					buying = true;
+					cityBuy = "Oklahoma City";
+				}
+				else if(e.getX() >= 960 && e.getX() <= 1025 && e.getY() >= 676 && e.getY() <= 730)  
+				{
+					buying = true;
+					cityBuy = "Dallas";
+				}
+				else if(e.getX() >= 975 && e.getX() <= 1040 && e.getY() >= 765 && e.getY() <= 1040)  
+				{
+					buying = true;
+					cityBuy = "Houston";
+				}
+				else if(e.getX() >= 1225 && e.getX() <= 1280 && e.getY() >= 380 && e.getY() <= 440)  
+				{
+					buying = true;
+					cityBuy = "Chicago";
+				}
+				else if(e.getX() >= 1160 && e.getX() <= 1225 && e.getY() >= 490 && e.getY() <= 540)  
+				{
+					buying = true;
+					cityBuy = "St. Louis";
+				}
+				else if(e.getX() >= 1165 && e.getX() <= 1225 && e.getY() >= 600 && e.getY() <= 655)  
+				{
+					buying = true;
+					cityBuy = "Memphis";
+				}
+				else if(e.getX() >= 1160 && e.getX() <= 1221 && e.getY() >= 760 && e.getY() <= 820)  
+				{
+					buying = true;
+					cityBuy = "New Orleans";
+				}
+				else if(e.getX() >= 1275 && e.getX() <= 1335 && e.getY() >= 655 && e.getY() <= 715)  
+				{
+					buying = true;
+					cityBuy = "Birmingham";
+				}
+				else if(e.getX() >= 1375 && e.getX() <= 1445 && e.getY() >= 355 && e.getY() <= 410)  
+				{
+					buying = true;
+					cityBuy = "Detroit";
+				}
+				else if(e.getX() >= 1365 && e.getX() <= 1425 && e.getY() >= 465 && e.getY() <= 520)  
+				{
+					buying = true;
+					cityBuy = "Cincinnati";
+				}
+				else if(e.getX() >= 1365 && e.getX() <= 1430 && e.getY() >= 570 && e.getY() <= 625)  
+				{
+					buying = true;
+					cityBuy = "Knoxville";
+				}
+				else if(e.getX() >= 1375 && e.getX() <= 1445 && e.getY() >= 655 && e.getY() <= 705)  
+				{
+					buying = true;
+					cityBuy = "Atlanta";
+				}
+				else if(e.getX() >= 1565 && e.getX() <= 1625 && e.getY() >= 335 && e.getY() <= 387)  
+				{
+					buying = true;
+					cityBuy = "Buffalo";
+				}
+				else if(e.getX() >= 1521 && e.getX() <= 1580 && e.getY() >= 425 && e.getY() <= 475)  
+				{
+					buying = true;
+					cityBuy = "Pittsburgh";
+				}
+				else if(e.getX() >= 1810 && e.getX() <= 1875 && e.getY() >= 335 && e.getY() <= 390)  
+				{
+					buying = true;
+					cityBuy = "Boston";
+				}
+				else if(e.getX() >= 1742 && e.getX() <= 1805 && e.getY() >= 390 && e.getY() <= 440)  
+				{
+					buying = true;
+					cityBuy = "New York";
+				}
+				else if(e.getX() >= 1700 && e.getX() <= 1755 && e.getY() >= 446 && e.getY() <= 500)  
+				{
+					buying = true;
+					cityBuy = "Philadelphia";
+				}
+				else if(e.getX() >= 1607 && e.getX() <= 1656 && e.getY() >= 494 && e.getY() <= 532)  
+				{
+					buying = true;
+					cityBuy = "Washington D.C.";
+				}
+				else if(e.getX() >= 1681 && e.getX() <= 1726 && e.getY() >= 550 && e.getY() <= 600)  
+				{
+					buying = true;
+					cityBuy = "Norfolk";
+				}
+				else if(e.getX() >= 1583 && e.getX() <= 1638 && e.getY() >= 590 && e.getY() <= 644)  
+				{
+					buying = true;
+					cityBuy = "Raleigh";
+				}
+				else if(e.getX() >= 1499 && e.getX() <= 1560 && e.getY() >= 684 && e.getY() <= 732)  
+				{
+					buying = true;
+					cityBuy = "Savannah";
+				}
+				else if(e.getX() >= 1488 && e.getX() <= 1548 && e.getY() >= 750 && e.getY() <= 805)  
+				{
+					buying = true;
+					cityBuy = "Jacksonville";
+				}
+				else if(e.getX() >= 1414 && e.getX() <= 1480 && e.getY() >= 835 && e.getY() <= 880)  
+				{
+					buying = true;
+					cityBuy = "Tampa";
+				}
+				else if(e.getX() >= 1532 && e.getX() <= 1585 && e.getY() >= 904 && e.getY() <= 955)  
+				{
+					buying = true;
+					cityBuy = "Miami";
+				}
 				else
 				{
 					buying = false;

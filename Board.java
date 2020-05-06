@@ -328,7 +328,10 @@ public class Board
 	public void setupPlayers ()
 	{
 		for (int x = 1; x < 5; x++)
-			players.add(new Player("" + x)); 
+		{
+			players.add(new Player(""+x));
+			
+		}
 	}
 	
 	public ArrayList<PowerPlant> getMarket()
@@ -374,6 +377,8 @@ public class Board
 		for(City i: cities)
 			if(i.getName().equals(x))
 				c = i;
+		System.out.println(x);
+		System.out.println(cities.toString());
 		return c.isAvailable(step, currentPlayer);
 	}
 	public void buyCity(String x)
