@@ -94,56 +94,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 
 		
 	}
-	public void paintBuy(int x, int y)
-	{
-		
-		b = new JButton();
-		b.setFont(new Font("Arial", Font.BOLD, 100));
-		b.setText("BUY");
-		b.setBounds(810, 440, 250, 150);
-		this.add(b);
-		jb++;
-		 b.addMouseListener(new MouseListener()
-		 {
-
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				game.buyCity(cityBuy);
-				buying = false;
-				repaint();
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		 
-		 });
-	}
+	
 	public void paintComponent(Graphics g)
 	{
-		if(!buying && b!=null)
-			this.remove(b);
 		
 		if(game.isOver())
 		{
@@ -354,9 +307,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					} catch (IOException e) {}
 				
 				}
-				System.out.println(jb);
-				if(buying&& jb==1)
-					paintBuy(930, 510);
+				
+				if(buying && game.cityA(cityBuy))
+					paintBuy(g, 880, 465);
 				
 			}
 			
@@ -371,7 +324,56 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		
 	}
 	
-	//FINISH THESE METHODS
+	public void paintBuy(Graphics g, int x, int y)
+	{
+		g.setColor(Color.white);
+		g.fillOval(x, y, 200, 100);
+		g.setColor(Color.black);
+		g.setFont(new Font("Arial", Font.BOLD, 75));
+		g.drawString("BUY", x+25, y+80);
+//		b = new JButton();
+//		b.setFont(new Font("Arial", Font.BOLD, 100));
+//		b.setText("BUY");
+//		b.setBounds(810, 440, 250, 150);
+//		this.add(b);
+//		jb++;
+//		 b.addMouseListener(new MouseListener()
+//		 {
+//
+//			@Override
+//			public void mouseClicked(MouseEvent e) 
+//			{
+//				game.buyCity(cityBuy);
+//				buying = false;
+//				repaint();
+//			}
+//
+//			@Override
+//			public void mouseEntered(MouseEvent arg0) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void mouseExited(MouseEvent arg0) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void mousePressed(MouseEvent arg0) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void mouseReleased(MouseEvent arg0) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		 
+//		 });
+	}
 	public void paintPlants(Graphics g) //paints hands
 	{
 		int i = 1;
@@ -702,7 +704,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				fi = false;
 			}
 			
-			
+			//if(buying && )
 			//choose resources to buy
 			if(e.getX() >= 450 && e.getX() <= 470 && e.getY() >= 300 && e.getY() <= 320)
 			{
@@ -822,218 +824,223 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					game.nextTurn();
 				}
 				
-				
+				if(buying && e.getX()>=880 && e.getX()<=1080 && e.getY() >= 460 && e.getY()<= 565)
+				{
+					game.buyCity(cityBuy);
+					buying = false;
+					repaint();
+				}
 				//building cities
 				if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
 				{
 					buying = true;
 					cityBuy = "Seattle";
 				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Portland";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "San Francisco";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Los Angeles";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "San Diego";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Boise";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Las Vegas";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Pheonix";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Salt Lake City";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Billings";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Cheyenne";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Denver";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Santa Fe";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Fargo";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Duluth";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Minneapolis";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Omaha";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Kansas City";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Oklahoma City";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Dallas";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Houston";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Chicago";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "St. Louis";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Memphis";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "New Orleans";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Birmingham";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Detroit";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Cincinnati";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Knoxville";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Atlanta";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Buffalo";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Pittsburgh";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Boston";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "New York";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Philadelphia";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Washington D.C";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Norfolk";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Raleigh";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Savannah";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Jacksonville";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Tampa";
-//				}
-//				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
-//				{
-//					buying = true;
-//					cityBuy = "Miami";
-//				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Portland";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "San Francisco";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Los Angeles";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "San Diego";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Boise";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Las Vegas";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Pheonix";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Salt Lake City";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Billings";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Cheyenne";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Denver";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Santa Fe";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Fargo";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Duluth";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Minneapolis";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Omaha";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Kansas City";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Oklahoma City";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Dallas";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Houston";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Chicago";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "St. Louis";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Memphis";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "New Orleans";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Birmingham";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Detroit";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Cincinnati";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Knoxville";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Atlanta";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Buffalo";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Pittsburgh";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Boston";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "New York";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Philadelphia";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Washington D.C";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Norfolk";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Raleigh";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Savannah";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Jacksonville";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Tampa";
+				}
+				else if(e.getX() >= 110 && e.getX() <= 175 && e.getY() >= 155 && e.getY() <= 212)  
+				{
+					buying = true;
+					cityBuy = "Miami";
+				}
 				else
 				{
 					buying = false;

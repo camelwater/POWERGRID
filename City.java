@@ -56,6 +56,8 @@ public class City
 	
 	public boolean isAvailable (int step)
 	{
+		//add region checker
+		
 		if(numOccupants<step)
 			available = true;
 		else

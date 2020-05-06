@@ -364,7 +364,15 @@ public class Board
 	{
 		return numFin;
 	}
-	
+	public boolean cityA(String x)
+	{
+		City c = null;
+		
+		for(City i: cities)
+			if(i.getName().equals(x))
+				c = i;
+		return c.isAvailable(step);
+	}
 	public void buyCity(String x)
 	{
 		City c = null;
