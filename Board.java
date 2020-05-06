@@ -379,7 +379,7 @@ public class Board
 		
 		boolean h = currentPlayer.buyCity(c, price);
 		
-		if(!h)
+		if(!h || !c.isAvailable(step))
 		{
 			System.out.println("CANT BUY CITY");
 			return;
@@ -389,9 +389,7 @@ public class Board
 			
 		currentPlayer.pay(price);
 		
-		c.incrementNumOccupants();
-		
-		c.incrementCost();
+		c.incrementNumOccupants(step);
 		
 		
 		if(numFin == 4)

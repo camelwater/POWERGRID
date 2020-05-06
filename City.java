@@ -5,6 +5,7 @@ public class City
 	private String region;
 	private int numOccupants;
 	private int cost;
+	private boolean available = true;;
 	
 	public City (String n)
 	{
@@ -34,9 +35,18 @@ public class City
 	    return region;
 	}
 	
-	public void incrementNumOccupants ()
+	public void incrementNumOccupants (int step)
 	{
-		numOccupants++;
+		if(available)
+		{
+			numOccupants++;
+			incrementCost();
+			
+		}
+		else
+		{
+			available = false;
+		}
 	}
 	
 	public void incrementCost ()
@@ -46,10 +56,14 @@ public class City
 	
 	public boolean isAvailable (int step)
 	{
-		if (step == numOccupants)
-			return false;
+		if(numOccupants<step)
+			available = true;
+		else
+			available = false;
 		
-		return true;
+		//System.out.println(available);
+		
+		return available;
 	}
 	
 	public String toString ()
