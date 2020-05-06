@@ -757,24 +757,24 @@ public class Board
 	{				
 		if (type == Type.Uranium)
 		{
-			if (resources.get(type.toString()).size() > 4)
+			if (resources.get(type.toString().toUpperCase()).size() > 4)
 			{
-				return costs.get((resources.get(type.toString()).size() - 4));
+				return costs.get((resources.get(type.toString().toUpperCase()).size() - 4));
 			}
 			
-			else if (resources.get(type.toString()).size() != 0)
+			else if (resources.get(type.toString().toUpperCase()).size() != 0)
 			{
-				return costs.get((resources.get(type.toString()).size() + 10));
+				return costs.get((resources.get(type.toString().toUpperCase()).size() + 10));
 			}
 		}
 		
-		else if (resources.get(type.toString()).size() != 0)
+		else if (resources.get(type.toString().toUpperCase()).size() != 0)
 		{		
 			int index = 1;
 			
 			for (int x = 3; x <= 24; x += 3)
 			{
-				if (resources.get(type.toString()).size() <= x)
+				if (resources.get(type.toString().toUpperCase()).size() <= x)
 				{
 					return costs.get(index);
 				}

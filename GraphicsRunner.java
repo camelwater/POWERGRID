@@ -54,6 +54,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	private int trashC = 0;
 	private int uranC = 0;
 	
+	int rCost;
+	
 	boolean free = false;
 	int pC = 0;
 	int pO = 0;
@@ -240,8 +242,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				g.setFont(new Font("Arial", Font.BOLD, 25));
 				
 				g.drawString("bal: $"+game.getCurrentPlayer().balance(), 900, 600);
-				g.drawString("cost: $20", 880, 375);
-				//g.drawString("cost: "+game.getCurrentPlayer().spent(), 880, 375);
+//				g.drawString("cost: $20", 880, 375);
+				g.drawString("cost: "+rCost, 880, 375);
 				
 				//System.out.println("HAND SIZE: "+game.getCurrentPlayer().getPowerPlants().size());
 				for(int i = 0; i<game.getCurrentPlayer().getResources().get(Type.Oil).size();i++)
@@ -480,15 +482,20 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.setColor(Color.black);
 		
 		//price (finish the cost thingy and purchasing)
+		rCost = 0;
+		g.drawString("$"+game.calculateCost(Type.Coal), 450, 340); 
+		g.drawString("$"+game.calculateCost(Type.Oil), 750, 340);
+		g.drawString("$"+game.calculateCost(Type.Trash), 1050, 340);
+		g.drawString("$"+game.calculateCost(Type.Uranium), 1350, 340);
 		
-//		g.drawString("$ "+game.getCoalCost(), 450, 325); 
-//		g.drawString("$ "+game.getOilCost(), 750, 325);
-//		g.drawString("$ "+game.getTrashCost(), 1050, 325);
-//		g.drawString("$ "+game.getUraniumCost(), 1350, 325);
-		g.drawString("$5", 450, 340); 
-		g.drawString("$5", 750, 340);
-		g.drawString("$5", 1050, 340);
-		g.drawString("$5", 1350, 340);
+		rCost+=game.calculateCost(Type.Coal)*coalC;
+		rCost+=game.calculateCost(Type.Oil)*oilC;
+		rCost+=game.calculateCost(Type.Trash)*trashC;
+		rCost+=game.calculateCost(Type.Uranium)*uranC;
+//		g.drawString("$5", 450, 340); 
+//		g.drawString("$5", 750, 340);
+//		g.drawString("$5", 1050, 340);
+//		g.drawString("$5", 1350, 340);
 		
 		//images
 		g.drawImage(coal, 443, 234, 40, 40, null);
@@ -844,6 +851,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(uranC!=0)
 						game.buyRes(Type.Uranium, uranC);
 					
+					game.getCurrentPlayer().pay(rCost);
 					game.numFin++;
 					game.getCurrentPlayer().finished();
 					game.nextTurn();
