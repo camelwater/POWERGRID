@@ -46,8 +46,8 @@ public class PowerPlant implements Comparable
 	}
 	public String capType()
 	{
-		System.out.println("cost: "+cost+", type: "+capType);
-		System.out.println("capacity: "+maxCapacity);
+//		System.out.println("cost: "+cost+", type: "+capType);
+//		System.out.println("capacity: "+maxCapacity);
 		return capType;
 	}
 	public void setCapacity()

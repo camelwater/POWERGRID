@@ -365,20 +365,73 @@ public class Board
 		return numFin;
 	}
 	
+	public void buyCity(String x)
+	{
+		City c = null;
+		
+		for(City i: cities)
+			if(i.getName().equals(x))
+				c = i;
+		
+		int price = 0;
+		price+= c.getCost();
+		//price+=c.roadCost();
+		
+		boolean h = currentPlayer.buyCity(c, price);
+		
+		if(!h)
+		{
+			System.out.println("CANT BUY CITY");
+			return;
+		}
+		
+		currentPlayer.getCities().add(c);
+			
+		currentPlayer.pay(price);
+		
+		c.incrementNumOccupants();
+		
+		c.incrementCost();
+		
+		
+		if(numFin == 4)
+		{
+			citiesDone = true;
+		}
+	}
+	
 	public void buyRes(Type t, int x)
 	{
+		System.out.print(resources.get(t.toString().toUpperCase()).size());
 		if(Type.Oil.equals(t))
+		{
 			for(int i = 0;i<x;i++)
 				currentPlayer.buyResources(new Resource("OIL"));
+			for(int i = 0;i<x;i++)
+				resources.get("OIL").pop();
+		}
 		if(Type.Coal.equals(t))
+		{
 			for(int i = 0;i<x;i++)
 				currentPlayer.buyResources(new Resource("COAL"));
+			for(int i = 0;i<x;i++)
+				resources.get("COAL").pop();
+		}
 		if(Type.Uranium.equals(t))
+		{
 			for(int i = 0;i<x;i++)
 				currentPlayer.buyResources(new Resource("URANIUM"));
+			for(int i = 0;i<x;i++)
+				resources.get("URANIUM").pop();
+		}
 		if(Type.Trash.equals(t))
+		{
 			for(int i = 0;i<x;i++)
 				currentPlayer.buyResources(new Resource("TRASH"));
+			for(int i = 0;i<x;i++)
+				resources.get("TRASH").pop();
+		}
+		System.out.println(" - "+resources.get(t.toString().toUpperCase()).size());
 		if(numFin == 4)
 			resourceDone = true;
 	}
@@ -448,6 +501,7 @@ public class Board
 		}
 		nextTurn();
 	}
+	
 	
 	public void setupResources ()
 	{

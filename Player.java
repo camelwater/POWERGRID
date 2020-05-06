@@ -117,15 +117,14 @@ public class Player implements Comparable
 		return false;
 	}
 	
-	public void buyCity (City x, int cost)
+	public boolean buyCity (City c, int cost)
 	{
-		cities.add(x);
+		if(cost<=cash)
+		{
+			return true;
+		}
+		return false;
 		
-		pay(cost);
-		
-		x.incrementNumOccupants();
-		
-		x.incrementCost();
 	}
 	
 	public void buyResources (Resource r)
