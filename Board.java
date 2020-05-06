@@ -549,7 +549,7 @@ public class Board
 			for (PowerPlant y : x.getPowerPlants())
 			{
 				if (y.isPowered())
-					numPowered++;
+					numPowered+=y.getNumPowered();
 			}
 				
 			if (numPowered == 0)

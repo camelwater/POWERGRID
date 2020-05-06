@@ -37,6 +37,8 @@ public class GraphicsLobby extends JPanel implements MouseListener
 	
 	int count = 0;
 	
+	boolean cont = false;
+	
 	JFrame frame;
 	boolean lobbyDone = false;
 	
@@ -68,13 +70,13 @@ public class GraphicsLobby extends JPanel implements MouseListener
 				regions+="1, ";
 			if(r2)
 				regions+="2, ";
-			if(r6)
-				regions+="3, ";
 			if(r3)
-				regions+="4, ";
+				regions+="3, ";
 			if(r4)
-				regions+="5, ";
+				regions+="4, ";
 			if(r5)
+				regions+="5, ";
+			if(r6)
 				regions+="6, ";
 			
 			
@@ -117,34 +119,46 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		}
 		if(r3)
 		{
-			g.drawImage(check, 640, 510, 25, 25, null);
+			g.drawImage(check, 1255, 415, 25, 25, null);
 			//System.out.println("3");
 		}
 		if(r4)
 		{
-			g.drawImage(check, 940, 590, 25, 25, null);
+			
+			g.drawImage(check, 640, 510, 25, 25, null);
 			//System.out.println("4");
 		}
 		if(r5)
 		{
-			g.drawImage(check, 1180, 590, 25, 25, null);
+			g.drawImage(check, 940, 590, 25, 25, null);
+			
 			//System.out.println("5");
 		}
 		if(r6)
 		{
-			g.drawImage(check, 1255, 415, 25, 25, null);
+			g.drawImage(check, 1180, 590, 25, 25, null);
+			
 			//System.out.println("6");
 		}
 		
-		if(count==4)
+		//check whether land is contiguous or not
+		
+		if(count==4 && cont)
 		{
+			g.setColor(Color.black);
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 100));
 			g.drawString("START GAME", 625, 900);
+		}
+		else if(count == 4 && !cont)
+		{
+			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 75));
+			g.setColor(Color.red);
+			g.drawString("REGIONS HAVE TO BE CONTIGUOUS", 300, 900);
 		}
 		else
 		{
 			g.setColor(Color.white);
-			g.fillRect(600, 830, 1280, 920);
+			g.fillRect(200, 830, 1720, 920);
 		}
 	}
 	@Override
@@ -173,7 +187,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		
 		System.out.println("X: "+e.getX()+ ", Y: "+e.getY());
 		
-		if(e.getX()>=750 && e.getX() <= 800 && e.getY() >= 360 && e.getY() <= 410) //1
+		if(e.getX()>=750 && e.getX() <= 800 && e.getY() >= 360 && e.getY() <= 410) //1 done
 		{
 			c1++;
 			if(c1%2 !=0&&count<4)
@@ -184,6 +198,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 				{
 					r1 = true;
 					count++;
+					
 				}
 			}
 			else
@@ -194,8 +209,18 @@ public class GraphicsLobby extends JPanel implements MouseListener
 					count--;
 				}
 			}
+			
+			if(r1&& r3 && r4&&r5)
+				cont = false;
+			else if(r1&& r3&&r4&&r6)
+				cont = false;
+			else if(r2&&r3&&r4&&r6)
+				cont = false;
+			else 
+				cont = true;
+			repaint();
 		}
-		if(e.getX()>=1010 && e.getX() <= 1060 && e.getY() >= 400 && e.getY() <= 450)//2
+		if(e.getX()>=1010 && e.getX() <= 1060 && e.getY() >= 400 && e.getY() <= 450)//2 done 
 		{
 			c2++;
 			if(c2%2 !=0&&count<4)
@@ -206,6 +231,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 				{
 					r2 = true;
 					count++;
+					
 				}
 			}
 			else
@@ -216,8 +242,17 @@ public class GraphicsLobby extends JPanel implements MouseListener
 					count--;
 				}
 			}
+			if(r1&& r3 && r4&&r5)
+				cont = false;
+			else if(r1&& r3&&r4&&r6)
+				cont = false;
+			else if(r2&&r3&&r4&&r6)
+				cont = false;
+			else 
+				cont = true;
+			repaint();
 		}
-		if(e.getX()>=635 && e.getX() <= 690 && e.getY() >= 500 && e.getY() <= 560)//3
+		if(e.getX()>=1250 && e.getX() <= 1310 && e.getY() >= 410 && e.getY() <= 470)//3 done
 		{
 			c3++;
 			if(c3%2 !=0&&count<4)
@@ -228,6 +263,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 				{
 					r3 = true;
 					count++;
+					
 				}
 			}
 			else
@@ -238,8 +274,17 @@ public class GraphicsLobby extends JPanel implements MouseListener
 					count--;
 				}
 			}
+			if(r1&& r3 && r4&&r5)
+				cont = false;
+			else if(r1&& r3&&r4&&r6)
+				cont = false;
+			else if(r2&&r3&&r4&&r6)
+				cont = false;
+			else 
+				cont = true;
+			repaint();
 		}
-		if(e.getX()>=940 && e.getX() <= 1000 && e.getY() >= 590 && e.getY() <= 650)//4
+		if(e.getX()>=635 && e.getX() <= 690 && e.getY() >= 500 && e.getY() <= 560)//4 done
 		{
 			c4++;
 			if(c4%2 !=0&&count<4)
@@ -260,8 +305,17 @@ public class GraphicsLobby extends JPanel implements MouseListener
 					count--;
 				}
 			}
+			if(r1&& r3 && r4&&r5)
+				cont = false;
+			else if(r1&& r3&&r4&&r6)
+				cont = false;
+			else if(r2&&r3&&r4&&r6)
+				cont = false;
+			else 
+				cont = true;
+			repaint();
 		}
-		if(e.getX()>=1160 && e.getX() <= 1230 && e.getY() >= 580 && e.getY() <= 645)//5
+		if(e.getX()>=940 && e.getX() <= 1000 && e.getY() >= 590 && e.getY() <= 650)//5 done
 		{
 			c5++;
 			if(c5%2 !=0&&count<4)
@@ -272,6 +326,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 				{
 					r5 = true;
 					count++;
+					
 				}
 			}
 			else
@@ -282,8 +337,17 @@ public class GraphicsLobby extends JPanel implements MouseListener
 					count--;
 				}
 			}
+			if(r1&& r3 && r4&&r5)
+				cont = false;
+			else if(r1&& r3&&r4&&r6)
+				cont = false;
+			else if(r2&&r3&&r4&&r6)
+				cont = false;
+			else 
+				cont = true;
+			repaint();
 		}
-		if(e.getX()>=1250 && e.getX() <= 1310 && e.getY() >= 410 && e.getY() <= 470)//6
+		if(e.getX()>=1160 && e.getX() <= 1230 && e.getY() >= 580 && e.getY() <= 645)//6 done
 		{
 			c6++;
 			if(c6%2 !=0&&count<4)
@@ -304,11 +368,28 @@ public class GraphicsLobby extends JPanel implements MouseListener
 					count--;
 				}
 			}
+			if(r1&& r3 && r4&&r5)
+				cont = false;
+			else if(r1&& r3&&r4&&r6)
+				cont = false;
+			else if(r2&&r3&&r4&&r6)
+				cont = false;
+			else 
+				cont = true;
+			repaint();
 		}
 		
-		if(count==4 && e.getX()>=625 && e.getX() <= 1300 && e.getY() >= 820 && e.getY() <= 900)
+		if(count==4 && cont && e.getX()>=625 && e.getX() <= 1300 && e.getY() >= 820 && e.getY() <= 900)
+		{
 			lobbyDone = true;
-		repaint();
+			repaint();
+		}
+		if(count==4 && !cont && e.getX()>=625 && e.getX() <= 1300 && e.getY() >= 820 && e.getY() <= 900)
+		{
+			//System.out.println("REGIONS: "+r1+","+r2+","+r3+","+r4+","+r5+","+r6);
+			repaint();
+		}
+		//repaint();
 	}
 	 
 }
