@@ -143,11 +143,16 @@ public class Player implements Comparable
 	
 	public int compareTo (Object obj)
 	{       
-        int x = getPowerPlants().size();
-		int y = ((Player) obj).getPowerPlants().size();
+        int x = getCities().size();
+		int y = ((Player) obj).getCities().size();
 		
 		if (x != y)
 			return x - y;
+		x = getPowerPlants().size();
+		y = ((Player)obj).getPowerPlants().size();
+		
+		if(x!=y)
+			return x-y;
 		
 		x = getPowerPlants().get(0).getID();
 		y = ((Player) obj).getPowerPlants().get(0).getID();

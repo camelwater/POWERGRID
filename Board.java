@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
@@ -30,7 +31,7 @@ public class Board
 	public int turn;
 	public int round;
 	
-	public int origBal = 0;
+	
 	public int cost = 0;
 	public int passC = 0;
 	public int numFin = 0;
@@ -269,19 +270,21 @@ public class Board
 			}
 			
 			deck.add(new PowerPlant (id, numPowered, cost));
+			//System.out.println(deck.toString());
 		}
+		for (int x = 0; x < 8; x++)
+			market.add(deck.remove(0));
+		
+		PowerPlant z = null;
+		for(int i = 0; i<deck.size();i++)
+			if(deck.get(i).getID() == 13)
+				z = deck.remove(i);
+
+		Collections.shuffle(deck);
+		deck.add(0, z);
 		
 		deck.add(new PowerPlant ("Step 3", Integer.MAX_VALUE));
 		
-		for (PowerPlant x : deck)
-		{
-			System.out.println(x);
-		}
-		
-		for (int x = 0; x < 8; x++)
-			market.add(deck.remove(x));
-		
-		Collections.shuffle(deck);
 	}
 	
 	public void setupCities () throws IOException
@@ -371,7 +374,7 @@ public class Board
 		for(City i: cities)
 			if(i.getName().equals(x))
 				c = i;
-		return c.isAvailable(step);
+		return c.isAvailable(step, currentPlayer);
 	}
 	public void buyCity(String x)
 	{
@@ -387,7 +390,7 @@ public class Board
 		
 		boolean h = currentPlayer.buyCity(c, price);
 		
-		if(!h || !c.isAvailable(step))
+		if(!h || !c.isAvailable(step, currentPlayer) || currentPlayer.getCities().contains(c))
 		{
 			System.out.println("CANT BUY CITY");
 			return;
@@ -408,7 +411,7 @@ public class Board
 	
 	public void buyRes(Type t, int x)
 	{
-		System.out.print(resources.get(t.toString().toUpperCase()).size());
+		//System.out.print(resources.get(t.toString().toUpperCase()).size());
 		if(Type.Oil.equals(t))
 		{
 			for(int i = 0;i<x;i++)
@@ -437,7 +440,7 @@ public class Board
 			for(int i = 0;i<x;i++)
 				resources.get("TRASH").pop();
 		}
-		System.out.println(" - "+resources.get(t.toString().toUpperCase()).size());
+		//System.out.println(" - "+resources.get(t.toString().toUpperCase()).size());
 		if(numFin == 4)
 			resourceDone = true;
 	}
@@ -445,7 +448,8 @@ public class Board
 	{
 		if(step>0&&i==-1)
 		{
-			currentPlayer.isFinished();
+			currentPlayer.finished();
+			numFin++;
 			nextTurn();
 			return;
 		}
@@ -453,7 +457,7 @@ public class Board
 		
 		if(numFin==3)
 		{
-			currentPlayer.isFinished();
+			currentPlayer.finished();
 			auctionDone = true;
 
 			numFin++;
@@ -466,6 +470,7 @@ public class Board
 			nextTurn();
 			currentPlayer.buyPowerPlant(market.get(i), cost);
 			market.remove(i);
+			market.add(deck.remove(0));
 			currentPlayer.finished();
 			numFin++;
 		}
@@ -474,16 +479,16 @@ public class Board
 		nextTurn();
 		
 	}
-	public void bid(int i, String x)
+	public boolean bid(int i, String x)
 	{
 		
 		if(i == -1)
-			return;
+			return false;
 		if(x.equals("first"))
 			cost = market.get(i).getID();
 		else
 			cost++;
-		
+		System.out.println("cost :"+cost);
 		passC = 0;
 		currentPlayer = players.get(turn);
 		
@@ -492,20 +497,23 @@ public class Board
 		if(!h || currentPlayer.getPowerPlants().size()==3)
 		{
 			System.out.println("CAN'T BID");
-			return;
+			cost = 0;
+			return false;
 		}
 		if(numFin == 3)
 		{
 			currentPlayer.buyPowerPlant(market.get(i), cost);
 			market.remove(i);
+			market.add(deck.remove(0));
 			currentPlayer.isFinished();
 			auctionDone = true;
 			numFin++;
 //			if(step ==0)
 //				step++;
-			return;
+			return true;
 		}
 		nextTurn();
+		return true;
 	}
 	
 	
@@ -526,47 +534,47 @@ public class Board
 		for (Player x : players)
 		{
 			if (x.getPowerPlants().size() == 0)
-				x.pay(10);
+				x.addCash(10);
 			else if (x.getPowerPlants().size() == 1)
-				x.pay(22);
+				x.addCash(22);
 			else if (x.getPowerPlants().size() == 2)
-				x.pay(33);
+				x.addCash(33);
 			else if (x.getPowerPlants().size() == 3)
-				x.pay(44);
+				x.addCash(44);
 			else if (x.getPowerPlants().size() == 4)
-				x.pay(54);			
+				x.addCash(54);			
 			else if (x.getPowerPlants().size() == 5)
-				x.pay(64);			
+				x.addCash(64);			
 			else if (x.getPowerPlants().size() == 6)
-				x.pay(73);			
+				x.addCash(73);			
 			else if (x.getPowerPlants().size() == 7)
-				x.pay(82);			
+				x.addCash(82);			
 			else if (x.getPowerPlants().size() == 8)
-				x.pay(90);			
+				x.addCash(90);			
 			else if (x.getPowerPlants().size() == 9)
-				x.pay(98);			
+				x.addCash(98);			
 			else if (x.getPowerPlants().size() == 10)
-				x.pay(105);			
+				x.addCash(105);			
 			else if (x.getPowerPlants().size() == 11)
-				x.pay(112);
+				x.addCash(112);
 			else if (x.getPowerPlants().size() == 12)
-				x.pay(118);
+				x.addCash(118);
 			else if (x.getPowerPlants().size() == 13)
-				x.pay(124);
+				x.addCash(124);
 			else if (x.getPowerPlants().size() == 14)
-				x.pay(129);
+				x.addCash(129);
 			else if (x.getPowerPlants().size() == 15)
-				x.pay(134);
+				x.addCash(134);
 			else if (x.getPowerPlants().size() == 16)
-				x.pay(138);
+				x.addCash(138);
 			else if (x.getPowerPlants().size() == 17)
-				x.pay(142);
+				x.addCash(142);
 			else if (x.getPowerPlants().size() == 18)
-				x.pay(145);
+				x.addCash(145);
 			else if (x.getPowerPlants().size() == 19)
-				x.pay(148);
+				x.addCash(148);
 			else if (x.getPowerPlants().size() == 20)
-				x.pay(150);
+				x.addCash(150);
 		}
 	}
 	
@@ -591,28 +599,46 @@ public class Board
 			}
 		
 			Collections.sort(players);
+			
 			Collections.reverse(players);
 			currentPlayer = players.get(3);
 		}
 		else if(step!=0 && (phase == 1 ||phase == 2))
 		{
-			citySort();
+			for (Player x : players)
+			{
+				Collections.sort(x.getPowerPlants());
+			}
+
+			Collections.sort(players);
+			Collections.reverse(players);
+			System.out.println("DONE, PHASE 1, 2 SORT");
 			currentPlayer = players.get(0);
 		}
-		else if(step!=0 && round!=0 && (phase == 3 || phase == 4))
+		else if(step!=0 && round!=1 && (phase == 3 || phase == 4))
 		{
-			citySort();
+			for (Player x : players)
+			{
+				Collections.sort(x.getPowerPlants());
+			}
+			System.out.println("DONE, PHASE 3, 4 SORT");
+			Collections.sort(players);
+			//Collections.reverse(players);
 			currentPlayer = players.get(3);
 		}
 		
 	}
 	
-	public void citySort()
+	public void ppSort()
 	{
-		int o0 = players.get(0).getCities().size(); 
-		int o1= players.get(1).getCities().size(); 
-		int o2= players.get(2).getCities().size(); 
-		int o3= players.get(3).getCities().size();
+		//System.out.println("HELLO");
+		
+		//Collections.sort(players, Comparator.comparingInt(Player::cities.size()));
+
+		int o0 = players.get(0).getPowerPlants().get(0).getID();
+		int o1= players.get(1).getPowerPlants().get(0).getID();
+		int o2= players.get(2).getPowerPlants().get(0).getID();
+		int o3= players.get(3).getPowerPlants().get(0).getID();
 		
 		int[] x = new int[4];
 		
@@ -625,22 +651,14 @@ public class Board
 		
 		ArrayList<Player>temp = new ArrayList<Player>();
 		
-		if(x[3]==o0)
+		
+		if(x[0]==o0)
 			temp.add(players.get(0));
-		else if(x[3]==o1)
+		else if(x[0]==o1)
 			temp.add(players.get(1));
-		else if(x[3]==o2)
+		else if(x[0]==o2)
 			temp.add(players.get(2));
-		else if(x[3]==o3)
-			temp.add(players.get(3));
-
-		if(x[2]==o0)
-			temp.add(players.get(0));
-		else if(x[2]==o1)
-			temp.add(players.get(1));
-		else if(x[2]==o2)
-			temp.add(players.get(2));
-		else if(x[2]==o3)
+		else if(x[0]==o3)
 			temp.add(players.get(3));
 		
 		if(x[1]==o0)
@@ -652,16 +670,25 @@ public class Board
 		else if(x[1]==o3)
 			temp.add(players.get(3));
 		
-		if(x[0]==o0)
+		if(x[2]==o0)
 			temp.add(players.get(0));
-		else if(x[0]==o1)
+		else if(x[2]==o1)
 			temp.add(players.get(1));
-		else if(x[0]==o2)
+		else if(x[2]==o2)
 			temp.add(players.get(2));
-		else if(x[0]==o3)
+		else if(x[2]==o3)
 			temp.add(players.get(3));
-	
 		
+		
+		if(x[3]==o0)
+			temp.add(players.get(0));
+		else if(x[3]==o1)
+			temp.add(players.get(1));
+		else if(x[3]==o2)
+			temp.add(players.get(2));
+		else if(x[3]==o3)
+			temp.add(players.get(3));
+
 		players = temp;
 		
 	}
@@ -713,7 +740,8 @@ public class Board
 	
 	public void updateMarket ()
 	{
-		market.remove(0);
+		//System.out.println(market.toString());
+		market.remove(7);
 		
 		market.add(deck.remove(0));
 		
@@ -791,20 +819,22 @@ public class Board
 	
 	public void endPhase ()
 	{
-		if (phase == 5)
+		if (phase == 4)
 			endRound();
 		else
+		{
 			phase++;
 		
-		if(phase == 1 || phase == 2 || phase == 5)
-			turn = 0;
-		else 
-			turn = 3;
+			if(phase == 1 || phase == 2 || phase == 5)
+				turn = 0;
+			else 
+				turn = 3;
 		
-		numFin = 0;
-		for(int i = 0;i<4;i++)
-			players.get(i).finished = false;
-		currentPlayer = players.get(turn);
+			numFin = 0;
+			for(int i = 0;i<4;i++)
+				players.get(i).finished = false;
+			currentPlayer = players.get(turn);
+		}
 	}
 	
 	public int getRound()
@@ -817,6 +847,9 @@ public class Board
 		round++;
 		
 		phase = 0;
+		auctionDone = false;
+		resourceDone = false;
+		citiesDone = false;
 		
 		endPhase();
 		

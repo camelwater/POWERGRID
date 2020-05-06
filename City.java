@@ -54,11 +54,11 @@ public class City
 		cost += 5;
 	}
 	
-	public boolean isAvailable (int step)
+	public boolean isAvailable (int step, Player p)
 	{
 		//add region checker
 		
-		if(numOccupants<step)
+		if(numOccupants<step && !p.getCities().contains(this))
 			available = true;
 		else
 			available = false;

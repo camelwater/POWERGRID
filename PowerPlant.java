@@ -30,7 +30,7 @@ public class PowerPlant implements Comparable
 		cost = c;
 		name = "";
 		setCapacity();
-		System.out.println("power plant "+ id+ " costs " + cost.toString());
+		//System.out.println("power plant "+ id+ " costs " + cost.toString());
 	}
 	
 	public PowerPlant (String n, int id)
