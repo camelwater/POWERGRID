@@ -572,6 +572,8 @@ public class Board
 				if (y.isPowered())
 					numPowered+=y.getNumPowered();
 			}
+			
+			numPowered = Math.min(numPowered, x.getCities().size());
 				
 			if (numPowered == 0)
 				x.addCash(10);
@@ -866,7 +868,7 @@ public class Board
 		
 		if (step == 2)
 		{
-			updateMarket();
+//			updateMarket();
 			
 //			for (City x : cities)
 //				x.incrementCost(); 
@@ -903,6 +905,8 @@ public class Board
 				if (y.isPowered())
 					current += y.getNumPowered();
 			}
+			
+			current = Math.min(current, x.getCities().size());
 			
 			if (current == mostPowered)
 			{
