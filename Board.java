@@ -868,7 +868,9 @@ public class Board
 		
 		if (step == 2)
 		{
-//			updateMarket();
+			updateMarket();
+			refillResources();
+			distributeCash();
 			
 //			for (City x : cities)
 //				x.incrementCost(); 
