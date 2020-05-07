@@ -383,10 +383,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 135, 152, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 105, 175, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 162, 175, 15, 15, null);	
+					}
 				}
 				
 				if(c.getName().equals("Portland"))
@@ -394,40 +396,48 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 84, 246, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 65, 267, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 108, 267, 15, 15, null);	
+							g.drawImage(p.getPic(), 108, 267, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("San Francisco"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 85, 518, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 66, 540, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 110, 540, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Los Angeles"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 206, 632, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 184, 656, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 225, 656, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("San Diego"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 281, 695, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 260, 718, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 300, 718, 15, 15, null);	
+					}
 				}
 				//
 				if(c.getName().equals("Boise"))
@@ -435,40 +445,48 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 325, 319, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 305, 342, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 345, 342, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Las Vegas"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 350, 564, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 330, 587, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 370, 587, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Salt Lake City"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 469, 428, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 449, 452, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 489, 452, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Phoenix"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 467, 662, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 447, 685, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 487, 685, 15, 15, null);	
+					}
 				}
 				//
 				if(c.getName().equals("Billings"))
@@ -476,40 +494,48 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 605, 255, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 585, 277, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 625, 277, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Cheyenne"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 717, 388, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 697, 410, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 737, 410, 15, 15, null);	
+							g.drawImage(p.getPic(), 737, 410, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Denver"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 697, 452, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 677, 475, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 717, 475, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Santa Fe"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 660, 595, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 640, 618, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 680, 618, 15, 15, null);	
+					}
 				}
 				//
 				if(c.getName().equals("Fargo"))
@@ -517,40 +543,48 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 962, 220, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 942, 223, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 982, 223, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Duluth"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1113, 193, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1093, 216, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1133, 216, 15, 15, null);	
+							g.drawImage(p.getPic(), 1133, 216, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Minneapolis"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1082, 269, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1062, 292, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1102, 292, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Omaha"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 987, 402, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 967, 425, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1007, 425, 15, 15, null);	
+					}
 				}
 				//
 				if(c.getName().equals("Kansas City"))
@@ -558,40 +592,48 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1030, 488, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1010, 511, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1050, 511, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Oklahoma City"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 963, 595, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 943, 618, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 983, 618, 15, 15, null);	
+							g.drawImage(p.getPic(), 983, 618, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Dallas"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 985, 682, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 965, 705, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1005, 705, 15, 15, null);	
+							g.drawImage(p.getPic(), 1005, 705, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Houston"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1000, 770, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 980, 793, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1020, 793, 15, 15, null);	
+					}
 				}
 				//
 				if(c.getName().equals("Chicago"))
@@ -599,50 +641,60 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1245, 385, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1225, 408, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1265, 408, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("St. Louis"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1183, 491, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1163, 514, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1203, 514, 15, 15, null);	
+							g.drawImage(p.getPic(), 1203, 514, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Memphis"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1182, 605, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1162, 628, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1202, 628, 15, 15, null);	
+							g.drawImage(p.getPic(), 1202, 628, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Birmingham"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1289, 659, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1269, 682, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1309, 682, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("New Orleans"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1183, 766, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1163, 789, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1203, 789, 15, 15, null);	
+							g.drawImage(p.getPic(), 1203, 789, 15, 15, null);
+					}
 				}
 				//
 				if(c.getName().equals("Detroit"))
@@ -650,40 +702,48 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1400, 357, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1380, 380, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1420, 380, 15, 15, null);	
+							g.drawImage(p.getPic(), 1420, 380, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Cincinnati"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1385, 470, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1365, 492, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1405, 492, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Knoxville"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1393, 570, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1373, 593, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1413, 593, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Atlanta"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1400, 659, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1380, 682, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1420, 682, 15, 15, null);	
+							g.drawImage(p.getPic(), 1420, 682, 15, 15, null);
+					}
 				}
 				
 				
@@ -692,20 +752,24 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1588, 335, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1568, 358, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1608, 258, 15, 15, null);	
+							g.drawImage(p.getPic(), 1608, 258, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Pittsburgh"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1543, 430, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1523, 453, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1563, 453, 15, 15, null);	
+					}
 				}
 				//
 				if(c.getName().equals("Boston"))
@@ -713,101 +777,121 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1840, 335, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1820, 358, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1860, 358, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("New York"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1762, 393, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1742, 415, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1782, 415, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Philadelphia"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1720, 445, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1700, 468, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1740, 468, 15, 15, null);	
+							g.drawImage(p.getPic(), 1740, 468, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Washington D.C."))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1630, 483, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1610, 505, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1650, 505, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Norfolk"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1695, 544, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1675, 567, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1715, 567, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Raleigh"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1600, 589, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1580, 612, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1620, 612, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Savannah"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1517, 683, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1497, 705, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1537, 705, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Jacksonville"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1513, 752, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1493, 775, 15, 15, null);
 						else if (count == 2)
 							g.drawImage(p.getPic(), 1533, 775, 15, 15, null);	
+					}
 				}
 				if(c.getName().equals("Tampa"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1437, 835, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1417, 857, 15, 15, null);
 						else if (count == 2)
 				
-							g.drawImage(p.getPic(), 1457, 857, 15, 15, null);	
+							g.drawImage(p.getPic(), 1457, 857, 15, 15, null);
+					}
 				}
 				if(c.getName().equals("Miami"))
 				{
 					if(c.getNumOccupants() == 1 || count == 0)
 						g.drawImage(p.getPic(), 1550, 901, 15, 15, null);
 					else
+					{
 						if(count == 1)
 							g.drawImage(p.getPic(), 1530, 923, 15, 15, null);
 						else if (count == 2)
-							g.drawImage(p.getPic(), 1570, 923, 15, 15, null);	
+							g.drawImage(p.getPic(), 1570, 923, 15, 15, null);
+					}
 				}
 				
 				
@@ -1046,13 +1130,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			g.drawString("^", game.getTurn()*50+50, 100);
 			g.setFont(new Font("Arial",  Font.ITALIC, 15));
 			if(game.getPlayers().get(0).isFinished())
-				g.drawString("done", 60, 60);
+				g.drawString("done", 60, 100);
 			if(game.getPlayers().get(1).isFinished())
-				g.drawString("done", 110, 60);
+				g.drawString("done", 110, 100);
 			if(game.getPlayers().get(2).isFinished())
-				g.drawString("done", 160, 60);
+				g.drawString("done", 160, 100);
 			if(game.getPlayers().get(3).isFinished())
-				g.drawString("done", 210, 60);
+				g.drawString("done", 210, 100);
 		
 			
 		}

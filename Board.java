@@ -648,7 +648,7 @@ public class Board
 
 			Collections.sort(players);
 			Collections.reverse(players);
-			System.out.println("DONE, PHASE 1, 2 SORT");
+			//System.out.println("DONE, PHASE 1, 2 SORT");
 			currentPlayer = players.get(0);
 		}
 		else if(step!=0 && round!=1 && (phase == 3 || phase == 4))
@@ -657,77 +657,14 @@ public class Board
 			{
 				Collections.sort(x.getPowerPlants());
 			}
-			System.out.println("DONE, PHASE 3, 4 SORT");
+			//System.out.println("DONE, PHASE 3, 4 SORT");
 			Collections.sort(players);
-			//Collections.reverse(players);
+			Collections.reverse(players);
 			currentPlayer = players.get(3);
 		}
 		
 	}
 	
-	public void ppSort()
-	{
-		//System.out.println("HELLO");
-		
-		//Collections.sort(players, Comparator.comparingInt(Player::cities.size()));
-
-		int o0 = players.get(0).getPowerPlants().get(0).getID();
-		int o1= players.get(1).getPowerPlants().get(0).getID();
-		int o2= players.get(2).getPowerPlants().get(0).getID();
-		int o3= players.get(3).getPowerPlants().get(0).getID();
-		
-		int[] x = new int[4];
-		
-		x[0] = o0;
-		x[1] = o1;
-		x[2] = o2;
-		x[3] = o3;
-		
-		Arrays.sort(x);
-		
-		ArrayList<Player>temp = new ArrayList<Player>();
-		
-		
-		if(x[0]==o0)
-			temp.add(players.get(0));
-		else if(x[0]==o1)
-			temp.add(players.get(1));
-		else if(x[0]==o2)
-			temp.add(players.get(2));
-		else if(x[0]==o3)
-			temp.add(players.get(3));
-		
-		if(x[1]==o0)
-			temp.add(players.get(0));
-		else if(x[1]==o1)
-			temp.add(players.get(1));
-		else if(x[1]==o2)
-			temp.add(players.get(2));
-		else if(x[1]==o3)
-			temp.add(players.get(3));
-		
-		if(x[2]==o0)
-			temp.add(players.get(0));
-		else if(x[2]==o1)
-			temp.add(players.get(1));
-		else if(x[2]==o2)
-			temp.add(players.get(2));
-		else if(x[2]==o3)
-			temp.add(players.get(3));
-		
-		
-		if(x[3]==o0)
-			temp.add(players.get(0));
-		else if(x[3]==o1)
-			temp.add(players.get(1));
-		else if(x[3]==o2)
-			temp.add(players.get(2));
-		else if(x[3]==o3)
-			temp.add(players.get(3));
-
-		players = temp;
-		
-	}
 	
 	public TreeMap <String, Stack <Resource>> getResources()
 	{
