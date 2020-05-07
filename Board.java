@@ -568,6 +568,8 @@ public class Board
 				if (y.isPowered())
 					numPowered+=y.getNumPowered();
 			}
+			
+			numPowered = Math.min(numPowered, x.getCities().size());
 				
 			if (numPowered == 0)
 				x.addCash(10);
