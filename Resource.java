@@ -1,8 +1,6 @@
 
 import java.util.HashMap;
 
-import Enums.Type;
-
 public class Resource 
 {
 	private Type type;

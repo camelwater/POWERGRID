@@ -1,8 +1,6 @@
 
 //This Class Is Not Really Necessary, Refer To City Class
 
-import Enums.NodeType;
-
 public class Node 
 {
 	private int cost;

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import Enums.Type;
-
 @SuppressWarnings({ "rawtypes", "unused" })
 public class PowerPlant implements Comparable
 {

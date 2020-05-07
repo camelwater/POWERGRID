@@ -2,6 +2,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,12 +12,10 @@ import java.util.Scanner;
 import java.util.Stack;
 import java.util.TreeMap;
 
-import Enums.Type;
-
 @SuppressWarnings({"unused", "resource", "unchecked"})
 public class Board 
 {
-	private static final String DATA_PATH = "Data\\";
+	//private static final String DATA_PATH = "Data\\";
 	
 	private ArrayList <PowerPlant> deck;
 	private TreeMap <String, Stack <Resource>> resources;
@@ -250,7 +249,8 @@ public class Board
 	}
 	public void setupGame () throws IOException
 	{
-		Scanner input = new Scanner (new File (DATA_PATH + "PowerPlants.txt"));
+		InputStream in = Board.class.getResourceAsStream("PowerPlants.txt");
+		Scanner input = new Scanner (in);
 		
 		while (input.hasNext())
 		{
@@ -298,7 +298,8 @@ public class Board
 	
 	public void setupCities () throws IOException
 	{
-		Scanner input = new Scanner (new File (DATA_PATH + "cities.txt"));
+		InputStream in = Board.class.getResourceAsStream("cities.txt");
+		Scanner input = new Scanner (in);
 		
 		HashMap <City, HashMap <City, Integer>> map = new HashMap <City, HashMap <City, Integer>> ();
 		

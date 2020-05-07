@@ -7,8 +7,6 @@ import java.util.Stack;
 
 import javax.imageio.ImageIO;
 
-import Enums.Type;
-
 @SuppressWarnings("rawtypes")
 public class Player implements Comparable
 {
