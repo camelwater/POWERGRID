@@ -902,6 +902,8 @@ public class Board
 					current += y.getNumPowered();
 			}
 			
+			current = Math.min(current, x.getCities().size());
+			
 			if (current == mostPowered)
 			{
 				temp = x;
