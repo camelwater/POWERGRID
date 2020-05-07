@@ -373,531 +373,703 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	public void paintCities(Graphics g)
 	{
 		int count = 0;
-		for(int i = 0;i<4;i++)
+		for(City c: game.getCities())
 		{
-			Player p = game.getPlayers().get(i);
-			for(City c: p.getCities())
-			{
+			//Player p = game.getPlayers().get(i);
+			//for(City c: p.getCities())
+			//{
 				if(c.getName().equals("Seattle"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 135, 152, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1)
+						g.drawImage(c.getOccupants().get(0).getPic(), 135, 152, 15, 15, null);
+					else if(c.getNumOccupants() ==2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 105, 175, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 162, 175, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 135, 152, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 115, 172, 15, 15, null);
 					}
+					else if (c.getNumOccupants() ==3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 135, 152, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 105, 172, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 162, 172, 15, 15, null);
+					}
+					
 				}
 				
 				if(c.getName().equals("Portland"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 84, 246, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 84, 246, 15, 15, null);
+					else if(c.getNumOccupants() ==2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 65, 267, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 108, 267, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 84, 246, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 64, 266, 15, 15, null);
 					}
+					else if (c.getNumOccupants() ==3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 84, 246, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 64, 266, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 110, 266, 15, 15, null);
+					}
+					
 				}
 				if(c.getName().equals("San Francisco"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 85, 518, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 85, 518, 15, 15, null);
+					else if(c.getNumOccupants() ==2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 66, 540, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 110, 540, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 85, 518, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 65, 538, 15, 15, null);
+					}
+					else if (c.getNumOccupants() ==3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 85, 518, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 65, 538, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 112, 538, 15, 15, null);	
 					}
 				}
+				
 				if(c.getName().equals("Los Angeles"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 206, 632, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 206, 632, 15, 15, null);
+					
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 184, 656, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 225, 656, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 206, 632, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 186, 652, 15, 15, null);
 					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 206, 632, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 186, 652, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 233, 652, 15, 15, null);	
+					}
+					
 				}
 				if(c.getName().equals("San Diego"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 281, 695, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 281, 695, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 260, 718, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 300, 718, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 281, 695, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 261, 715, 15, 15, null);
 					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 281, 695, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 261, 715, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 308, 715, 15, 15, null);	
+					}
+					
 				}
 				//
 				if(c.getName().equals("Boise"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 325, 319, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 325, 319, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 305, 342, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 345, 342, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 325, 319, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 305, 339, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 325, 319, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 305, 339, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 352, 339, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Las Vegas"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 350, 564, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 350, 564, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 330, 587, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 370, 587, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 350, 564, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 330, 584, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 350, 564, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 330, 584, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 377, 584, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Salt Lake City"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 469, 428, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 469, 428, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 449, 452, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 489, 452, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 469, 428, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 449, 448, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 469, 428, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 449, 448, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 496, 448, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Phoenix"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 467, 662, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 467, 662, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 447, 685, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 487, 685, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 467, 662, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 447, 682, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 467, 662, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 447, 682, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 494, 682, 15, 15, null);	
 					}
 				}
-				//
+				
 				if(c.getName().equals("Billings"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 605, 255, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 605, 255, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 585, 277, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 625, 277, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 605, 255, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 585, 275, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 605, 255, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 585, 275, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 632, 275, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Cheyenne"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 717, 388, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 717, 388, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 697, 410, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 737, 410, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 717, 388, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 697, 408, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 717, 388, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 697, 408, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 744, 408, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Denver"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 697, 452, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 697, 452, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 677, 475, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 717, 475, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 697, 452, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 677, 472, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 697, 452, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 677, 472, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 724, 472, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Santa Fe"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 660, 595, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 660, 595, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 640, 618, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 680, 618, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 660, 595, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 640, 615, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 660, 595, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 640, 615, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 687, 615, 15, 15, null);	
 					}
 				}
 				//
 				if(c.getName().equals("Fargo"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 962, 220, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 962, 220, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 942, 223, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 982, 223, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 962, 220, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 942, 240, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 962, 220, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 942, 240, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 989, 240, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Duluth"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1113, 193, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1113, 193, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1093, 216, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1133, 216, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1113, 193, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1093, 212, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1113, 193, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1093, 212, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 1140, 212, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Minneapolis"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1082, 269, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1082, 269, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1062, 292, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1102, 292, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1082, 269, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1062, 289, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1082, 269, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1062, 289, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1109, 289, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Omaha"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 987, 402, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 987, 402, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 967, 425, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1007, 425, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 987, 402, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 967, 422, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 987, 402, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 967, 422, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1014, 422, 15, 15, null);	
 					}
 				}
 				//
 				if(c.getName().equals("Kansas City"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1030, 488, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1030, 488, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1010, 511, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1050, 511, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1030, 488, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1010, 508, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1030, 488, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1010, 508, 15, 15, null);
+						g.drawImage(c.getOccupants().get(2).getPic(), 1057, 508, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Oklahoma City"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 963, 595, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 963, 595, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 943, 618, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 983, 618, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 963, 595, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 943, 615, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 963, 595, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 943, 615, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 990, 615, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Dallas"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 985, 682, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 985, 682, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 965, 705, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1005, 705, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 985, 682, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 965, 702, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 985, 682, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 965, 702, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1012, 702, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Houston"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1000, 770, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1000, 770, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 980, 793, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1020, 793, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1000, 770, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 980, 790, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1000, 770, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 980, 790, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1027, 790, 15, 15, null);	
 					}
 				}
 				//
 				if(c.getName().equals("Chicago"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1245, 385, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1245, 385, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1225, 408, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1265, 408, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1245, 385, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1225, 405, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1245, 385, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1225, 405, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1272, 405, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("St. Louis"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1183, 491, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1183, 491, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1163, 514, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1203, 514, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1183, 491, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1163, 511, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1183, 491, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1163, 511, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1210, 511, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Memphis"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1182, 605, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1182, 605, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1162, 628, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1202, 628, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1182, 605, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1162, 625, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1182, 605, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1162, 625, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1209, 625, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Birmingham"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1289, 659, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1289, 659, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1269, 682, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1309, 682, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1289, 659, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1269, 679, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1289, 659, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1269, 679, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1316, 679, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("New Orleans"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1183, 766, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1183, 766, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1163, 789, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1203, 789, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1183, 766, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1163, 786, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1183, 766, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1163, 786, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1210, 786, 15, 15, null);
 					}
 				}
 				//
 				if(c.getName().equals("Detroit"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1400, 357, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1400, 357, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1380, 380, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1420, 380, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1400, 357, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1380, 377, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1400, 357, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1380, 377, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1427, 377, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Cincinnati"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1385, 470, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1385, 470, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1365, 492, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1405, 492, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1385, 470, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1365, 490, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1385, 470, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1365, 490, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1412, 490, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Knoxville"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1393, 570, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1393, 570, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1373, 593, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1413, 593, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1393, 570, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1373, 590, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1393, 570, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1373, 590, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1420, 590, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Atlanta"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1400, 659, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1400, 659, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1380, 682, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1420, 682, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1400, 659, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1380, 679, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1400, 659, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1380, 679, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1427, 679, 15, 15, null);
 					}
 				}
 				
 				
 				if(c.getName().equals("Buffalo"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1588, 335, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1588, 335, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1568, 358, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1608, 258, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1588, 335, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1568, 355, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1588, 335, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1568, 355, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1615, 255, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Pittsburgh"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1543, 430, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1543, 430, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1523, 453, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1563, 453, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1543, 430, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1523, 450, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1543, 430, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1523, 450, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1568, 450, 15, 15, null);	
 					}
 				}
 				//
 				if(c.getName().equals("Boston"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1840, 335, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1840, 335, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1820, 358, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1860, 358, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1840, 335, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1820, 355, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1840, 335, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1820, 355, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1865, 355, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("New York"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1762, 393, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1762, 393, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1742, 415, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1782, 415, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1762, 393, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1742, 413, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1762, 393, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1742, 413, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1787, 413, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Philadelphia"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1720, 445, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1720, 445, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1700, 468, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1740, 468, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1720, 445, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1700, 465, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1720, 445, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1700, 465, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1745, 465, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Washington D.C."))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1630, 483, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1630, 483, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1610, 505, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1650, 505, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1630, 483, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1610, 503, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1630, 483, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1610, 503, 15, 15, null);	
+							g.drawImage(c.getOccupants().get(2).getPic(), 1655, 503, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Norfolk"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1695, 544, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1695, 544, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1675, 567, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1715, 567, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1695, 544, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1675, 564, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1695, 544, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1675, 564, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1720, 564, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Raleigh"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1600, 589, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1600, 589, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1580, 612, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1620, 612, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1600, 589, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1580, 609, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1600, 589, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1580, 609, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1625, 609, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Savannah"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1517, 683, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1517, 683, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1497, 705, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1537, 705, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1517, 683, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1497, 703, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1517, 683, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1497, 703, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1542, 703, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Jacksonville"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1513, 752, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1513, 752, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1493, 775, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1533, 775, 15, 15, null);	
+						g.drawImage(c.getOccupants().get(0).getPic(), 1513, 752, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1493, 772, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1513, 752, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1493, 772, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1538, 772, 15, 15, null);	
 					}
 				}
 				if(c.getName().equals("Tampa"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1437, 835, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1437, 835, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1417, 857, 15, 15, null);
-						else if (count == 2)
-				
-							g.drawImage(p.getPic(), 1457, 857, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1437, 835, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1417, 855, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1437, 835, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1417, 855, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1462, 855, 15, 15, null);
 					}
 				}
 				if(c.getName().equals("Miami"))
 				{
-					if(c.getNumOccupants() == 1 || count == 0)
-						g.drawImage(p.getPic(), 1550, 901, 15, 15, null);
-					else
+					if(c.getNumOccupants() == 1 )
+						g.drawImage(c.getOccupants().get(0).getPic(), 1550, 901, 15, 15, null);
+					else if(c.getNumOccupants() == 2)
 					{
-						if(count == 1)
-							g.drawImage(p.getPic(), 1530, 923, 15, 15, null);
-						else if (count == 2)
-							g.drawImage(p.getPic(), 1570, 923, 15, 15, null);
+						g.drawImage(c.getOccupants().get(0).getPic(), 1550, 901, 15, 15, null);
+							g.drawImage(c.getOccupants().get(1).getPic(), 1530, 920, 15, 15, null);
+					}
+					else if (c.getNumOccupants() == 3)
+					{
+						g.drawImage(c.getOccupants().get(0).getPic(), 1550, 901, 15, 15, null);
+						g.drawImage(c.getOccupants().get(1).getPic(), 1530, 920, 15, 15, null);
+							g.drawImage(c.getOccupants().get(2).getPic(), 1575, 920, 15, 15, null);
 					}
 				}
 				
-				
-				count++;
+				//count++;
 			}
-		}
+		
 	}
 	public void paintBuy(Graphics g, int x, int y)
 	{

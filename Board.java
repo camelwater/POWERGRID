@@ -244,6 +244,10 @@ public class Board
 		}
 	}
 	
+	public ArrayList<City> getCities()
+	{
+		return cities;
+	}
 	public void setupGame () throws IOException
 	{
 		Scanner input = new Scanner (new File (DATA_PATH + "PowerPlants.txt"));
@@ -413,7 +417,7 @@ public class Board
 			
 		currentPlayer.pay(price);
 		
-		c.incrementNumOccupants(step);
+		c.incrementNumOccupants(step, currentPlayer);
 		
 		
 		if(numFin == 4)

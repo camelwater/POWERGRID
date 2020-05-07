@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class City 
 {
@@ -7,6 +8,8 @@ public class City
 	private int cost;
 	private boolean available = true;
 	private boolean regionTrue = false;
+	
+	private ArrayList<Player> occupants = new ArrayList<Player>();
 	
 	public City (String n)
 	{
@@ -39,11 +42,16 @@ public class City
 	    return region;
 	}
 	
-	public void incrementNumOccupants (int step)
+	public ArrayList<Player> getOccupants()
+	{
+		return occupants;
+	}
+	public void incrementNumOccupants (int step, Player p)
 	{
 		if(available)
 		{
 			numOccupants++;
+			occupants.add(p);
 			incrementCost();
 			
 		}
