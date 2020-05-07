@@ -24,12 +24,15 @@ public class Board
 	private ArrayList <PowerPlant> market;
 	private ArrayList <City> cities;
 	private HashMap <Integer, Integer> costs;
+	private ArrayList<String> regions = new ArrayList<String>();
 	private Map graph;
 	
 	public int step;
 	public int phase;
 	public int turn;
 	public int round;
+	
+	public boolean step3 = false;
 	
 	
 	public int cost = 0;
@@ -381,8 +384,8 @@ public class Board
 		for(City i: cities)
 			if(i.getName().equals(x))
 				c = i;
-		System.out.println(x);
-		System.out.println(cities.toString());
+		//.out.println(x);
+		//System.out.println(cities.toString());
 		return c.isAvailable(step, currentPlayer);
 	}
 	
@@ -462,6 +465,8 @@ public class Board
 			currentPlayer.finished();
 			numFin++;
 			nextTurn();
+			if(numFin ==4)
+				auctionDone = true;
 			return;
 		}
 		passC++;
@@ -481,6 +486,8 @@ public class Board
 			nextTurn();
 			currentPlayer.buyPowerPlant(market.get(i), cost);
 			market.remove(i);
+			if(deck.get(0).getName().equals("Step 3")&& step == 2)
+				step3 = true;
 			market.add(deck.remove(0));
 			currentPlayer.finished();
 			numFin++;
@@ -516,6 +523,8 @@ public class Board
 		{
 			currentPlayer.buyPowerPlant(market.get(i), cost);
 			market.remove(i);
+			if(deck.get(0).getName().equals("Step 3")&& step == 2)
+				step3 = true;
 			market.add(deck.remove(0));
 			currentPlayer.isFinished();
 			auctionDone = true;
@@ -528,6 +537,14 @@ public class Board
 		return true;
 	}
 	
+	public void setRegions(ArrayList<String> list)
+	{
+		regions = list;
+		
+		for(City c: cities)
+			if(regions.contains(c.getRegion()))
+				c.regionTrue();
+	}
 	public void setupResources ()
 	{
 		for (int x = 0; x < 24; x++)
@@ -834,7 +851,7 @@ public class Board
 		}
 		
 		currentPlayer = players.get(turn);
-		if(currentPlayer.isFinished())
+		if(currentPlayer.isFinished()&& numFin!=4)
 			nextTurn();
 	}
 	
@@ -871,7 +888,15 @@ public class Board
 		auctionDone = false;
 		resourceDone = false;
 		citiesDone = false;
-		
+		int x = 0;
+		for(Player p: players)
+			if(p.getCities().size()>=7)
+				x++;
+		if(step == 1 & x>0)
+		{
+			endStep();
+			return;
+		}
 		endPhase();
 		
 		updateMarket();

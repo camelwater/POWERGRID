@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -26,7 +27,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 {
 	private static String path = "Misc\\";
 	private Board game;
-	private String regions;
+	private ArrayList<String >regions;
 	private BufferedImage bg;
 	BufferedImage cash;
 	BufferedImage coal;
@@ -34,10 +35,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	BufferedImage uranium;
 	BufferedImage trash;
 	
-	BufferedImage blueHouse;
-	BufferedImage greenHouse;
-	BufferedImage redHouse;
-	BufferedImage yellowHouse;
+	BufferedImage blue;
+	BufferedImage green;
+	BufferedImage red;
+	BufferedImage yellow;
 	
 	JButton b = null;
 	private int page = 3;
@@ -68,11 +69,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	boolean buying = false;
 	String cityBuy = "";
 	
-	public GraphicsRunner(Board g, String r) throws IOException
+	public GraphicsRunner(Board g, ArrayList<String> r) throws IOException
 	{
 		game = g;
 		regions = r;
-//		game.setRegions();
+		game.setRegions(regions);
 		 JFrame frame = new JFrame("POWERGRID");
 		 frame.setBackground(Color.orange);
 		 setVisible(true);
@@ -85,10 +86,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 trash = ImageIO.read(getClass().getResource("trash.png"));
 		 uranium = ImageIO.read(getClass().getResource("uranium.png"));
 		 
-		 blueHouse = ImageIO.read(getClass().getResource("blue_house.png"));
-		 redHouse = ImageIO.read(getClass().getResource("red_house.png"));
-		 greenHouse = ImageIO.read(getClass().getResource("green_house.png"));
-		 yellowHouse = ImageIO.read(getClass().getResource("yellow_house.png"));
+		 blue = ImageIO.read(getClass().getResource("blue_house.png"));
+		 red = ImageIO.read(getClass().getResource("red_house.png"));
+		 green = ImageIO.read(getClass().getResource("green_house.png"));
+		 yellow = ImageIO.read(getClass().getResource("yellow_house.png"));
 		
 		 addMouseListener(this);
 		 
@@ -151,9 +152,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					ppChosen = false;
 					index = -1;
 					game.cost = 0;
-					game.endPhase();
-					game.calculatePlayerOrder();
 					numFin = 0;
+					if(game.step3)
+						game.endStep();
+					else
+						game.endPhase();
+					game.calculatePlayerOrder();
 					repaint();
 				}
 				
@@ -288,13 +292,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);//player name
 					
 					if(game.getPlayers().get(page).getHouse().equals("red"))
-						g.drawImage(redHouse, 1705, 915, 17, 17, null);
+						g.drawImage(red, 1705, 915, 17, 17, null);
 					if(game.getPlayers().get(page).getHouse().equals("blue"))
-						g.drawImage(blueHouse, 1705, 915, 17, 17, null);
+						g.drawImage(blue, 1705, 915, 17, 17, null);
 					if(game.getPlayers().get(page).getHouse().equals("green"))
-						g.drawImage(greenHouse, 1705, 915, 17, 17, null);
+						g.drawImage(green, 1705, 915, 17, 17, null);
 					if(game.getPlayers().get(page).getHouse().equals("yellow"))
-							g.drawImage(yellowHouse, 1705, 915, 17, 17, null);
+							g.drawImage(yellow, 1705, 915, 17, 17, null);
 					
 					g.drawString("Step: "+game.getStep(), 900, 50);	//step
 					g.drawString("Phase: "+game.getPhase(), 875, 100); //phase
@@ -329,6 +333,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					g.drawImage(uranium, 50, 850, 50, 50, null);
 					g.drawString(""+game.getPlayers().get(page).getUranium(), 110, 890);
 					
+					paintCities(g);
+					
 					//arrows
 					try 
 					{
@@ -347,7 +353,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				
 				if(buying && game.cityA(cityBuy))
-					paintBuy(g, 880, 465);
+					paintBuy(g, 835, 465);
 				
 			}
 			
@@ -366,15 +372,458 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	}
 	public void paintCities(Graphics g)
 	{
-		
+		int count = 0;
+		for(int i = 0;i<4;i++)
+		{
+			Player p = game.getPlayers().get(i);
+			for(City c: p.getCities())
+			{
+				if(c.getName().equals("Seattle"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 135, 152, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 105, 175, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 162, 175, 15, 15, null);	
+				}
+				
+				if(c.getName().equals("Portland"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 84, 246, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 65, 267, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 108, 267, 15, 15, null);	
+				}
+				if(c.getName().equals("San Francisco"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 85, 518, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 66, 540, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 110, 540, 15, 15, null);	
+				}
+				if(c.getName().equals("Los Angeles"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 206, 632, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 184, 656, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 225, 656, 15, 15, null);	
+				}
+				if(c.getName().equals("San Diego"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 281, 695, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 260, 718, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 300, 718, 15, 15, null);	
+				}
+				//
+				if(c.getName().equals("Boise"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 325, 319, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 305, 342, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 345, 342, 15, 15, null);	
+				}
+				if(c.getName().equals("Las Vegas"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 350, 564, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 330, 587, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 370, 587, 15, 15, null);	
+				}
+				if(c.getName().equals("Salt Lake City"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 469, 428, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 449, 452, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 489, 452, 15, 15, null);	
+				}
+				if(c.getName().equals("Phoenix"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 467, 662, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 447, 685, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 487, 685, 15, 15, null);	
+				}
+				//
+				if(c.getName().equals("Billings"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 605, 255, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 585, 277, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 625, 277, 15, 15, null);	
+				}
+				if(c.getName().equals("Cheyenne"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 717, 388, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 697, 410, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 737, 410, 15, 15, null);	
+				}
+				if(c.getName().equals("Denver"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 697, 452, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 677, 475, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 717, 475, 15, 15, null);	
+				}
+				if(c.getName().equals("Santa Fe"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 660, 595, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 640, 618, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 680, 618, 15, 15, null);	
+				}
+				//
+				if(c.getName().equals("Fargo"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 962, 220, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 942, 223, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 982, 223, 15, 15, null);	
+				}
+				if(c.getName().equals("Duluth"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1113, 193, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1093, 216, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1133, 216, 15, 15, null);	
+				}
+				if(c.getName().equals("Minneapolis"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1082, 269, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1062, 292, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1102, 292, 15, 15, null);	
+				}
+				if(c.getName().equals("Omaha"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 987, 402, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 967, 425, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1007, 425, 15, 15, null);	
+				}
+				//
+				if(c.getName().equals("Kansas City"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1030, 488, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1010, 511, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1050, 511, 15, 15, null);	
+				}
+				if(c.getName().equals("Oklahoma City"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 963, 595, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 943, 618, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 983, 618, 15, 15, null);	
+				}
+				if(c.getName().equals("Dallas"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 985, 682, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 965, 705, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1005, 705, 15, 15, null);	
+				}
+				if(c.getName().equals("Houston"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1000, 770, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 980, 793, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1020, 793, 15, 15, null);	
+				}
+				//
+				if(c.getName().equals("Chicago"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1245, 385, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1225, 408, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1265, 408, 15, 15, null);	
+				}
+				if(c.getName().equals("St. Louis"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1183, 491, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1163, 514, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1203, 514, 15, 15, null);	
+				}
+				if(c.getName().equals("Memphis"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1182, 605, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1162, 628, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1202, 628, 15, 15, null);	
+				}
+				if(c.getName().equals("Birmingham"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1289, 659, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1269, 682, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1309, 682, 15, 15, null);	
+				}
+				if(c.getName().equals("New Orleans"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1183, 766, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1163, 789, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1203, 789, 15, 15, null);	
+				}
+				//
+				if(c.getName().equals("Detroit"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1400, 357, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1380, 380, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1420, 380, 15, 15, null);	
+				}
+				if(c.getName().equals("Cincinnati"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1385, 470, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1365, 492, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1405, 492, 15, 15, null);	
+				}
+				if(c.getName().equals("Knoxville"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1393, 570, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1373, 593, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1413, 593, 15, 15, null);	
+				}
+				if(c.getName().equals("Atlanta"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1400, 659, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1380, 682, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1420, 682, 15, 15, null);	
+				}
+				
+				
+				if(c.getName().equals("Buffalo"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1588, 335, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1568, 358, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1608, 258, 15, 15, null);	
+				}
+				if(c.getName().equals("Pittsburgh"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1543, 430, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1523, 453, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1563, 453, 15, 15, null);	
+				}
+				//
+				if(c.getName().equals("Boston"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1840, 335, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1820, 358, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1860, 358, 15, 15, null);	
+				}
+				if(c.getName().equals("New York"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1762, 393, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1742, 415, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1782, 415, 15, 15, null);	
+				}
+				if(c.getName().equals("Philadelphia"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1720, 445, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1700, 468, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1740, 468, 15, 15, null);	
+				}
+				if(c.getName().equals("Washington D.C."))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1630, 483, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1610, 505, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1650, 505, 15, 15, null);	
+				}
+				if(c.getName().equals("Norfolk"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1695, 544, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1675, 567, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1715, 567, 15, 15, null);	
+				}
+				if(c.getName().equals("Raleigh"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1600, 589, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1580, 612, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1620, 612, 15, 15, null);	
+				}
+				if(c.getName().equals("Savannah"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1517, 683, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1497, 705, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1537, 705, 15, 15, null);	
+				}
+				if(c.getName().equals("Jacksonville"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1513, 752, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1493, 775, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1533, 775, 15, 15, null);	
+				}
+				if(c.getName().equals("Tampa"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1437, 835, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1417, 857, 15, 15, null);
+						else if (count == 2)
+				
+							g.drawImage(p.getPic(), 1457, 857, 15, 15, null);	
+				}
+				if(c.getName().equals("Miami"))
+				{
+					if(c.getNumOccupants() == 1 || count == 0)
+						g.drawImage(p.getPic(), 1550, 901, 15, 15, null);
+					else
+						if(count == 1)
+							g.drawImage(p.getPic(), 1530, 923, 15, 15, null);
+						else if (count == 2)
+							g.drawImage(p.getPic(), 1570, 923, 15, 15, null);	
+				}
+				
+				
+				count++;
+			}
+		}
 	}
 	public void paintBuy(Graphics g, int x, int y)
 	{
 		g.setColor(Color.white);
-		g.fillOval(x, y, 200, 100);
+		g.fillOval(x, y, 250, 125);
 		g.setColor(Color.black);
 		g.setFont(new Font("Arial", Font.BOLD, 75));
-		g.drawString("BUY", x+25, y+80);
+		g.drawString("BUY", x+50, y+75);
+		g.setFont(new Font("Arial", Font.PLAIN, 20));
+		g.drawString(cityBuy, x+65, y+110);
 
 	}
 	public void paintPlants(Graphics g) //paints hands
@@ -528,13 +977,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			for(int i = 0;i<4;i++)
 			{
 				if(game.getPlayers().get(i).getHouse().equals("red"))
-					g.drawImage(redHouse, 100, 86+i*20, 17, 17, null);
+					g.drawImage(red, 100, 86+i*20, 17, 17, null);
 				if(game.getPlayers().get(i).getHouse().equals("blue"))
-					g.drawImage(blueHouse, 100, 86+i*20, 17, 17, null);
+					g.drawImage(blue, 100, 86+i*20, 17, 17, null);
 				if(game.getPlayers().get(i).getHouse().equals("green"))
-					g.drawImage(greenHouse, 100, 86+i*20, 17, 17, null);
+					g.drawImage(green, 100, 86+i*20, 17, 17, null);
 				if(game.getPlayers().get(i).getHouse().equals("yellow"))
-					g.drawImage(yellowHouse, 100, 86+i*20, 17, 17, null);
+					g.drawImage(yellow, 100, 86+i*20, 17, 17, null);
 			}
 		
 		
@@ -563,13 +1012,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			for(int i = 0;i<4;i++)
 			{
 				if(game.getPlayers().get(i).getHouse().equals("red"))
-					g.drawImage(redHouse, 970, 275+i*50, 25, 25, null);
+					g.drawImage(red, 970, 275+i*50, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("blue"))
-					g.drawImage(blueHouse, 970, 275+i*50, 25, 25, null);
+					g.drawImage(blue, 970, 275+i*50, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("green"))
-					g.drawImage(greenHouse, 970, 275+i*50, 25, 25, null);
+					g.drawImage(green, 970, 275+i*50, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("yellow"))
-					g.drawImage(yellowHouse, 970, 275+i*50, 25, 25, null);
+					g.drawImage(yellow, 970, 275+i*50, 25, 25, null);
 			}
 		}
 		else if (game.getPhase()==4)
@@ -586,13 +1035,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			for(int i = 0;i<4;i++)
 			{
 				if(game.getPlayers().get(i).getHouse().equals("red"))
-					g.drawImage(redHouse, 50+i*50, 45, 25, 25, null);
+					g.drawImage(red, 50+i*50, 45, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("blue"))
-					g.drawImage(blueHouse, 50+i*50, 45, 25, 25, null);
+					g.drawImage(blue, 50+i*50, 45, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("green"))
-					g.drawImage(greenHouse, 50+i*50, 45, 25, 25, null);
+					g.drawImage(green, 50+i*50, 45, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("yellow"))
-					g.drawImage(yellowHouse, 50+i*50, 45, 25, 25, null);
+					g.drawImage(yellow, 50+i*50, 45, 25, 25, null);
 			}
 			g.drawString("^", game.getTurn()*50+50, 100);
 			g.setFont(new Font("Arial",  Font.ITALIC, 15));
@@ -987,7 +1436,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					buying = true;
 					cityBuy = "Kansas City";
 				}
-				else if(e.getX() >= 940 && e.getX() <= 642 && e.getY() >= 592 && e.getY() <= 642)  
+				else if(e.getX() >= 942 && e.getX() <= 999 && e.getY() >= 592 && e.getY() <= 645)  
 				{
 					buying = true;
 					cityBuy = "Oklahoma City";
@@ -997,7 +1446,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					buying = true;
 					cityBuy = "Dallas";
 				}
-				else if(e.getX() >= 975 && e.getX() <= 1040 && e.getY() >= 765 && e.getY() <= 1040)  
+				else if(e.getX() >= 975 && e.getX() <= 1044 && e.getY() >= 765 && e.getY() <= 823)  
 				{
 					buying = true;
 					cityBuy = "Houston";

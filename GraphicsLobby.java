@@ -18,7 +18,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 	private static String path = "Misc\\";
 	Board game;
 	GraphicsRunner gr;
-	String regions = "";
+	ArrayList<String> regions = new ArrayList<String>();
 	BufferedImage map;
 
 	boolean r1 = false;
@@ -67,17 +67,17 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		if(lobbyDone)
 		{
 			if(r1)
-				regions+="1, ";
+				regions.add("Purple");
 			if(r2)
-				regions+="2, ";
+				regions.add("Yellow");
 			if(r3)
-				regions+="3, ";
+				regions.add("Brown");
 			if(r4)
-				regions+="4, ";
+				regions.add("Blue");
 			if(r5)
-				regions+="5, ";
+				regions.add("Red");
 			if(r6)
-				regions+="6, ";
+				regions.add("Green");
 			
 			
 			try {
@@ -153,7 +153,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		{
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 75));
 			g.setColor(Color.red);
-			g.drawString("REGIONS HAVE TO BE CONTIGUOUS", 300, 900);
+			g.drawString("REGIONS MUST BE CONTIGUOUS", 380, 900);
 		}
 		else
 		{

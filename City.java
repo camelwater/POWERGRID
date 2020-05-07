@@ -5,7 +5,8 @@ public class City
 	private String region;
 	private int numOccupants;
 	private int cost;
-	private boolean available = true;;
+	private boolean available = true;
+	private boolean regionTrue = false;
 	
 	public City (String n)
 	{
@@ -29,7 +30,10 @@ public class City
 	{
 		return name;
 	}
-	
+	public void regionTrue()
+	{
+		regionTrue = true;
+	}
 	public String getRegion()
 	{
 	    return region;
@@ -57,7 +61,8 @@ public class City
 	public boolean isAvailable (int step, Player p)
 	{
 		//add region checker
-		
+		if(!regionTrue)
+			return false;
 		if(numOccupants<step && !p.getCities().contains(this))
 			available = true;
 		else

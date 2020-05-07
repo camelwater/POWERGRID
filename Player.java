@@ -1,7 +1,11 @@
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
+
+import javax.imageio.ImageIO;
 
 import Enums.Type;
 
@@ -52,7 +56,38 @@ public class Player implements Comparable
 		if(name.equals("4"))
 			house = "yellow";
 	}
-	
+	public BufferedImage getPic()
+	{
+		if(name.equals("1"))
+			try {
+				return ImageIO.read(getClass().getResource("red_house.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(name.equals("2"))
+			try {
+				return ImageIO.read(getClass().getResource("blue_house.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(name.equals("3"))
+			try {
+				return ImageIO.read(getClass().getResource("green_house.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(name.equals("4"))
+			try {
+				return ImageIO.read(getClass().getResource("yellow_house.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return null;
+	}
 	public String getHouse()
 	{
 		return house;
