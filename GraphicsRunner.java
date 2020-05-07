@@ -1825,7 +1825,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			
 			
 			
-			//POWER PLANT VIEWER
+			//POWER PLANT VIEWER 
 			if(!ppVisible && e.getX() >= 1660 && e.getX() <= 1735 && e.getY() >= 680 && e.getY() <= 755)
 			{
 				
