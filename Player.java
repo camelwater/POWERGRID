@@ -14,6 +14,8 @@ public class Player implements Comparable
 	private ArrayList <City> cities;
 	private HashMap <Type, Stack <Resource>> resources;
 	
+	private int tCash = 0;
+	
 	private HashMap<Type, Stack<Resource>> tempRes = new HashMap<Type, Stack<Resource>>() ;
 	private String name;
 	
@@ -57,6 +59,17 @@ public class Player implements Comparable
 			house = "green";
 		if(name.equals("4"))
 			house = "yellow";
+	}
+	
+	public void addTCash(int x)
+	{
+		//tCash = 0;
+		tCash=x;
+		cash+=x;
+	}
+	public int getTCash()
+	{
+		return tCash;
 	}
 	public BufferedImage getPic()
 	{

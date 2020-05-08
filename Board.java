@@ -644,47 +644,47 @@ public class Board
 			numPowered = Math.min(numPowered, x.getCities().size());
 				
 			if (numPowered == 0)
-				x.addCash(10);
+				x.addTCash(10);
 			else if (numPowered == 1)
-				x.addCash(22);
+				x.addTCash(22);
 			else if (numPowered == 2)
-				x.addCash(33);
+				x.addTCash(33);
 			else if (numPowered == 3)
-				x.addCash(44);
+				x.addTCash(44);
 			else if (numPowered == 4)
-				x.addCash(54);			
+				x.addTCash(54);			
 			else if (numPowered == 5)
-				x.addCash(64);			
+				x.addTCash(64);			
 			else if (numPowered == 6)
-				x.addCash(73);			
+				x.addTCash(73);			
 			else if (numPowered == 7)
-				x.addCash(82);			
+				x.addTCash(82);			
 			else if (numPowered == 8)
-				x.addCash(90);			
+				x.addTCash(90);			
 			else if (numPowered == 9)
-				x.addCash(98);			
+				x.addTCash(98);			
 			else if (numPowered == 10)
-				x.addCash(105);			
+				x.addTCash(105);			
 			else if (numPowered == 11)
-				x.addCash(112);
+				x.addTCash(112);
 			else if (numPowered == 12)
-				x.addCash(118);
+				x.addTCash(118);
 			else if (numPowered == 13)
-				x.addCash(124);
+				x.addTCash(124);
 			else if (numPowered == 14)
 				x.addCash(129);
 			else if (numPowered == 15)
-				x.addCash(134);
+				x.addTCash(134);
 			else if (numPowered == 16)
-				x.addCash(138);
+				x.addTCash(138);
 			else if (numPowered == 17)
-				x.addCash(142);
+				x.addTCash(142);
 			else if (numPowered == 18)
-				x.addCash(145);
+				x.addTCash(145);
 			else if (numPowered == 19)
-				x.addCash(148);
+				x.addTCash(148);
 			else if (numPowered == 20)
-				x.addCash(150);
+				x.addTCash(150);
 		}
 	}
 	
@@ -869,23 +869,20 @@ public class Board
 	
 	public void endPhase ()
 	{
-		if (phase == 4)
-			endRound();
-		else
-		{
-			phase++;
+		if (phase == 4)		
+			distributeCash();
+		phase++;
+		if(phase == 1 || phase == 2 || phase == 5)
+			turn = 0;
+		else 
+			turn = 3;
 		
-			if(phase == 1 || phase == 2 || phase == 5)
-				turn = 0;
-			else 
-				turn = 3;
-		
-			numFin = 0;
-			for(int i = 0;i<4;i++)
-				players.get(i).finished = false;
+		numFin = 0;
+		for(int i = 0;i<4;i++)
+			players.get(i).finished = false;
 			
-			currentPlayer = players.get(turn);
-		}
+		currentPlayer = players.get(turn);
+		
 	}
 	
 	public int getRound()
@@ -914,7 +911,6 @@ public class Board
 		
 		updateMarket();
 		
-		distributeCash();
 		
 		refillResources();
 		

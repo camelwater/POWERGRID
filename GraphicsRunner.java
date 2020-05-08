@@ -125,7 +125,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			
 			if (game.getPhase() == 1 && game.getStep() != 0)
 			{
-				System.out.println("HELLO, step "+game.step);
+				//System.out.println("HELLO, step "+game.step);
 				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
 				game.calculatePlayerOrder();
@@ -365,8 +365,36 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			if(game.getPhase() == 5)
 			{
 				//add bureaucracy thing later
-				game.endRound();
+				g.setColor(new Color(0,138,138));
+				g.fillRect(0, 0, 1920, 1080);
 				game.calculatePlayerOrder();
+				g.setColor(Color.black);
+				g.setFont(new Font("Roboto", Font.BOLD | Font.ITALIC, 35));
+				
+				
+				g.drawString("P"+game.getPlayers().get(0).getName(), 835, 300);
+				g.drawString("P"+game.getPlayers().get(1).getName(), 835, 350);
+				g.drawString("P"+game.getPlayers().get(2).getName(), 835, 400);
+				g.drawString("P"+game.getPlayers().get(3).getName(), 835, 450);
+				
+				for(int i = 0;i<4;i++)
+				{
+					if(game.getPlayers().get(i).getHouse().equals("red"))
+						g.drawImage(red, 890, 275+i*50, 25, 25, null);
+					else if(game.getPlayers().get(i).getHouse().equals("blue"))
+						g.drawImage(blue, 890, 275+i*50, 25, 25, null);
+					else if(game.getPlayers().get(i).getHouse().equals("green"))
+						g.drawImage(green, 890, 275+i*50, 25, 25, null);
+					else if(game.getPlayers().get(i).getHouse().equals("yellow"))
+						g.drawImage(yellow, 890, 275+i*50, 25, 25, null);
+				}
+				for(int i = 0;i<4;i++)
+				{
+					System.out.println(game.getPlayers().get(i).getTCash()+", "+game.getPlayers().get(i).balance());
+						g.drawString("+ $"+game.getPlayers().get(i).getTCash(), 945, 300+i*50);
+				}
+				
+				//game.endRound();
 				
 			}
 			
@@ -1364,6 +1392,21 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		
 		if(game.getPhase()==2 || game.getPhase()==3)
 		{
+			if(game.getPhase()==3)
+				try {
+					g.drawImage(ImageIO.read(getClass().getResource("orderArrow2.png")), 35, 90, 45, 75, null);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			else
+				try {
+					g.drawImage(ImageIO.read(getClass().getResource("orderArrow2.png")), 35, 160, 45, -75, null);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			
 			g.setFont(new Font("Arial", Font.ITALIC, 15));
 		
 			g.drawString("P"+game.getPlayers().get(0).getName(), 80, 100);
@@ -1420,7 +1463,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		}
 		else if (game.getPhase()==4)
 		{
-			//g.drawImage(red
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("orderArrow.png")), 235, 55, -200, 100, null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			g.setColor(Color.orange);
 			g.setFont(new Font("Arial",  Font.ITALIC, 25));
 			
@@ -1493,6 +1541,15 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			{
 				//System.out.println("PHASE 1");
 				game.phase++;
+				repaint();
+			}
+		}
+		if(game.getPhase() == 5)
+		{
+			if(e.getX()>=0 && e.getX()<=1920 && e.getY()>=0 && e.getY()<=1080)
+			{
+				System.out.println("PHASE 5");
+				game.endRound();
 				repaint();
 			}
 		}
@@ -2114,7 +2171,6 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				repaint();
 			
 			}
-			
 			
 			
 			//POWER PLANT VIEWER 
