@@ -206,25 +206,6 @@ public class Player implements Comparable
 		return tempRes;
 	}
 	
-	public int getTempTrash() 
-	{
-		return tempRes.get(Type.Trash).size();
-	}
-	
-	public int getTempUranium()
-	{
-		return tempRes.get(Type.Uranium).size();
-	}
-	
-	public int getTempCoal()
-	{
-		return tempRes.get(Type.Coal).size();
-	}
-	
-	public int getTempOil()
-	{
-		return tempRes.get(Type.Oil).size();
-	}
 	
 	public int compareTo (Object obj)
 	{       

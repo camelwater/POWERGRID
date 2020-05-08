@@ -394,11 +394,39 @@ public class Board
 			System.out.println("CAN'T PLACE RESOURCE");
 			return;
 		}
-		
-		if(p.getStorage().size()== p.getCost().size())
+		if(p.capType.equals("Hybrid"))
+		{
+			
+			if(p.getStorage().size()== p.getCost().size()/2)
+			{
+				System.out.println("HELLO AM HERE. HYBRID CHECKER");
+				p.setPoweredStatus(true);
+			}
+		}
+		else if(p.getStorage().size()== p.getCost().size())
 			p.setPoweredStatus(true);
+		
 	}
 	
+	public void extract(PowerPlant p, String x)
+	{
+		boolean b = false;
+		
+		b = p.extract(currentPlayer, x);
+		
+		if(!b)
+		{
+			System.out.println("CAN'T TAKE RESOURCE BACK");
+			return;
+		}
+		if(p.capType().equals("Hybrid"))
+		{
+			if(p.getStorage().size()!= p.getCost().size()/2)
+				p.setPoweredStatus(false);
+		}
+		else if(p.getStorage().size() != p.getCost().size())
+			p.setPoweredStatus(false);
+	}
 	public boolean cityA(String x)
 	{
 		City c = null;
@@ -855,6 +883,7 @@ public class Board
 			numFin = 0;
 			for(int i = 0;i<4;i++)
 				players.get(i).finished = false;
+			
 			currentPlayer = players.get(turn);
 		}
 	}
@@ -888,6 +917,10 @@ public class Board
 		distributeCash();
 		
 		refillResources();
+		
+		for(Player p: players)
+			for(PowerPlant g: p.getPowerPlants())
+				g.getStorage().clear();
 	}
 	
 	public Player getCurrentPlayer()

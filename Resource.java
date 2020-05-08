@@ -1,5 +1,9 @@
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 
 public class Resource 
 {
@@ -36,5 +40,37 @@ public class Resource
 	public String toString ()
 	{
 		return reverseResources.get(type);
+	}
+	public BufferedImage getPic()
+	{
+		if(type.equals(Type.Oil))
+			try {
+				return ImageIO.read(getClass().getResource("oil.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(type.equals(Type.Trash))
+			try {
+				return ImageIO.read(getClass().getResource("trash.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(type.equals(Type.Coal))
+			try {
+				return ImageIO.read(getClass().getResource("coal.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(type.equals(Type.Uranium))
+			try {
+				return ImageIO.read(getClass().getResource("uranium.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return null;
 	}
 }

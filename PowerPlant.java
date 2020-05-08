@@ -100,12 +100,78 @@ public class PowerPlant implements Comparable
 	{
 		return ID;
 	}
-	public boolean insert(Player p, String x)
+	public boolean extract(Player p, String x)
 	{
 		
 		if(capType.equals("Oil"))
 		{
-			if(p.getTempOil() >= maxCapacity/2 && storage.size() <cost.size())
+			if(storage.size()!=0)
+			{
+				p.getResources().get(Type.Oil).push(storage.remove(storage.size()-1));
+				return true;
+			}
+		}
+		else if(capType.equals("Coal"))
+		{
+			if(storage.size()!=0)
+			{
+				p.getResources().get(Type.Coal).push(storage.remove(storage.size()-1));
+				return true;
+			}
+		}
+		else if(capType.equals("Uran"))
+		{
+			if(storage.size()!=0)
+			{
+				p.getResources().get(Type.Uranium).push(storage.remove(storage.size()-1));
+				return true;
+			}
+		}
+		else if(capType.equals("Trash"))
+		{
+			if(storage.size()!=0)
+			{
+				p.getResources().get(Type.Trash).push(storage.remove(storage.size()-1));
+				return true;
+			}
+		}
+		else if(capType.equals("Hybrid"))
+		{
+			if(storage.size()!=0)
+			{
+				if(x.equals("oil"))
+				{
+					for(int i = storage.size()-1;i>-1;i--)
+					{
+						if(storage.get(i).getType().equals(Type.Oil))
+						{
+							p.getResources().get(Type.Oil).push(storage.remove(i));
+							return true;
+						}
+					}
+				}
+				else if(x.equals("coal"))
+				{
+					for(int i = storage.size()-1;i>-1;i--)
+					{
+						if(storage.get(i).getType().equals(Type.Coal))
+						{
+							p.getResources().get(Type.Coal).push(storage.remove(i));
+							return true;
+						}
+					}
+				}
+				//return true;
+			}
+		}
+		
+		return false;
+	}
+	public boolean insert(Player p, String x)
+	{
+		if(capType.equals("Oil"))
+		{
+			if(p.getOil()+storage.size()  >= maxCapacity/2 && storage.size() <cost.size())
 			{
 				storage.add(p.getResources().get(Type.Oil).pop());
 				return true;
@@ -113,7 +179,7 @@ public class PowerPlant implements Comparable
 		}
 		else if(capType.equals("Coal"))
 		{
-			if(p.getTempCoal() >= maxCapacity/2 && storage.size()<cost.size())
+			if(p.getCoal()+storage.size() >= maxCapacity/2 && storage.size()<cost.size())
 			{
 				storage.add(p.getResources().get(Type.Coal).pop());
 				return true;
@@ -121,7 +187,7 @@ public class PowerPlant implements Comparable
 		}
 		else if(capType.equals("Uran"))
 		{
-			if(p.getTempUranium() >= maxCapacity/2 && storage.size()<cost.size())
+			if(p.getUranium()+storage.size()  >= maxCapacity/2 && storage.size()<cost.size())
 			{
 				storage.add(p.getResources().get(Type.Uranium).pop());
 				return true;
@@ -129,7 +195,7 @@ public class PowerPlant implements Comparable
 		}
 		else if(capType.equals("Trash"))
 		{
-			if(p.getTempTrash() >= maxCapacity/2 && storage.size()<cost.size())
+			if(p.getTrash()+storage.size() >= maxCapacity/2 && storage.size()<cost.size())
 			{
 				storage.add(p.getResources().get(Type.Trash).pop());
 				return true;
@@ -137,7 +203,7 @@ public class PowerPlant implements Comparable
 		}
 		else if(capType.equals("Hybrid"))
 		{
-			if(p.getTempOil()+p.getTempCoal() >= maxCapacity/2 && storage.size()<cost.size())
+			if(p.getOil()+p.getCoal()+storage.size() >= maxCapacity/2 && storage.size()<cost.size()/2)
 			{
 				if(x.equals("oil"))
 					storage.add(p.getResources().get(Type.Oil).pop());
@@ -162,7 +228,12 @@ public class PowerPlant implements Comparable
 	public boolean isPowered ()
 	{
 		powered = false;
-		if(storage.size() == cost.size())
+		if(capType.equals("Hybrid"))
+		{
+			if(storage.size() == cost.size()/2)
+				powered = true;
+		}
+		else if(storage.size() == cost.size())
 			powered = true;
 		return powered;
 	}
