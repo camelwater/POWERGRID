@@ -56,11 +56,18 @@ public class Map
 	            int u = minDistance(dist, sptSet); 
 	  
 	            sptSet[u] = true; 
+	            
 	  
 	            for (int v = 0; v < V; v++) 
-	                if (!sptSet[v] && connections.get(cities.get(u)).get(cities.get(v)) != 0 && dist.get(cities.get(u)) != Integer.MAX_VALUE && dist.get(cities.get(u)) + connections.get(cities.get(u)).get(cities.get(v)) < dist.get(cities.get(v))) 
+	            {
+	        	Integer conn=connections.get(cities.get(u)).get(cities.get(v));
+		        Integer distU=dist.get(cities.get(u));
+	        	Integer distV=dist.get(cities.get(v));
+	        	
+	                if (!sptSet[v] && conn != 0 && distU != Integer.MAX_VALUE && distU + conn < distV) 
 	                    //dist[v] = dist[u] + graph[u][v]; 
-	                    dist.replace(cities.get(v), (dist.get(cities.get(u))+connections.get(cities.get(u)).get(cities.get(v))));
+	                    dist.replace(cities.get(v), distU+conn);
+	            }
 	        } 
 	        return dist.get(end);
 	        
