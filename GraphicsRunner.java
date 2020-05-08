@@ -1294,16 +1294,16 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.setColor(Color.black);
 		
 		//price (finish the cost thingy and purchasing)
-		rCost = 0;
+		
 		g.drawString("$"+game.calculateCost(Type.Coal), 450, 340); 
 		g.drawString("$"+game.calculateCost(Type.Oil), 750, 340);
 		g.drawString("$"+game.calculateCost(Type.Trash), 1050, 340);
 		g.drawString("$"+game.calculateCost(Type.Uranium), 1350, 340);
 		
-		rCost+=game.calculateCost(Type.Coal)*coalC;
-		rCost+=game.calculateCost(Type.Oil)*oilC;
-		rCost+=game.calculateCost(Type.Trash)*trashC;
-		rCost+=game.calculateCost(Type.Uranium)*uranC;
+//		rCost+=game.calculateCost(Type.Coal)*coalC;
+//		rCost+=game.calculateCost(Type.Oil)*oilC;
+//		rCost+=game.calculateCost(Type.Trash)*trashC;
+//		rCost+=game.calculateCost(Type.Uranium)*uranC;
 //		g.drawString("$5", 450, 340); 
 //		g.drawString("$5", 750, 340);
 //		g.drawString("$5", 1050, 340);
@@ -1574,7 +1574,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(coalC!=0 && game.getCurrentPlayer().getCoal()>0)
 				{
 					coalC--;
+					
 					game.takeResBack(Type.Coal);
+					rCost-=game.calculateCost(Type.Coal);
+					
 				}
 			}
 			//FOR HYBRIDS FIND WAY TO ALLOCATE ALL OTHER RESOURCES AS MUCH AS POSSIBLE BEFORE CHECKING HYBRID CAPACITY
@@ -1585,14 +1588,18 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(coalC<game.getResources().get("COAL").size() && game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC+pO))
 					{
 						coalC++;
+						rCost+=game.calculateCost(Type.Coal);
 						game.buyRes(Type.Coal, 1);
+						
 					}
 				}
 				else
 					if(coalC<game.getResources().get("COAL").size() && (game.getCurrentPlayer().getCoal()<pC ||game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<pH))
 					{
 						coalC++;
+						rCost+=game.calculateCost(Type.Coal);
 						game.buyRes(Type.Coal, 1);
+						
 					}
 
 			}
@@ -1602,7 +1609,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(oilC!=0 && game.getCurrentPlayer().getOil()>0)
 				{
 					oilC--;
+					
 					game.takeResBack(Type.Oil);
+					rCost-=game.calculateCost(Type.Oil);
+					
 				}
 			}
 			if(e.getX() >= 750 && e.getX() <= 770 && e.getY() >= 200 && e.getY() <= 220)
@@ -1612,14 +1622,18 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(oilC<game.getResources().get("OIL").size() && game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH)
 					{
 						oilC++;
+						rCost+=game.calculateCost(Type.Oil);
 						game.buyRes(Type.Oil, 1);
+						
 					}
 				}
 				else
 					if(oilC<game.getResources().get("OIL").size() && (game.getCurrentPlayer().getOil()<pO ||game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH))
 					{
 						oilC++;
+						rCost+=game.calculateCost(Type.Oil);
 						game.buyRes(Type.Oil, 1);
+						
 					}
 				
 			}
@@ -1629,7 +1643,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(trashC!=0 && game.getCurrentPlayer().getTrash()>0)
 				{
 					trashC--;
+					
 					game.takeResBack(Type.Trash);
+					rCost-=game.calculateCost(Type.Trash);
+					
 				}
 			}
 			if(e.getX() >=1050 && e.getX() <= 1070 && e.getY() >= 200 && e.getY() <= 220)
@@ -1637,7 +1654,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(trashC<game.getResources().get("TRASH").size() && game.getCurrentPlayer().getTrash()< pT)
 				{
 					trashC++;
+					rCost+=game.calculateCost(Type.Trash);
 					game.buyRes(Type.Trash, 1);
+					
 				}
 			}
 			
@@ -1646,7 +1665,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(uranC!=0 && game.getCurrentPlayer().getUranium()>0)
 				{
 					uranC--;
+					
 					game.takeResBack(Type.Uranium);
+					rCost-=game.calculateCost(Type.Uranium);
+					
 				}
 			}
 			if(e.getX() >= 1350 && e.getX() <= 1370 && e.getY() >= 200 && e.getY() <= 220)
@@ -1654,7 +1676,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(uranC<game.getResources().get("URANIUM").size() && game.getCurrentPlayer().getUranium()<pU)
 				{
 					uranC++;
+					rCost+=game.calculateCost(Type.Uranium);
 					game.buyRes(Type.Uranium, 1);
+					
 				}
 			}
 			
@@ -1708,7 +1732,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					pT = 0;
 					pU = 0;
 					pH = 0;
-					
+					rCost = 0;
 					fi = true;
 				}
 					
