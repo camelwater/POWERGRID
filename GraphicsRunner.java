@@ -53,6 +53,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	private int trashC = 0;
 	private int uranC = 0;
 	
+	private boolean paintC = false;
+	private boolean paintO = false;
+	private boolean paintT = false;
+	private boolean paintU = false;
+	
 	int rCost;
 	
 	boolean free = false;
@@ -95,7 +100,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 
 		 frame.add(this);
 		 frame.setSize(1920,1080);
-		 //frame.setResizable(true);
+		 frame.setResizable(true);
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 frame.setVisible(true);
 		 
@@ -104,13 +109,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	
 	public void paintComponent(Graphics g)
 	{
-		//super.paintComponent(g);
 		
 		if(game.isOver())
 		{
 			g.setColor(Color.orange);
 			g.fillRect(0, 0, 1920, 1080);
-			//g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
 			
 			g.setColor(Color.black);
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 100));
@@ -142,10 +145,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//game.endPhase();
 			}
 			
-			
-			if(game.getPhase() == 2)//add mouse listener part for this
+			//POWERPLANT AUCTIONING
+			if(game.getPhase() == 2)
 			{
-				//System.out.println("auction done: "+game.auctionDone());
+
 				if(game.auctionDone())
 				{
 					first = true;
@@ -163,7 +166,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				
 				if(numFin<game.numFin())//next first bidder
 				{
-					//System.out.println("HELLO AM HERE");
+
 					first = true;
 					ppChosen = false;
 					index = -1;
@@ -200,7 +203,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				g.drawString("highest bid: "+game.cost, 700, 550);
 				g.setFont(new Font("Arial", Font.BOLD, 25));
 				g.setColor(Color.white);
-				//g.drawString("bal: $"+game.getPlayers().get(0).balance(), 500, 550);
+
 				g.drawString("bal: $"+game.getCurrentPlayer().balance(), 330, 550);
 				
 				g.setColor(Color.black);
@@ -216,8 +219,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				
 			}
 			
-			
-			if(game.getPhase() == 3)//FINISH WORKING RESOURCE BUYING AND REFILLING AND PRICING (MOSTLY LOGIC)
+			//RESOURCE BUYING
+			if(game.getPhase() == 3)
 			{
 				//System.out.println("TURN: "+game.getTurn());
 				
@@ -242,11 +245,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				
 				paintOrder(g);
 				g.setColor(Color.white);
-				//g.drawString("pay $"+game.resourceCost(), 850, 500); add resource cost method or something in board
+				//g.drawString("pay $"+game.resourceCost(), 850, 500); 
 				g.setFont(new Font("Arial", Font.BOLD, 25));
 				
 				g.drawString("bal: $"+game.getCurrentPlayer().balance(), 900, 600);
-//				g.drawString("cost: $20", 880, 375);
 				g.drawString("cost: "+rCost, 880, 375);
 				
 				//System.out.println("HAND SIZE: "+game.getCurrentPlayer().getPowerPlants().size());
@@ -264,7 +266,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			}
 			
 			
-			if(game.getPhase() == 4)//add mouse listener to build cities and finish gui for phase 4
+			if(game.getPhase() == 4)//finish phase 4 details
 			{
 				if(game.citiesDone())
 				{
@@ -275,13 +277,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				//System.out.println("round "+game.getRound());
 				
-				if(ppVisible) //look at powerplants and move resources
+				if(ppVisible) //look at and fill power plants
 					paintPP(g);
 				
 				else //city building
 				{
 					g.drawImage(bg, 0, 0, 1920, 1060, null); //map
-					//g.drawImage(logo.getImage(), 1545, 0, 375, 122,null);
+					
 					g.setColor(Color.orange);
 				
 					g.fillRect(25, 930, 1330, 110);
@@ -314,6 +316,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					paintOrder(g);
 					
 					paintCities(g);
+					
 					//cash
 					g.setFont(new Font("Times New Roman", Font.ITALIC, 50));
 					g.setColor(Color.black);
@@ -378,7 +381,6 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		{
 			//Player p = game.getPlayers().get(i);
 			//for(City c: p.getCities())
-			//{
 				if(c.getName().equals("Seattle"))
 				{
 					if(c.getNumOccupants() == 1)
@@ -1167,57 +1169,81 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.drawString("X", 960, 935);
 		g.drawString("Player " + game.getPlayers().get(page).getName(), 850, 125);
 		
+		
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Oil).size();i++)
 		{
 			if(game.getTurn() == page) 
 			{
+				paintO = true;
+				
+			}
+			g.drawImage(oil, 840 +(35*i), 650, 25, 25, null);
+		}
+		if(paintO)
+		{
 			try {
 				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 650, 20, 20, null);
 			} catch (IOException e) {}
 			try {
 				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 653, 20, 15, null);
 			} catch (IOException e) {}
-			}
-			g.drawImage(oil, 840 +(35*i), 650, 25, 25, null);
 		}
+		
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Coal).size();i++)
 		{
 			if(game.getTurn() == page) 
 			{
+				paintC = true;
+			}
+			g.drawImage(coal, 840 +(35*i), 700, 25, 25, null);
+		}
+		if(paintC)
+		{
 			try {
 				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 700, 20, 20, null);
 			} catch (IOException e) {}
 			try {
 				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 703, 20, 15, null);
 			} catch (IOException e) {}
-			}
-			g.drawImage(coal, 840 +(35*i), 700, 25, 25, null);
+			
 		}
+		
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Trash).size();i++)
 		{
 			if(game.getTurn() == page) 
 			{
+				paintT = true;
+			
+			}
+			g.drawImage(trash, 840 +(35*i), 750, 25, 25, null);
+		}
+		if(paintT)
+		{
 			try {
 				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 750, 20, 20, null);
 			} catch (IOException e) {}
 			try {
 				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 753, 20, 15, null);
 			} catch (IOException e) {}
-			}
-			g.drawImage(trash, 840 +(35*i), 750, 25, 25, null);
 		}
+		
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Uranium).size();i++)
 		{
 			if(game.getTurn() == page) 
 			{
-			try {
-				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 800, 20, 20, null);
-			} catch (IOException e) {}
-			try {
-				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 803, 20, 15, null);
-			} catch (IOException e) {}
+				paintU = true;
+			
 			}
 			g.drawImage(uranium, 840 +(35*i), 800, 25, 25, null);
+		}
+		if(paintU)
+		{
+		try {
+			g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 800, 20, 20, null);
+		} catch (IOException e) {}
+		try {
+			g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 803, 20, 15, null);
+		} catch (IOException e) {}
 		}
 		
 		//showing which card is being powered
@@ -1309,21 +1335,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.setFont(new Font("Arial", Font.BOLD, 20));
 		g.setColor(Color.black);
 		
-		//price (finish the cost thingy and purchasing)
+		//price 
 		
 		g.drawString("$"+game.calculateCost(Type.Coal), 450, 340); 
 		g.drawString("$"+game.calculateCost(Type.Oil), 750, 340);
 		g.drawString("$"+game.calculateCost(Type.Trash), 1050, 340);
 		g.drawString("$"+game.calculateCost(Type.Uranium), 1350, 340);
-		
-//		rCost+=game.calculateCost(Type.Coal)*coalC;
-//		rCost+=game.calculateCost(Type.Oil)*oilC;
-//		rCost+=game.calculateCost(Type.Trash)*trashC;
-//		rCost+=game.calculateCost(Type.Uranium)*uranC;
-//		g.drawString("$5", 450, 340); 
-//		g.drawString("$5", 750, 340);
-//		g.drawString("$5", 1050, 340);
-//		g.drawString("$5", 1350, 340);
+
 		
 		//images
 		g.drawImage(coal, 443, 234, 40, 40, null);
@@ -1340,7 +1358,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 
 	}
 	
-	public void paintOrder(Graphics g) //paints player order , later make them images of houses
+	public void paintOrder(Graphics g) //paints player order 
 	{
 		g.setColor(Color.black);
 		
@@ -1862,6 +1880,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					game.numFin++;
 					game.getCurrentPlayer().finished();
 					game.nextTurn();
+					
+					paintC = false;
+					paintO = false;
+					paintT = false;
+					paintU = false;
 				}
 				
 				if(buying && e.getX()>=880 && e.getX()<=1080 && e.getY() >= 460 && e.getY()<= 565)
@@ -2120,6 +2143,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					page = 3;
 				else
 					page-=1;
+				
+				paintC = false;
+				paintO = false;
+				paintT = false;
+				paintU = false;
 				repaint();
 			}
 			if(!ppVisible && e.getX() >= 1734 && e.getX() <= 1825 && e.getY() >= 950 && e.getY() <= 1040)
@@ -2128,12 +2156,16 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					page = 0;
 				else
 					page+=1;
+				
+				paintC = false;
+				paintO = false;
+				paintT = false;
+				paintU = false;
 				repaint();
 			}
 			
 		}
 			
-		
 		
 	}
 }
