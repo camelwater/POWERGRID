@@ -382,6 +382,23 @@ public class Board
 		return numFin;
 	}
 	
+	public void insert(PowerPlant p, String x)
+	{
+		boolean b  = false;
+		
+		b = p.insert(currentPlayer, x);
+		
+		
+		if(!b)
+		{
+			System.out.println("CAN'T PLACE RESOURCE");
+			return;
+		}
+		
+		if(p.getStorage().size()== p.getCost().size())
+			p.setPoweredStatus(true);
+	}
+	
 	public boolean cityA(String x)
 	{
 		City c = null;
@@ -462,7 +479,29 @@ public class Board
 		if(numFin == 4)
 			resourceDone = true;
 	}
-	
+	public void takeResBack(Type t)
+	{
+		if(Type.Oil.equals(t))
+		{
+
+			resources.get("OIL").push(currentPlayer.getResources().get(t).pop());
+		}
+		if(Type.Coal.equals(t))
+		{
+			
+			resources.get("COAL").push(currentPlayer.getResources().get(t).pop());
+		}
+		if(Type.Uranium.equals(t))
+		{
+			
+			resources.get("URANIUM").push(currentPlayer.getResources().get(t).pop());
+		}
+		if(Type.Trash.equals(t))
+		{
+			
+			resources.get("TRASH").push(currentPlayer.getResources().get(t).pop());
+		}
+	}
 	public void pass (int i)
 	{
 		if(step>0&&i==-1)
@@ -723,11 +762,12 @@ public class Board
 	public void updateMarket ()
 	{
 		//System.out.println(market.toString());
-		market.remove(7);
+		deck.add(market.remove(7));
 		
 		market.add(deck.remove(0));
 		
-		Collections.sort(market, Collections.reverseOrder());
+		//Collections.sort(market, Collections.reverseOrder());
+		Collections.sort(market);
 	}
 	
 	public int calculateCost (Type type) //Calculates the cost of the given resource

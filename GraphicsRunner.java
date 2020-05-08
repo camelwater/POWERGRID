@@ -63,6 +63,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	int pH = 0;
 	boolean fi = true;
 	
+	boolean ppChosen2 = false;
+	int ppIndex = -1;
 	int jb = 1;
 	boolean buying = false;
 	String cityBuy = "";
@@ -302,12 +304,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					g.drawString("Phase: "+game.getPhase(), 875, 100); //phase
 					g.setFont(new Font("Times New Roman", Font.ITALIC, 25));
 					if(game.getPlayers().get(page).getName().equals(game.getCurrentPlayer().getName()))
+					{
 						g.drawString("current player",1635, 850);						
-					
-					g.fillOval(910, 865, 100, 50);
-					g.setColor(Color.white);
-					g.setFont(new Font("Arial", Font.BOLD, 25));
-					g.drawString("Finish", 925, 900);
+						g.fillOval(910, 865, 100, 50);
+						g.setColor(Color.white);
+						g.setFont(new Font("Arial", Font.BOLD, 25));
+						g.drawString("Finish", 925, 900);
+					}
 					paintOrder(g);
 					
 					paintCities(g);
@@ -1082,7 +1085,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	}
 	public void paintPlants(Graphics g) //paints hands
 	{
-		int i = 1;
+		int i = 0;
 		if(game.getPhase()!=4)
 		{
 			int s = game.getCurrentPlayer().getPowerPlants().size();
@@ -1116,9 +1119,19 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				else
 				{
-					try {
-						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (835/s)+i*(960/s), 350, 250, 250, null); 
-					} catch (IOException e) {}
+					if(s==3)
+					{
+						try {
+							g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (1920/s)+i*(960/s), 350, 250, 250, null); 
+						} catch (IOException e) {}
+					}
+					else if (s ==2)
+					{
+						try {
+							g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (835/s)+i*(960/s), 350, 250, 250, null); 
+						} catch (IOException e) {}
+					}
+						
 				}
 				i++;
 			}
@@ -1139,14 +1152,110 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.drawString("Player " + game.getPlayers().get(page).getName(), 850, 125);
 		
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Oil).size();i++)
+		{
+			if(game.getTurn() == page) 
+			{
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 650, 20, 20, null);
+			} catch (IOException e) {}
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 650, 20, 15, null);
+			} catch (IOException e) {}
+			}
 			g.drawImage(oil, 840 +(35*i), 650, 25, 25, null);
+		}
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Coal).size();i++)
+		{
+			if(game.getTurn() == page) 
+			{
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 700, 20, 20, null);
+			} catch (IOException e) {}
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 700, 20, 15, null);
+			} catch (IOException e) {}
+			}
 			g.drawImage(coal, 840 +(35*i), 700, 25, 25, null);
+		}
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Trash).size();i++)
+		{
+			if(game.getTurn() == page) 
+			{
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 750, 20, 20, null);
+			} catch (IOException e) {}
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 750, 20, 15, null);
+			} catch (IOException e) {}
+			}
 			g.drawImage(trash, 840 +(35*i), 750, 25, 25, null);
+		}
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Uranium).size();i++)
+		{
+			if(game.getTurn() == page) 
+			{
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 800, 20, 20, null);
+			} catch (IOException e) {}
+			try {
+				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 800, 20, 15, null);
+			} catch (IOException e) {}
+			}
 			g.drawImage(uranium, 840 +(35*i), 800, 25, 25, null);
+		}
 		
+		//showing which card is being powered
+		g.setColor(Color.black);
+		g.setFont(new Font("Arial", Font.BOLD, 75));
+		int x = game.getCurrentPlayer().getPowerPlants().size();
+		if(x == 1)
+		{
+			if(ppIndex == 0)
+				g.drawString("V", 900, 260);
+		}
+		else if(x == 2)
+		{
+			if(ppIndex == 0)
+				g.drawString("V", 475, 260);
+			if(ppIndex == 1)
+				g.drawString("V", 950, 260);
+		}
+		else if(x == 3)
+		{
+			if(ppIndex == 0)
+				g.drawString("V", 700, 260);
+			if(ppIndex == 1)
+				g.drawString("V", 1025, 260);
+			if(ppIndex == 2)
+				g.drawString("V", 1350, 260);
+		}
+		
+		//whether card is powered or not
+		BufferedImage check = null;
+		try {
+			check = ImageIO.read(getClass().getResource("check.png"));
+		} catch (IOException e) {}
+		if(x == 1)
+		{
+			if(game.getCurrentPlayer().getPowerPlants().get(0).isPowered())
+				g.drawImage(check, 960-25, 450, 50, 50, null); 
+		}
+		else if(x ==2)
+		{
+			if(game.getCurrentPlayer().getPowerPlants().get(0).isPowered())
+				g.drawImage(check, 540-25, 450, 50, 50, null); 
+			if(game.getCurrentPlayer().getPowerPlants().get(1).isPowered())
+				g.drawImage(check, 1020-25, 450, 50, 50, null); 
+		}
+		else if (x==3)
+		{
+			if(game.getCurrentPlayer().getPowerPlants().get(0).isPowered())
+				g.drawImage(check, 765-25, 450, 50, 50, null); 
+			if(game.getCurrentPlayer().getPowerPlants().get(1).isPowered())
+				g.drawImage(check, 1085-25, 450, 50, 50, null); 
+			if(game.getCurrentPlayer().getPowerPlants().get(2).isPowered())
+				g.drawImage(check, 1405-25, 450, 50, 50, null); 
+		}
 	}
 	
 	public void paintMarket(Graphics g) //paints pp auctioning market
@@ -1462,61 +1571,91 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			//choose resources to buy
 			if(e.getX() >= 450 && e.getX() <= 470 && e.getY() >= 300 && e.getY() <= 320)
 			{
-				if(coalC!=0)
+				if(coalC!=0 && game.getCurrentPlayer().getCoal()>0)
+				{
 					coalC--;
+					game.takeResBack(Type.Coal);
+				}
 			}
 			//FOR HYBRIDS FIND WAY TO ALLOCATE ALL OTHER RESOURCES AS MUCH AS POSSIBLE BEFORE CHECKING HYBRID CAPACITY
 			if(e.getX() >= 450 && e.getX() <= 470 && e.getY() >= 200 && e.getY() <= 220)
 			{
 				if(pH>0)
 				{
-					if(coalC<game.getResources().get("COAL").size() && coalC+oilC+game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC+pO))
+					if(coalC<game.getResources().get("COAL").size() && game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC+pO))
+					{
 						coalC++;
+						game.buyRes(Type.Coal, 1);
+					}
 				}
 				else
-					if(coalC<game.getResources().get("COAL").size() && (coalC+game.getCurrentPlayer().getCoal()<pC ||coalC+oilC+game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<pH))
+					if(coalC<game.getResources().get("COAL").size() && (game.getCurrentPlayer().getCoal()<pC ||game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<pH))
+					{
 						coalC++;
+						game.buyRes(Type.Coal, 1);
+					}
 
 			}
 			
 			if(e.getX() >= 750 && e.getX() <= 770 && e.getY() >= 300 && e.getY() <= 320)
 			{
-				if(oilC!=0)
+				if(oilC!=0 && game.getCurrentPlayer().getOil()>0)
+				{
 					oilC--;
+					game.takeResBack(Type.Oil);
+				}
 			}
 			if(e.getX() >= 750 && e.getX() <= 770 && e.getY() >= 200 && e.getY() <= 220)
 			{
 				if(pH>0)
 				{
-					if(oilC<game.getResources().get("OIL").size() && coalC+oilC+game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH)
+					if(oilC<game.getResources().get("OIL").size() && game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH)
+					{
 						oilC++;
+						game.buyRes(Type.Oil, 1);
+					}
 				}
 				else
-					if(oilC<game.getResources().get("OIL").size() && (oilC+game.getCurrentPlayer().getOil()<pO ||coalC+oilC+game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH))
+					if(oilC<game.getResources().get("OIL").size() && (game.getCurrentPlayer().getOil()<pO ||game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH))
+					{
 						oilC++;
+						game.buyRes(Type.Oil, 1);
+					}
 				
 			}
 				
 			if(e.getX() >= 1050 && e.getX() <= 1070 && e.getY() >= 300 && e.getY() <= 320)
 			{
-				if(trashC!=0)
+				if(trashC!=0 && game.getCurrentPlayer().getTrash()>0)
+				{
 					trashC--;
+					game.takeResBack(Type.Trash);
+				}
 			}
 			if(e.getX() >=1050 && e.getX() <= 1070 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				if(trashC<game.getResources().get("TRASH").size() && trashC+game.getCurrentPlayer().getTrash()< pT)
+				if(trashC<game.getResources().get("TRASH").size() && game.getCurrentPlayer().getTrash()< pT)
+				{
 					trashC++;
+					game.buyRes(Type.Trash, 1);
+				}
 			}
 			
 			if(e.getX() >= 1350 && e.getX() <= 1370 && e.getY() >= 300 && e.getY() <= 320)
 			{
-				if(uranC!=0)
+				if(uranC!=0 && game.getCurrentPlayer().getUranium()>0)
+				{
 					uranC--;
+					game.takeResBack(Type.Uranium);
+				}
 			}
 			if(e.getX() >= 1350 && e.getX() <= 1370 && e.getY() >= 200 && e.getY() <= 220)
 			{
-				if(uranC<game.getResources().get("URANIUM").size() && uranC+game.getCurrentPlayer().getUranium()<pU)
+				if(uranC<game.getResources().get("URANIUM").size() && game.getCurrentPlayer().getUranium()<pU)
+				{
 					uranC++;
+					game.buyRes(Type.Uranium, 1);
+				}
 			}
 			
 			//finish transaction and pay
@@ -1545,14 +1684,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				else
 				{
-					if(coalC!=0)
-						game.buyRes(Type.Coal, coalC);
-					if(oilC!=0)
-						game.buyRes(Type.Oil, oilC);
-					if(trashC!=0)
-						game.buyRes(Type.Trash, trashC);
-					if(uranC!=0)
-						game.buyRes(Type.Uranium, uranC);
+//					if(coalC!=0)
+//						game.buyRes(Type.Coal, coalC);
+//					if(oilC!=0)
+//						game.buyRes(Type.Oil, oilC);
+//					if(trashC!=0)
+//						game.buyRes(Type.Trash, trashC);
+//					if(uranC!=0)
+//						game.buyRes(Type.Uranium, uranC);
 					
 					game.getCurrentPlayer().pay(rCost);
 					game.numFin++;
@@ -1582,7 +1721,79 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		//CURRENT PLAYER IN PHASE 4
 		if(game.getPhase() == 4) 
 		{
-			if(game.getTurn() == page && !ppVisible) //current player's turn
+			//RESOURCE ALLOCATION IN PP VIEWER
+			if(game.getTurn() == page && ppVisible)
+			{
+				if(game.getCurrentPlayer().getPowerPlants().size()==1)
+				{
+					if( e.getX() >= 835 && e.getX() <=  1085 && e.getY() >= 350 && e.getY() <= 600)
+					{
+						ppIndex = 0;
+						ppChosen2 = true;
+						repaint();
+					}
+				}
+				else if(game.getCurrentPlayer().getPowerPlants().size() == 2)
+				{
+					if(e.getX() >= 415 && e.getX() <= 665 && e.getY() >= 350 && e.getY() <= 600)
+					{
+						ppIndex = 0;
+						ppChosen2 = true;
+						repaint();
+					}
+					if(e.getX() >= 895 && e.getX() <= 1145 && e.getY() >= 350 && e.getY() <= 600)
+					{
+						ppIndex = 1;
+						ppChosen2 = true;
+						repaint();
+					}
+				}
+				else if(game.getCurrentPlayer().getPowerPlants().size() == 3)
+				{
+					if(e.getX() >= 640 && e.getX() <= 890 && e.getY() >= 350 && e.getY() <= 600)
+					{
+						ppIndex = 0;
+						ppChosen2 = true;
+						repaint();
+					}
+					if( e.getX() >= 960 && e.getX() <= 1210 && e.getY() >= 350 && e.getY() <= 600)
+					{
+						ppIndex = 1;
+						ppChosen2 = true;
+						repaint();
+					}
+					if(e.getX() >= 1280 && e.getX() <= 1530 && e.getY() >= 350 && e.getY() <= 600)
+					{
+						ppIndex = 2;
+						ppChosen2 = true;
+						repaint();
+					}
+				}
+				
+				//add resources to power plant
+				if(ppChosen2 && e.getX() >= 1280 && e.getX() <= 1530 && e.getY() >= 350 && e.getY() <= 600)
+				{
+					game.insert(game.getCurrentPlayer().getPowerPlants().get(ppIndex), "coal");
+					repaint();
+				}
+				else if(ppChosen2 && e.getX() >= 1280 && e.getX() <= 1530 && e.getY() >= 350 && e.getY() <= 600)
+				{
+					game.insert(game.getCurrentPlayer().getPowerPlants().get(ppIndex), "oil");
+					repaint();
+				}
+				else if(ppChosen2 && e.getX() >= 1280 && e.getX() <= 1530 && e.getY() >= 350 && e.getY() <= 600)
+				{
+					game.insert(game.getCurrentPlayer().getPowerPlants().get(ppIndex), "trash");
+					repaint();
+				}
+				else if(ppChosen2 && e.getX() >= 1280 && e.getX() <= 1530 && e.getY() >= 350 && e.getY() <= 600)
+				{
+					game.insert(game.getCurrentPlayer().getPowerPlants().get(ppIndex), "uranium");
+					repaint();
+				}
+			}
+			
+			else if(game.getTurn() == page && !ppVisible) //current player's turn
 			{
 				//finished building cities
 				if(e.getX() >= 910 && e.getX() <= 1010 && e.getY() >= 865 && e.getY() <= 910)
@@ -1834,8 +2045,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			if(ppVisible && e.getX() >= 960 && e.getX() <= 993 && e.getY() >= 900 && e.getY() <= 935)
 			{
 				ppVisible = false;
+				
+				ppIndex = -1;
+				ppChosen2 = false;
 				repaint();
 			}
+			
+			
 			
 			//ARROWS
 			if(!ppVisible && e.getX() >= 1610 && e.getX() <= 1715 && e.getY() >= 950 && e.getY() <= 1040)

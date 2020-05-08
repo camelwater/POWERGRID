@@ -13,6 +13,8 @@ public class Player implements Comparable
 	private ArrayList <PowerPlant> PowerPlants;
 	private ArrayList <City> cities;
 	private HashMap <Type, Stack <Resource>> resources;
+	
+	private HashMap<Type, Stack<Resource>> tempRes = new HashMap<Type, Stack<Resource>>() ;
 	private String name;
 	
 	private String house;
@@ -39,6 +41,8 @@ public class Player implements Comparable
 		cash = 50;
 		
 		name = n;
+		
+		tempRes = resources;
 		
 		setHouse();
 	}
@@ -186,6 +190,7 @@ public class Player implements Comparable
 	public void buyResources (Resource r)
 	{
 		resources.get(r.getType()).push(r);
+		tempRes = resources;
 	}
 	
 	public void buyPowerPlant (PowerPlant x, int cost)
@@ -195,6 +200,30 @@ public class Player implements Comparable
 			PowerPlants.add(x);
 			pay(cost);
 		}
+	}
+	public HashMap <Type, Stack <Resource>> getTempRes()
+	{
+		return tempRes;
+	}
+	
+	public int getTempTrash() 
+	{
+		return tempRes.get(Type.Trash).size();
+	}
+	
+	public int getTempUranium()
+	{
+		return tempRes.get(Type.Uranium).size();
+	}
+	
+	public int getTempCoal()
+	{
+		return tempRes.get(Type.Coal).size();
+	}
+	
+	public int getTempOil()
+	{
+		return tempRes.get(Type.Oil).size();
 	}
 	
 	public int compareTo (Object obj)

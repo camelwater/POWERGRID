@@ -18,6 +18,7 @@ public class PowerPlant implements Comparable
 	
 	private boolean powered;
 	
+	private ArrayList<Resource> storage = new ArrayList<Resource>();
 	public int maxCapacity = -1;
 	public String capType = "not set";
 	
@@ -38,7 +39,10 @@ public class PowerPlant implements Comparable
 		numPowered = 0;
 		cost = null;
 	}
-	
+	public ArrayList<Resource> getStorage()
+	{
+		return storage;
+	}
 	public int getCapacity()
 	{
 		return maxCapacity;
@@ -96,8 +100,56 @@ public class PowerPlant implements Comparable
 	{
 		return ID;
 	}
-	
-	public int getNumPowered ()
+	public boolean insert(Player p, String x)
+	{
+		
+		if(capType.equals("Oil"))
+		{
+			if(p.getTempOil() >= maxCapacity/2 && storage.size() <cost.size())
+			{
+				storage.add(p.getResources().get(Type.Oil).pop());
+				return true;
+			}
+		}
+		else if(capType.equals("Coal"))
+		{
+			if(p.getTempCoal() >= maxCapacity/2 && storage.size()<cost.size())
+			{
+				storage.add(p.getResources().get(Type.Coal).pop());
+				return true;
+			}
+		}
+		else if(capType.equals("Uran"))
+		{
+			if(p.getTempUranium() >= maxCapacity/2 && storage.size()<cost.size())
+			{
+				storage.add(p.getResources().get(Type.Uranium).pop());
+				return true;
+			}
+		}
+		else if(capType.equals("Trash"))
+		{
+			if(p.getTempTrash() >= maxCapacity/2 && storage.size()<cost.size())
+			{
+				storage.add(p.getResources().get(Type.Trash).pop());
+				return true;
+			}
+		}
+		else if(capType.equals("Hybrid"))
+		{
+			if(p.getTempOil()+p.getTempCoal() >= maxCapacity/2 && storage.size()<cost.size())
+			{
+				if(x.equals("oil"))
+					storage.add(p.getResources().get(Type.Oil).pop());
+				else if(x.equals("coal"))
+					storage.add(p.getResources().get(Type.Coal).pop());
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	public int getNumPowered()
 	{
 		return numPowered;
 	}
@@ -109,6 +161,9 @@ public class PowerPlant implements Comparable
 	
 	public boolean isPowered ()
 	{
+		powered = false;
+		if(storage.size() == cost.size())
+			powered = true;
 		return powered;
 	}
 	
