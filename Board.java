@@ -325,7 +325,7 @@ public class Board
 			map.put(start, connections);
 		}
 		
-		graph = new Map (map);
+		graph = new Map (map,cities);
 		
 		System.out.println("\n\n");
 		
