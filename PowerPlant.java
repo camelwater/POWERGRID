@@ -169,7 +169,7 @@ public class PowerPlant implements Comparable
 	}
 	public boolean insert(Player p, String x)
 	{
-		if(capType.equals("Oil"))
+		if(capType.equals("Oil") && x.equals("oil"))
 		{
 			if(p.getOil()+storage.size()  >= maxCapacity/2 && storage.size() <cost.size())
 			{
@@ -177,7 +177,7 @@ public class PowerPlant implements Comparable
 				return true;
 			}
 		}
-		else if(capType.equals("Coal"))
+		else if(capType.equals("Coal")&&x.equals("coal"))
 		{
 			if(p.getCoal()+storage.size() >= maxCapacity/2 && storage.size()<cost.size())
 			{
@@ -185,7 +185,7 @@ public class PowerPlant implements Comparable
 				return true;
 			}
 		}
-		else if(capType.equals("Uran"))
+		else if(capType.equals("Uran")&&x.equals("uranium"))
 		{
 			if(p.getUranium()+storage.size()  >= maxCapacity/2 && storage.size()<cost.size())
 			{
@@ -193,7 +193,7 @@ public class PowerPlant implements Comparable
 				return true;
 			}
 		}
-		else if(capType.equals("Trash"))
+		else if(capType.equals("Trash")&&x.equals("trash"))
 		{
 			if(p.getTrash()+storage.size() >= maxCapacity/2 && storage.size()<cost.size())
 			{

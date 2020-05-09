@@ -18,6 +18,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 	private static String path = "Misc\\";
 	Board game;
 	GraphicsRunner gr;
+	Rules r;
 	ArrayList<String> regions = new ArrayList<String>();
 	BufferedImage map;
 
@@ -83,6 +84,8 @@ public class GraphicsLobby extends JPanel implements MouseListener
 			try {
 				gr = new GraphicsRunner(game, regions);
 			} catch (IOException e) {}
+			
+			r = new Rules();
 			
 			System.out.println(regions);
 			frame.setVisible(false); 

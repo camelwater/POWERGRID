@@ -112,7 +112,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		
 		if(game.isOver())
 		{
-			g.setColor(Color.orange);
+			g.setColor(new Color(0, 138, 138));
 			g.fillRect(0, 0, 1920, 1080);
 			
 			g.setColor(Color.black);
@@ -128,6 +128,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//System.out.println("HELLO, step "+game.step);
 				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
+				
 				game.calculatePlayerOrder();
 				paintOrder(g);
 				//game.endPhase();
@@ -140,6 +141,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				game.start();
 				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
+				g.setColor(Color.black);
+				g.setFont(new Font("Arial",Font.BOLD, 100));
+				g.drawString("POWERGRID", 645, 125);
 				paintOrder(g);
 				
 				//game.endPhase();
@@ -1162,9 +1166,24 @@ public class GraphicsRunner extends JPanel implements MouseListener
 							g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (1920/s)+i*(960/s), 350, 250, 250, null); 
 						} catch (IOException e) {}
 						
-						for(int f = 0;f<p.getStorage().size();f++)
+						if(ppIndex == 2)
+							for(int f = 0;f<p.getStorage().size();f++)
+							{
+								g.drawImage(p.getStorage().get(f).getPic(), (1920/s)+i*(960/s) +(35*f), 435, 25, 25, null);
+							}
+						if(ppIndex == 1)
 						{
-							g.drawImage(p.getStorage().get(f).getPic(), (1920/s)+i*(960/s) +(35*f), 435, 25, 25, null);
+							for(int f = 0;f<p.getStorage().size();f++)
+							{
+								g.drawImage(p.getStorage().get(f).getPic(), (1920/s)+i*(960/s) +(35*f), 435, 25, 25, null);
+							}
+						}
+						if(ppIndex == 0)
+						{
+							for(int f = 0;f<p.getStorage().size();f++)
+							{
+								g.drawImage(p.getStorage().get(f).getPic(), (1920/s)+i*(960/s) +(35*f), 435, 25, 25, null);
+							}
 						}
 					}
 					else if (s ==2)
@@ -1173,9 +1192,19 @@ public class GraphicsRunner extends JPanel implements MouseListener
 							g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (835/s)+i*(960/s), 350, 250, 250, null); 
 						} catch (IOException e) {}
 					}
-					for(int f = 0;f<p.getStorage().size();f++)
+					if(ppIndex == 0)
 					{
-						g.drawImage(p.getStorage().get(f).getPic(), (835/s)+i*(960/s) +(35*f), 435, 25, 25, null);
+						for(int f = 0;f<p.getStorage().size();f++)
+						{
+							g.drawImage(p.getStorage().get(f).getPic(), (835/s)+i*(960/s) +(35*f), 435, 25, 25, null);
+						}
+					}
+					else if(ppIndex == 1)
+					{
+						for(int f = 0;f<p.getStorage().size();f++)
+						{
+							g.drawImage(p.getStorage().get(f).getPic(), (835/s)+i*(960/s) +(35*f), 435, 25, 25, null);
+						}
 					}
 						
 				}
@@ -1651,7 +1680,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(p.capType().equals("Uran"))
 						pU+=p.getCapacity();
 					if(p.capType().equals("Hybrid"))
-						pH+=4;
+						pH+=p.getCapacity();
 					if(p.capType().equals("Free"))
 						free = true;
 				}
@@ -1676,16 +1705,33 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			{
 				if(pH>0)
 				{
-					if(coalC<game.getResources().get("COAL").size() && game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC+pO))
+					if(pC>0)
 					{
-						coalC++;
-						rCost+=game.calculateCost(Type.Coal);
-						game.buyRes(Type.Coal, 1);
+						if(pO>0)
+						{
+							
+						}
+						if(coalC<game.getResources().get("COAL").size() && game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC))
+						{
+							coalC++;
+							rCost+=game.calculateCost(Type.Coal);
+							game.buyRes(Type.Coal, 1);
+						}
+					}
+					else
+					{
 						
+						if(coalC<game.getResources().get("COAL").size() && game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH))
+						{
+							coalC++;
+							rCost+=game.calculateCost(Type.Coal);
+							game.buyRes(Type.Coal, 1);
+						
+						}	
 					}
 				}
 				else
-					if(coalC<game.getResources().get("COAL").size() && (game.getCurrentPlayer().getCoal()<pC ||game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<pH))
+					if(coalC<game.getResources().get("COAL").size() && game.getCurrentPlayer().getCoal()<pC)
 					{
 						coalC++;
 						rCost+=game.calculateCost(Type.Coal);
@@ -1710,12 +1756,28 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			{
 				if(pH>0)
 				{
-					if(oilC<game.getResources().get("OIL").size() && game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH)
+					if(pO>0)
 					{
-						oilC++;
-						rCost+=game.calculateCost(Type.Oil);
-						game.buyRes(Type.Oil, 1);
+						if(pC>0)
+						{
+							
+						}
+						if(oilC<game.getResources().get("OIL").size() && game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<(pH+pO))
+						{
+							oilC++;
+							rCost+=game.calculateCost(Type.Oil);
+							game.buyRes(Type.Oil, 1);
+						}
+					}
+					else
+					{
+						if(oilC<game.getResources().get("OIL").size() && game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<pH)
+						{
+							oilC++;
+							rCost+=game.calculateCost(Type.Oil);
+							game.buyRes(Type.Oil, 1);
 						
+						}
 					}
 				}
 				else
@@ -1807,7 +1869,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 //						game.buyRes(Type.Trash, trashC);
 //					if(uranC!=0)
 //						game.buyRes(Type.Uranium, uranC);
-					
+					if(game.getCurrentPlayer().balance()>=rCost)
+					{
 					game.getCurrentPlayer().pay(rCost);
 					game.numFin++;
 					game.getCurrentPlayer().finished();
@@ -1825,6 +1888,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					pH = 0;
 					rCost = 0;
 					fi = true;
+					}
 				}
 					
 			}
