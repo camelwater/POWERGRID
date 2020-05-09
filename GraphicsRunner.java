@@ -121,13 +121,20 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		}
 		else
 		{    
-			//System.out.println("step "+game.step + ", phase "+game.phase);
 			
 			if (game.getPhase() == 1 && game.getStep() != 0)
 			{
 				//System.out.println("HELLO, step "+game.step);
 				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
+				if(game.getPhase()!= 4 && game.getStep()!=0)
+				{
+					
+					g.setColor(Color.black);
+					g.setFont(new Font("Arial", Font.BOLD, 50));
+					g.drawString("Step: "+game.getStep(), 650, 50);
+					g.drawString("Phase: "+game.getPhase(), 1000, 50);
+				}
 				
 				game.calculatePlayerOrder();
 				paintOrder(g);
@@ -182,6 +189,15 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
 				paintMarket(g);
+				
+				if(game.getPhase()!= 4 && game.getStep()!=0)
+				{
+					
+					g.setColor(Color.black);
+					g.setFont(new Font("Arial", Font.BOLD, 50));
+					g.drawString("Step: "+game.getStep(), 650, 45);
+					g.drawString("Phase: "+game.getPhase(), 1000, 45);
+				}
 				
 				//which card is being auctioned
 				BufferedImage check = null;
@@ -248,6 +264,16 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				} catch (IOException e) {}
 				
 				paintOrder(g);
+				
+				if(game.getPhase()!= 4 && game.getStep()!=0)
+				{
+					
+					g.setColor(Color.black);
+					g.setFont(new Font("Arial", Font.BOLD, 50));
+					g.drawString("Step: "+game.getStep(), 650, 50);
+					g.drawString("Phase: "+game.getPhase(), 1000, 50);
+				}
+				
 				g.setColor(Color.white);
 				//g.drawString("pay $"+game.resourceCost(), 850, 500); 
 				g.setFont(new Font("Arial", Font.BOLD, 25));
@@ -371,6 +397,15 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//add bureaucracy thing later
 				g.setColor(new Color(0,138,138));
 				g.fillRect(0, 0, 1920, 1080);
+				
+				if(game.getPhase()!= 4 && game.getStep()!=0)
+				{
+					
+					g.setColor(Color.black);
+					g.setFont(new Font("Arial", Font.BOLD, 50));
+					g.drawString("Step: "+game.getStep(), 650, 50);
+					g.drawString("Phase: "+game.getPhase(), 1000, 50);
+				}
 				game.calculatePlayerOrder();
 				g.setColor(Color.black);
 				g.setFont(new Font("Roboto", Font.BOLD | Font.ITALIC, 35));
