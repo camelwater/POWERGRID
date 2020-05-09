@@ -750,40 +750,70 @@ public class Board
 		if (step == 1)
 		{
 			for (int x = 0; x < 5; x++)
-				resources.get("COAL").push(new Resource("COAL"));			
-			for (int x = 0; x < 3; x++)
-				resources.get("OIL").push(new Resource("OIL"));	
-			for (int x = 0; x < 2; x++)
-				resources.get("TRASH").push(new Resource("TRASH"));
+			{
+				if (resources.get("COAL").size() < 24)
+					resources.get("COAL").push(new Resource("COAL"));
+			}
 			
-			resources.get("URANIUM").push(new Resource("URANIUM"));
+			for (int x = 0; x < 3; x++)
+			{
+				if (resources.get("OIL").size() < 24)
+					resources.get("OIL").push(new Resource("OIL"));
+			}
+	
+			for (int x = 0; x < 2; x++)
+			{
+				if (resources.get("TRASH").size() < 24)
+					resources.get("TRASH").push(new Resource("TRASH"));
+			}
+			
+			if (resources.get("URANIUM").size() < 12)
+				resources.get("URANIUM").push(new Resource("URANIUM"));
 		}
 		
 		else if (step == 2)
 		{
 			for (int x = 0; x < 4; x++)
 			{
-				resources.get("COAL").push(new Resource("COAL"));			
-				resources.get("OIL").push(new Resource("OIL"));	
+				if (resources.get("COAL").size() < 24)
+					resources.get("COAL").push(new Resource("COAL"));		
+				
+				if (resources.get("OIL").size() < 24)
+					resources.get("OIL").push(new Resource("OIL"));	
 			}
 			
 			for (int x = 0; x < 3; x++)
-				resources.get("TRASH").push(new Resource("TRASH"));
+			{
+				if (resources.get("TRASH").size() < 24)
+					resources.get("TRASH").push(new Resource("TRASH"));
+			}
+
 			for (int x = 0; x < 2; x++)
-				resources.get("URANIUM").push(new Resource("URANIUM"));
+			{
+				if (resources.get("URANIUM").size() < 12)
+					resources.get("URANIUM").push(new Resource("URANIUM")); 
+			}
 		}
 		
 		else
 		{
 			for (int x = 0; x < 4; x++)
 			{
-				resources.get("COAL").push(new Resource("COAL"));			
-				resources.get("OIL").push(new Resource("OIL"));	
-				resources.get("TRASH").push(new Resource("TRASH"));
+				if (resources.get("COAL").size() < 24)
+					resources.get("COAL").push(new Resource("COAL"));		
+				
+				if (resources.get("OIL").size() < 24)
+					resources.get("OIL").push(new Resource("OIL"));	
+				
+				if (resources.get("TRASH").size() < 24)
+					resources.get("TRASH").push(new Resource("TRASH"));
 			}
 			
 			for (int x = 0; x < 2; x++)
-				resources.get("URANIUM").push(new Resource("URANIUM"));
+			{
+				if (resources.get("URANIUM").size() < 12)
+					resources.get("URANIUM").push(new Resource("URANIUM"));
+			}
 		}
 	}
 	
