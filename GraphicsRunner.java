@@ -15,6 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -107,6 +108,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void paintComponent(Graphics g)
 	{
 		
@@ -300,9 +302,40 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			{
 				if(game.citiesDone())
 				{
-					game.endPhase();
-					game.numFin = 0;
-				
+					int a = 0;
+					for(Player x: game.getPlayers())
+					{
+						if(x.getCities().size()>a)
+							a = x.getCities().size();
+					}
+					for(PowerPlant x: game.getMarket())
+					{
+						if(a>=x.getID())
+						{
+							game.getMarket().remove(game.getMarket().indexOf(x));
+							if(game.getDeck().get(0).getName().equals("Step 3")&& game.getStep() == 2)
+								game.step3 = true;
+							game.getMarket().add(game.getDeck().remove(0));
+							Collections.sort(game.getMarket());
+						}
+					}
+					
+					int s = 0;
+					for(Player x: game.getPlayers())
+					{
+						if(x.getCities().size()>=17)
+							s++;
+					}
+					if(s>0)
+						game.endGame();
+					else
+					{
+						if(game.step3)
+							game.endStep();
+						else
+							game.endPhase();
+						game.numFin = 0;
+					}
 					repaint();
 				}
 				//System.out.println("round "+game.getRound());
@@ -436,7 +469,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//game.endRound();
 				
 			}
-			
+			if(game.step3)
+			{
+				g.setColor(Color.black);
+				g.setFont(new Font("Arial", Font.BOLD, 50));
+				g.drawString("Drew Step 3 Card", 750, 850);
+				game.step3 = false;
+			}
 			
 		}
 		
@@ -1395,18 +1434,41 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		{
 			if(i==4)
 			{
-				//System.out.println(p.getID());
-				try {
-					g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 350*c+300, 280, 200, 200, null);
-				} catch (IOException e) {}
+				if(p.getName().equals("Step 3"))
+				{
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource("step 3.jpg")), 350*c+300, 280, 200, 200, null);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else
+				{
+					
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 350*c+300, 280, 200, 200, null);
+					} catch (IOException e) {}
+				}
 				c++;
 			}
 			else
 			{
-				//System.out.println(p.getID());
-				try {
-					g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 350*i+300, 50, 200, 200, null);
-				} catch (IOException e) {}
+				if(p.getName().equals("Step 3"))
+				{
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource("step 3.jpg")), 350*c+300, 280, 200, 200, null);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else
+				{
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 350*i+300, 50, 200, 200, null);
+					} catch (IOException e) {}
+				}
 			
 				i++;
 			}

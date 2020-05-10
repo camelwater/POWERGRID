@@ -242,7 +242,10 @@ public class Board
 			}
 		}
 	}
-	
+	public ArrayList<PowerPlant> getDeck()
+	{
+		return deck;
+	}
 	public ArrayList<City> getCities()
 	{
 		return cities;
@@ -282,6 +285,10 @@ public class Board
 		
 		for (int x = 0; x < 8; x++)
 			market.add(deck.remove(0));
+		
+//		for (int x = 0; x < 7; x++)
+//			market.add(deck.remove(0));
+//		market.add(new PowerPlant("Step 3", Integer.MAX_VALUE));
 		
 		PowerPlant z = null;
 		for(int i = 0; i<deck.size();i++)
@@ -819,12 +826,35 @@ public class Board
 	
 	public void updateMarket ()
 	{
-		//System.out.println(market.toString());
-		deck.add(market.remove(7));
 		
-		market.add(deck.remove(0));
+		if(step == 3)
+		{
+			if(step3)
+			{
+				Collections.shuffle(deck);
+				market.remove(0);
+				market.remove(7);
+			}
+			else
+			{
+				if(market.size()>0)
+					market.remove(0);
+				if(deck.size()>0)
+					market.add(deck.remove(0));
+			}
+		}
+		else
+		{
+			deck.add(market.remove(7));
+			if(deck.get(0).getName().equals("Step 3"))
+			{
+				endStep();
+				step3 = true;
+			}
+			market.add(deck.remove(0));
+		}
 		
-		//Collections.sort(market, Collections.reverseOrder());
+	
 		Collections.sort(market);
 	}
 	
@@ -948,7 +978,10 @@ public class Board
 			for(PowerPlant g: p.getPowerPlants())
 				g.getStorage().clear();
 	}
-	
+	public void gameDone()
+	{
+		isOver = true;
+	}
 	public Player getCurrentPlayer()
 	{
 		return currentPlayer;
