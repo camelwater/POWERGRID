@@ -568,6 +568,7 @@ public class Board
 			if(deck.get(0).getName().equals("Step 3")&& step == 2)
 				step3 = true;
 			market.add(deck.remove(0));
+			Collections.sort(market);
 			currentPlayer.finished();
 			numFin++;
 		}
@@ -605,6 +606,7 @@ public class Board
 			if(deck.get(0).getName().equals("Step 3")&& step == 2)
 				step3 = true;
 			market.add(deck.remove(0));
+			Collections.sort(market);
 			currentPlayer.isFinished();
 			auctionDone = true;
 			numFin++;
@@ -841,6 +843,7 @@ public class Board
 					market.remove(0);
 				if(deck.size()>0)
 					market.add(deck.remove(0));
+				
 			}
 		}
 		else
