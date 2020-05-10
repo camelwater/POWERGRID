@@ -38,10 +38,11 @@ public class Board
 	public int passC = 0;
 	public int numFin = 0;
 	
-	private boolean auctionDone = false;
+	public boolean auctionDone = false;
 	private boolean resourceDone = false;
 	private boolean citiesDone = false;
 	private boolean isOver = false;
+	
 	
 	private Player currentPlayer;
 	
@@ -565,12 +566,19 @@ public class Board
 			nextTurn();
 			currentPlayer.buyPowerPlant(market.get(i), cost);
 			market.remove(i);
+			
 			if(deck.get(0).getName().equals("Step 3")&& step == 2)
 				step3 = true;
 			market.add(deck.remove(0));
 			Collections.sort(market);
+			if(currentPlayer.getPowerPlants().size()==4)
+			{
+				System.out.println("MAX PP");
+				return;
+			}
 			currentPlayer.finished();
 			numFin++;
+			
 		}
 			
 		
@@ -593,7 +601,7 @@ public class Board
 		
 		boolean h = currentPlayer.bid(cost);
 		
-		if(!h || currentPlayer.getPowerPlants().size()==3)
+		if(!h || currentPlayer.getPowerPlants().size()==4)
 		{
 			System.out.println("CAN'T BID");
 			cost = 0;
@@ -603,11 +611,18 @@ public class Board
 		{
 			currentPlayer.buyPowerPlant(market.get(i), cost);
 			market.remove(i);
+			
 			if(deck.get(0).getName().equals("Step 3")&& step == 2)
 				step3 = true;
 			market.add(deck.remove(0));
 			Collections.sort(market);
-			currentPlayer.isFinished();
+			if(currentPlayer.getPowerPlants().size()==4)
+			{
+				System.out.println("MAX PP");
+				return true;
+			}
+			
+			currentPlayer.finished();
 			auctionDone = true;
 			numFin++;
 //			if(step ==0)

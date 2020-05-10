@@ -20,7 +20,7 @@ public class Rules extends JPanel
 		 frame.add(this);
 		 frame.setSize(1920,1080);
 		 frame.setResizable(true);
-		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		 frame.setVisible(true);
 	}
 	public void paintComponent(Graphics g)

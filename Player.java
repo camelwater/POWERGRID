@@ -135,7 +135,12 @@ public class Player implements Comparable
 	{
 		finished = true;
 	}
-	
+	public boolean maxPP()
+	{
+		if(PowerPlants.size()==4)
+			return true;
+		return false;
+	}
 	public int balance ()
 	{
 		return cash;
@@ -211,7 +216,7 @@ public class Player implements Comparable
 	
 	public void buyPowerPlant (PowerPlant x, int cost)
 	{
-		if (PowerPlants.size() != 3)
+		if (PowerPlants.size() <4)
 		{
 			PowerPlants.add(x);
 			pay(cost);
