@@ -5,9 +5,10 @@ import java.util.HashMap;
 public class Map 
 {
 	private HashMap <City, HashMap <City, Integer>> connections;
+	private HashMap <City, HashMap <City, Integer>> routes;
 	private ArrayList <City> cities;
 	
-	static final int V = 42; 
+	static final int VERTS = 42; 
 	
 	public Map (HashMap <City, HashMap <City, Integer>> conns, ArrayList <City> cits)
 	{
@@ -25,11 +26,11 @@ public class Map
 		return connections.get(x);
 	}
 	
-	public int minDistance(HashMap <City,Integer> dist, Boolean sptSet[]) 
+	public int distance(HashMap <City,Integer> dist, Boolean sptSet[]) 
 	{ 
 	      int min = Integer.MAX_VALUE, min_index = -1; 
 	  
-	        for (int v = 0; v < V; v++) 
+	        for (int v = 0; v < VERTS; v++) 
 	            if (sptSet[v] == false && dist.get(cities.get(v)) <= min) { 
 	                min = dist.get(cities.get(v)); 
 	                min_index = v; 
@@ -39,33 +40,53 @@ public class Map
 	 
 	} 
 	
-	public Integer getCost(City start,City end,HashMap <City, HashMap <City, Integer>> routes) 
+	public void setUpRoutes()
+	{
+	    for(int a=0;a<cities.size();a++)
+	    {
+		HashMap <City, Integer> temp=new HashMap<City, Integer>();
+		for(int b=0;b<cities.size();b++)
+		{
+		    if(connections.get(cities.get(a)).get(cities.get(b))!=0)
+		    {
+			temp.put(cities.get(b),connections.get(cities.get(a)).get(cities.get(b)));
+		    }
+		    else
+			temp.put(cities.get(b), 0);
+		}
+		routes.put(cities.get(a), temp);
+	    }
+	}
+	
+	public Integer getCost(City start,City end) 
 	{ 
 	    	HashMap <City,Integer> dist = new HashMap <City,Integer>(42);
+	    	
+	    	setUpRoutes();
 	  
-	        Boolean sptSet[] = new Boolean[V]; 
+	        Boolean isMin[] = new Boolean[VERTS]; 
 	  
-	        for (int i = 0; i < V; i++) { 
+	        for (int i = 0; i < VERTS; i++) { 
 	            dist.put(cities.get(i), Integer.MAX_VALUE); 
-	            sptSet[i] = false; 
+	            isMin[i] = false; 
 	        } 
 	  
 	        dist.replace(start, 0); 
 	  
-	        for (int count = 0; count < V - 1; count++) { 
-	            int u = minDistance(dist, sptSet); 
+	        for (int count = 0; count < VERTS - 1; count++)
+	        { 
+	            int u = distance(dist, isMin); 
 	  
-	            sptSet[u] = true; 
+	            isMin[u] = true; 
 	            
 	  
-	            for (int v = 0; v < V; v++) 
+	            for (int v = 0; v < VERTS; v++) 
 	            {
-	        	Integer conn=connections.get(cities.get(u)).get(cities.get(v));
+	        	Integer conn=routes.get(cities.get(u)).get(cities.get(v));
 		        Integer distU=dist.get(cities.get(u));
 	        	Integer distV=dist.get(cities.get(v));
 	        	
-	                if (!sptSet[v] && conn != 0 && distU != Integer.MAX_VALUE && distU + conn < distV) 
-	                    //dist[v] = dist[u] + graph[u][v]; 
+	                if (!isMin[v] && conn != 0 && distU != Integer.MAX_VALUE && distU + conn < distV) 
 	                    dist.replace(cities.get(v), distU+conn);
 	            }
 	        } 
