@@ -106,7 +106,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		g.fillOval(1180, 590, 50, 50);
 		g.fillOval(1255, 420, 50, 50);
 		
-		BufferedImage check = null;
+		BufferedImage check = null; 
 		try {
 			check = ImageIO.read(getClass().getResource("check.png"));
 		} catch (IOException e) {}
