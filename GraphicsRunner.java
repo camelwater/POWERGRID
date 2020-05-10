@@ -162,7 +162,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			//POWERPLANT AUCTIONING
 			if(game.getPhase() == 2)
 			{
-			
+				if(game.getCurrentPlayer().maxPP())
+				{
+					index = -1;
+				}
 				if(game.auctionDone())
 				{
 					first = true;
@@ -1698,26 +1701,39 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(e.getX()>= 208 && e.getX()<=458 && e.getY()>= 725 && e.getY()<=975)
 				{
 					game.getCurrentPlayer().getPowerPlants().remove(0);
+					game.getCurrentPlayer().finished();
+					game.numFin++;
+					if(game.numFin == 4)
+						game.auctionDone = true;
+					game.nextTurn();
+					repaint();
+					maxPP = false;
 					
 				}
 				else if(e.getX()>= 508 && e.getX()<= 758 && e.getY()>= 725 && e.getY()<=975)
 				{
 					game.getCurrentPlayer().getPowerPlants().remove(1);
+					game.getCurrentPlayer().finished();
+					game.numFin++;
+					if(game.numFin == 4)
+						game.auctionDone = true;
+					game.nextTurn();
+					repaint();
+					maxPP = false;
 				}
 				else if(e.getX()>= 808 && e.getX()<=1058 && e.getY()>= 725 && e.getY()<=975)
 				{
 					game.getCurrentPlayer().getPowerPlants().remove(2);
+					game.getCurrentPlayer().finished();
+					game.numFin++;
+					if(game.numFin == 4)
+						game.auctionDone = true;
+					game.nextTurn();
+					repaint();
+					maxPP = false;
 				}
-				game.getCurrentPlayer().finished();
-				game.numFin++;
-				if(game.numFin == 4)
-					game.auctionDone = true;
-				game.nextTurn();
-				repaint();
-				maxPP = false;
 			}
-			
-			if(first)//choosing which pp to bid on
+			else if(first)//choosing which pp to bid on
 			{
 				if(e.getX() >= 300 && e.getX() <= 500 && e.getY() >= 50 && e.getY() <= 250)
 				{
@@ -1782,7 +1798,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					System.out.println("PASS");
 					game.pass(index);
 					repaint();
-			}
+				}
 			}
 		}
 		
