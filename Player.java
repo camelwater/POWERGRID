@@ -244,6 +244,6 @@ public class Player implements Comparable
 
 	public String toString ()
 	{
-		return "Player" + name;
+		return "Player " + name;
 	}
 }
