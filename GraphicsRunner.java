@@ -308,11 +308,11 @@ public class GraphicsRunner extends JPanel implements MouseListener
 						if(x.getCities().size()>a)
 							a = x.getCities().size();
 					}
-					for(PowerPlant x: game.getMarket())
+					for(int i = game.getMarket().size()-1;i>-1;i--)
 					{
-						if(a>=x.getID())
+						if(a>=game.getMarket().get(i).getID())
 						{
-							game.getMarket().remove(game.getMarket().indexOf(x));
+							game.getMarket().remove(i);
 							if(game.getDeck().get(0).getName().equals("Step 3")&& game.getStep() == 2)
 								game.step3 = true;
 							game.getMarket().add(game.getDeck().remove(0));
