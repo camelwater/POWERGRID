@@ -67,10 +67,12 @@ public class Player implements Comparable
 		tCash=x;
 		cash+=x;
 	}
+	
 	public int getTCash()
 	{
 		return tCash;
 	}
+	
 	public BufferedImage getPic()
 	{
 		if(name.equals("1"))
@@ -103,6 +105,7 @@ public class Player implements Comparable
 			}
 		return null;
 	}
+	
 	public String getHouse()
 	{
 		return house;
@@ -214,11 +217,11 @@ public class Player implements Comparable
 			pay(cost);
 		}
 	}
+	
 	public HashMap <Type, Stack <Resource>> getTempRes()
 	{
 		return tempRes;
 	}
-	
 	
 	public int compareTo (Object obj)
 	{       
@@ -239,4 +242,8 @@ public class Player implements Comparable
 		return x - y;
 	}
 
+	public String toString ()
+	{
+		return name;
+	}
 }
