@@ -357,26 +357,69 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				{
 					g.drawImage(bg, 0, 0, 1920, 1060, null); //map
 					
-					g.setColor(Color.orange);
+					//g.setColor(Color.orange);
 				
-					g.fillRect(25, 930, 1330, 110);
-				
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource("bottom_banner.png")),25, 930, 1330, 110, null);
+					} catch (IOException e1) {}
+					
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource("top_banner.png")),33, 20, 500, 115, null);
+					} catch (IOException e2) {}
+					
+					try {
+						g.drawImage(ImageIO.read(getClass().getResource("top_banner.png")),1210, 20, 680, 115, null);
+					} catch (IOException e1) {}
+					
+					g.drawImage(game.getPlayers().get(0).getPic(), 1250, 50, 20, 20, null);
+					g.drawString(game.getPlayers().get(0).getCities().size()+"", 1275, 60);
+					
+					g.drawImage(game.getPlayers().get(1).getPic(), 1350, 50, 20, 20, null);
+					g.drawString(game.getPlayers().get(1).getCities().size()+"", 1375, 60);
+					
+					g.drawImage(game.getPlayers().get(2).getPic(), 1450, 50, 20, 20, null);
+					g.drawString(game.getPlayers().get(2).getCities().size()+"", 1475, 60);
+					
+					g.drawImage(game.getPlayers().get(3).getPic(), 1550, 50, 20, 20, null);
+					g.drawString(game.getPlayers().get(3).getCities().size()+"", 1575, 60);
+					
+					//resources in bottom left corner
+					
+					g.setFont(new Font("Arial", Font.PLAIN, 20));
+					
+					g.drawString("$"+game.calculateCost(Type.Coal), 80, 1015); 
+					g.drawString("$"+game.calculateCost(Type.Oil), 460, 1022);
+					g.drawString("$"+game.calculateCost(Type.Trash), 842, 1022);
+					g.drawString("$"+game.calculateCost(Type.Uranium), 1220, 1022);
+
+					g.drawImage(coal, 69, 963, 40, 40, null);
+					g.drawImage(oil, 451, 965, 40, 40, null);
+					g.drawImage(trash, 833, 965, 40, 40, null);
+					g.drawImage(uranium, 1215, 965, 40, 40, null);
+	
+					g.drawString("x"+game.getResources().get("COAL").size(), 120, 990);
+					g.drawString("x"+game.getResources().get("OIL").size(), 500, 990);
+					g.drawString("x"+game.getResources().get("TRASH").size(), 885, 990);
+					g.drawString("x"+game.getResources().get("URANIUM").size(), 1265, 990);
+					
+					
+					
 					g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
 					g.setColor(Color.black);
 				
 					g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);//player name
 					
 					if(game.getPlayers().get(page).getHouse().equals("red"))
-						g.drawImage(red, 1705, 915, 17, 17, null);
+						g.drawImage(red, 1715, 915, 17, 17, null);
 					if(game.getPlayers().get(page).getHouse().equals("blue"))
-						g.drawImage(blue, 1705, 915, 17, 17, null);
+						g.drawImage(blue, 1715, 915, 17, 17, null);
 					if(game.getPlayers().get(page).getHouse().equals("green"))
-						g.drawImage(green, 1705, 915, 17, 17, null);
+						g.drawImage(green, 1715, 915, 17, 17, null);
 					if(game.getPlayers().get(page).getHouse().equals("yellow"))
-							g.drawImage(yellow, 1705, 915, 17, 17, null);
+							g.drawImage(yellow, 1715, 915, 17, 17, null);
 					
-					g.drawString("Step: "+game.getStep(), 900, 50);	//step
-					g.drawString("Phase: "+game.getPhase(), 875, 100); //phase
+					g.drawString("Step: "+game.getStep(), 900, 60);	//step
+					g.drawString("Phase: "+game.getPhase(), 875, 110); //phase
 					g.setFont(new Font("Times New Roman", Font.ITALIC, 25));
 					if(game.getPlayers().get(page).getName().equals(game.getCurrentPlayer().getName()))
 					{
@@ -391,23 +434,23 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					paintCities(g);
 					
 					//cash
-					g.setFont(new Font("Times New Roman", Font.ITALIC, 50));
+					g.setFont(new Font("Times New Roman", Font.ITALIC| Font.BOLD, 30));
 					g.setColor(Color.black);
 					
-					g.drawImage(cash, 50, 620, 50, 50, null);
+					g.drawImage(cash, 50, 630, 45, 45, null);
 					g.drawString(""+game.getPlayers().get(page).balance(), 110, 665); 	
 				
 					//other resources
-					g.drawImage(coal, 50, 660, 50, 50, null);
+					g.drawImage(coal, 50, 670, 45, 45, null);
 					g.drawString(""+game.getPlayers().get(page).getCoal(), 110, 710); 
 				
-					g.drawImage(oil, 50, 720, 50, 50, null);
+					g.drawImage(oil, 50, 730, 40, 40, null);
 					g.drawString(""+game.getPlayers().get(page).getOil(), 110, 760);
 				
-					g.drawImage(trash, 50, 780, 50, 50, null);
+					g.drawImage(trash, 50, 790, 40, 40, null);
 					g.drawString(""+game.getPlayers().get(page).getTrash(), 110, 825);
 				
-					g.drawImage(uranium, 50, 850, 50, 50, null);
+					g.drawImage(uranium, 50, 860, 40, 40, null);
 					g.drawString(""+game.getPlayers().get(page).getUranium(), 110, 890);
 					
 					paintCities(g);
@@ -1303,8 +1346,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.setFont(new Font("Roboto", Font.BOLD, 50));
 		g.setColor(Color.black);
 		g.drawString("X", 960, 935);
-		g.drawString("Player " + game.getPlayers().get(page).getName(), 850, 125);
-		
+		g.drawString("Player " + game.getPlayers().get(page).getName(), 865, 125);
+		g.drawImage(game.getPlayers().get(page).getPic(), 935, 150, 50, 50, null);
 		
 		for(int i = 0; i<game.getPlayers().get(page).getResources().get(Type.Oil).size();i++)
 		{
@@ -1600,7 +1643,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			g.setColor(Color.orange);
+			g.setColor(Color.black);
 			g.setFont(new Font("Arial",  Font.ITALIC, 25));
 			
 			g.drawString("P"+game.getPlayers().get(0).getName(), 50, 40);
@@ -1622,13 +1665,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			g.drawString("^", game.getTurn()*50+50, 100);
 			g.setFont(new Font("Arial",  Font.ITALIC, 15));
 			if(game.getPlayers().get(0).isFinished())
-				g.drawString("done", 60, 100);
+				g.drawString("done", 50, 90);
 			if(game.getPlayers().get(1).isFinished())
-				g.drawString("done", 110, 100);
+				g.drawString("done", 100, 90);
 			if(game.getPlayers().get(2).isFinished())
-				g.drawString("done", 160, 100);
+				g.drawString("done", 150, 90);
 			if(game.getPlayers().get(3).isFinished())
-				g.drawString("done", 210, 100);
+				g.drawString("done", 200, 90);
 		
 			
 		}

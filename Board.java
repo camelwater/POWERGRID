@@ -457,7 +457,9 @@ public class Board
 		
 		int price = 0;
 		price+= c.getCost();
-		//price+=c.roadCost();
+		
+		if(currentPlayer.getCities().size()!=0)
+			price+=graph.getCost(currentPlayer, c);
 		
 		boolean h = currentPlayer.buyCity(c, price);
 		

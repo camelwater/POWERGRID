@@ -156,7 +156,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		{
 			g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 75));
 			g.setColor(Color.red);
-			g.drawString("REGIONS MUST BE CONTIGUOUS", 380, 900);
+			g.drawString("REGIONS MUST BE CONTIGUOUS", 350, 900);
 		}
 		else
 		{

@@ -85,7 +85,7 @@ public class Map
 	    ArrayList<Integer> paths=new ArrayList<Integer>();
 	    for(City c:p.getCities())
 	    {
-		paths.add(getCost(c,end));
+	    	paths.add(getCost(c,end));
 	    }
 	    Collections.sort(paths);
 	    return paths.get(0);
@@ -118,7 +118,7 @@ public class Map
 	        	Integer conn=routes.get(cities.get(u)).get(cities.get(v));
 	        	if(conn==-1)
 	        	{
-	        	    System.out.println("here");
+	        	    //System.out.println("here");
 	        	    isFree=true;
 	        	}
 		        Integer distU=dist.get(cities.get(u));
