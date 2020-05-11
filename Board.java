@@ -31,7 +31,7 @@ public class Board
 	public int round;
 	
 	public boolean step3 = false;
-	
+	public boolean step3g = false;
 	
 	public int cost = 0;
 	public int passC = 0;
@@ -847,14 +847,18 @@ public class Board
 		
 		if(step == 3)
 		{
+			//System.out.println("STEP3 = "+step3);
 			if(step3)
 			{
+				System.out.println("MADE IT HERE");
 				Collections.shuffle(deck);
-				market.remove(0);
 				market.remove(7);
+				market.remove(0);
+				step3 = false;
 			}
 			else
 			{
+				System.out.println("AND I MADE IT HERE");
 				if(market.size()>0)
 					market.remove(0);
 				if(deck.size()>0)
@@ -867,10 +871,13 @@ public class Board
 			deck.add(market.remove(7));
 			if(deck.get(0).getName().equals("Step 3"))
 			{
-				endStep();
+				market.add(deck.remove(0));
 				step3 = true;
+				step3g = true;
+				endStep();
 			}
-			market.add(deck.remove(0));
+			else
+				market.add(deck.remove(0));
 		}
 		
 	
@@ -1014,19 +1021,21 @@ public class Board
 	public void endStep ()
 	{
 		step++;
-		round = 1;
-		phase = 0;
-		endPhase();
-		
-		if (step == 2)
+		if(phase == 0)
 		{
-			updateMarket();
-			refillResources();
-			distributeCash();
+			round = 1;
+			phase = 0;
+			endPhase();
+		}
+		
+		updateMarket();
+			
+		refillResources();
+			//distributeCash();
 			
 //			for (City x : cities)
 //				x.incrementCost(); 
-		}
+		
 	}
 	
 	public int getStep()

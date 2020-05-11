@@ -75,6 +75,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	boolean buying = false;
 	String cityBuy = "";
 	
+	boolean stepp3 = true;
+	
 	public GraphicsRunner(Board g, ArrayList<String> r) throws IOException
 	{
 		game = g;
@@ -172,10 +174,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					index = -1;
 					game.cost = 0;
 					numFin = 0;
-					if(game.step3)
+					if(game.step3 && game.getStep()==2)
 						game.endStep();
-					else
-						game.endPhase();
+					
+					game.endPhase();
 					game.calculatePlayerOrder();
 					repaint();
 				}
@@ -214,12 +216,16 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				System.out.println("index " +index);
 				if(index == 0)
 					g.drawImage(check, 300, 50, 50, 50, null);
-				if(index == 1)
+				else if(index == 1)
 					g.drawImage(check, 650, 50, 50, 50, null);
-				if(index == 2)
+				else if(index == 2)
 					g.drawImage(check, 1000, 50, 50, 50, null);
-				if(index == 3)
+				else if(index == 3)
 					g.drawImage(check, 1350, 50, 50, 50, null);
+				else if(index == 4)
+					g.drawImage(check, 300, 280, 50, 50, null);
+				else if(index == 5)
+					g.drawImage(check, 650, 280, 50, 50, null);
 				
 				
 				paintOrder(g); //player order thing
@@ -341,8 +347,8 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					{
 						if(game.step3)
 							game.endStep();
-						else
-							game.endPhase();
+						
+						game.endPhase();
 						game.numFin = 0;
 					}
 					repaint();
@@ -521,12 +527,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//game.endRound();
 				
 			}
-			if(game.step3)
+			if(game.step3g &&stepp3)
 			{
+				//System.out.println("STEP3 is "+game.step3);
 				g.setColor(Color.black);
 				g.setFont(new Font("Arial", Font.BOLD, 50));
-				g.drawString("Drew Step 3 Card", 750, 850);
-				game.step3 = false;
+				g.drawString("Drew Step 3 Card", 750, 700);
+				stepp3 = false;
 			}
 			
 		}
@@ -1806,6 +1813,19 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					repaint();
 					//System.out.println("3 chosen");
 				}
+				else if(game.getStep() == 3 && e.getX() >= 300 && e.getX() <= 500 && e.getY() >= 280 && e.getY() <= 480)
+				{
+					index = 4;
+					ppChosen = true;
+					repaint();
+				}
+				else if(game.getStep() == 3 && e.getX() >= 650 && e.getX() <= 850 && e.getY() >= 280 && e.getY() <= 480)
+				{
+					index = 5;
+					ppChosen = true;
+					repaint();
+				}
+				
 				//first bid or pass
 				if(ppChosen && index!=-1 && e.getX() >= 600 && e.getX() <= 675 && e.getY() >= 500 && e.getY() <= 550)
 				{
