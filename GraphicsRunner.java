@@ -352,6 +352,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(s>0)
 					{
 						game.endGame();
+						repaint();
 					}
 					else
 					{
