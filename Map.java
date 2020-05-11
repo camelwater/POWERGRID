@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Map 
 {
 	private HashMap <City, HashMap <City, Integer>> connections;
-	private HashMap <City, HashMap <City, Integer>> routes;
+	private HashMap <City, HashMap <City, Integer>> routes=new HashMap <City, HashMap <City, Integer>>();
 	private ArrayList <City> cities;
 	
 	static final int VERTS = 42; 
@@ -47,15 +47,29 @@ public class Map
 		HashMap <City, Integer> temp=new HashMap<City, Integer>();
 		for(int b=0;b<cities.size();b++)
 		{
-		    if(connections.get(cities.get(a)).get(cities.get(b))!=0)
+		    if(has(connections.get(cities.get(a)),cities.get(b))!=null)
+		    {
+			temp.put(cities.get(b),connections.get(cities.get(a)).get(has(connections.get(cities.get(a)),cities.get(b))));
+		    }
+		    /*if(connections.get(cities.get(a)).get(cities.get(b))!= null)
 		    {
 			temp.put(cities.get(b),connections.get(cities.get(a)).get(cities.get(b)));
-		    }
+		    }*/
 		    else
 			temp.put(cities.get(b), 0);
 		}
 		routes.put(cities.get(a), temp);
 	    }
+	}
+	
+	private City has(HashMap <City, Integer> temp,City cit)
+	{
+	    for(City c:temp.keySet())
+	    {
+		if(c.getName().equals(cit.getName()))
+		    return c;
+	    }
+	    return null;
 	}
 	
 	public Integer getCost(City start,City end) 
@@ -75,11 +89,10 @@ public class Map
 	  
 	        for (int count = 0; count < VERTS - 1; count++)
 	        { 
-	            int u = distance(dist, isMin); 
+	            int u = distance(dist, isMin);
 	  
 	            isMin[u] = true; 
 	            
-	  
 	            for (int v = 0; v < VERTS; v++) 
 	            {
 	        	Integer conn=routes.get(cities.get(u)).get(cities.get(v));
@@ -87,7 +100,9 @@ public class Map
 	        	Integer distV=dist.get(cities.get(v));
 	        	
 	                if (!isMin[v] && conn != 0 && distU != Integer.MAX_VALUE && distU + conn < distV) 
+	                {
 	                    dist.replace(cities.get(v), distU+conn);
+	                }
 	            }
 	        } 
 	        return dist.get(end);
