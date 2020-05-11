@@ -49,7 +49,13 @@ public class Map
 		{
 		    if(has(connections.get(cities.get(a)),cities.get(b))!=null)
 		    {
-			temp.put(cities.get(b),connections.get(cities.get(a)).get(has(connections.get(cities.get(a)),cities.get(b))));
+			int num=connections.get(cities.get(a)).get(has(connections.get(cities.get(a)),cities.get(b)));
+			if(num==0)
+			{
+			    temp.put(cities.get(b),-1);
+			}
+			else
+			    temp.put(cities.get(b),num);
 		    }
 		    /*if(connections.get(cities.get(a)).get(cities.get(b))!= null)
 		    {
@@ -95,13 +101,22 @@ public class Map
 	            
 	            for (int v = 0; v < VERTS; v++) 
 	            {
+	        	boolean isFree=false;
 	        	Integer conn=routes.get(cities.get(u)).get(cities.get(v));
+	        	if(conn==-1)
+	        	{
+	        	    System.out.println("here");
+	        	    isFree=true;
+	        	}
 		        Integer distU=dist.get(cities.get(u));
 	        	Integer distV=dist.get(cities.get(v));
 	        	
 	                if (!isMin[v] && conn != 0 && distU != Integer.MAX_VALUE && distU + conn < distV) 
 	                {
-	                    dist.replace(cities.get(v), distU+conn);
+	                    if(isFree)
+	                	dist.replace(cities.get(v), distU+conn+1);
+	                    else
+	                	dist.replace(cities.get(v), distU+conn);
 	                }
 	            }
 	        } 
