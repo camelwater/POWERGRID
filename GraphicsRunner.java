@@ -174,6 +174,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					index = -1;
 					game.cost = 0;
 					numFin = 0;
+					if(game.allPass == 4)
+					{
+						game.getMarket().remove(0);
+						if(game.getDeck().get(0).getName().equals("Step 3"))
+							game.step3 = true;
+						game.getMarket().add(game.getDeck().remove(0));
+					}
+					
 					if(game.step3 && game.getStep()==2)
 						game.endStep();
 					

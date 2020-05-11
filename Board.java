@@ -36,6 +36,7 @@ public class Board
 	public int cost = 0;
 	public int passC = 0;
 	public int numFin = 0;
+	public int allPass = 0;
 	
 	public boolean auctionDone = false;
 	private boolean resourceDone = false;
@@ -546,6 +547,7 @@ public class Board
 			currentPlayer.finished();
 			numFin++;
 			nextTurn();
+			allPass++;
 			if(numFin ==4)
 				auctionDone = true;
 			return;
@@ -596,7 +598,8 @@ public class Board
 			cost = market.get(i).getID();
 		else
 			cost++;
-		System.out.println("cost :"+cost);
+		allPass = 0;
+		//System.out.println("cost :"+cost);
 		passC = 0;
 		currentPlayer = players.get(turn);
 		
