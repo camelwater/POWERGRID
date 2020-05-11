@@ -1910,12 +1910,24 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					{
 						if(pO>0)
 						{
-							if(game.getResources().get("COAL").size() !=0 && game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC+pO))
+							if(game.getCurrentPlayer().getOil()>=pO)
 							{
-								coalC++;
-								rCost+=game.calculateCost(Type.Coal);
-								game.buyRes(Type.Coal, 1);
-								repaint();
+								if(game.getResources().get("COAL").size() !=0 && game.getCurrentPlayer().getCoal()<(pC+(pH-(game.getCurrentPlayer().getOil()-pO))))
+								{
+									coalC++;
+									rCost+=game.calculateCost(Type.Coal);
+									game.buyRes(Type.Coal, 1);
+									repaint();
+								}
+							}
+							else 
+							{
+								if(game.getResources().get("COAL").size() !=0 && game.getCurrentPlayer().getCoal()<(pH+pC))
+								{
+									coalC++;
+									rCost+=game.calculateCost(Type.Coal);
+									game.buyRes(Type.Coal, 1);
+								}
 							}
 						}
 						else if(game.getResources().get("COAL").size() !=0 && game.getCurrentPlayer().getCoal()+game.getCurrentPlayer().getOil()<(pH+pC))
@@ -1938,6 +1950,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					}
 				}
 				else
+				{
 					if(game.getResources().get("COAL").size() !=0 && game.getCurrentPlayer().getCoal()<pC)
 					{
 						coalC++;
@@ -1945,6 +1958,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 						game.buyRes(Type.Coal, 1);
 						
 					}
+				}
 
 			}
 			
@@ -1967,12 +1981,24 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					{
 						if(pC>0)
 						{
-							if(game.getResources().get("OIL").size() !=0 && game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<(pH+pO+pC))
+							if(game.getCurrentPlayer().getCoal()>=pC)
 							{
-								oilC++;
-								rCost+=game.calculateCost(Type.Oil);
-								game.buyRes(Type.Oil, 1);
-								repaint();
+								if(game.getResources().get("OIL").size() !=0 &&  game.getCurrentPlayer().getOil()<(pO+(pH-(game.getCurrentPlayer().getCoal()-pC))))
+								{
+									oilC++;
+									rCost+=game.calculateCost(Type.Oil);
+									game.buyRes(Type.Oil, 1);
+									repaint();
+								}
+							}
+							else
+							{
+								if(game.getResources().get("OIL").size() !=0 && game.getCurrentPlayer().getOil()<(pH+pO))
+								{
+									oilC++;
+									rCost+=game.calculateCost(Type.Oil);
+									game.buyRes(Type.Oil, 1);
+								}
 							}
 						}
 						else if(game.getResources().get("OIL").size() !=0 && game.getCurrentPlayer().getOil()+game.getCurrentPlayer().getCoal()<(pH+pO))
