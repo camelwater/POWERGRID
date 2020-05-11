@@ -350,7 +350,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 							s++;
 					}
 					if(s>0)
+					{
 						game.endGame();
+					}
 					else
 					{
 						if(game.step3)

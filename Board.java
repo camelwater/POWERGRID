@@ -1054,6 +1054,8 @@ public class Board
 	public void endGame ()
 	{		
 		isOver = true;
+		phase = 0;
+		step = 3;
 		
 		Player winner = null;
 		Player temp = null;
