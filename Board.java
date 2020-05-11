@@ -1100,10 +1100,11 @@ public class Board
 			}
 		}
 		
-		for (Player x : players)
+		
+		for(int i = players.size()-1;i>-1;i--)
 		{
-			if (x != winner)
-				players.remove(x);
+			if(players.get(i) != winner)
+				players.remove(i);
 		}
 	}
 	
