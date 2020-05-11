@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Map 
 {
@@ -76,6 +78,17 @@ public class Map
 		    return c;
 	    }
 	    return null;
+	}
+	
+	public Integer getCost(Player p, City end)
+	{
+	    ArrayList<Integer> paths=new ArrayList<Integer>();
+	    for(City c:p.getCities())
+	    {
+		paths.add(getCost(c,end));
+	    }
+	    Collections.sort(paths);
+	    return paths.get(0);
 	}
 	
 	public Integer getCost(City start,City end) 
