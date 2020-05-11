@@ -868,7 +868,7 @@ public class Board
 		}
 		else
 		{
-			deck.add(market.remove(0));
+			deck.add(market.remove(7));
 			if(deck.get(0).getName().equals("Step 3"))
 			{
 				market.add(deck.remove(0));
