@@ -542,12 +542,14 @@ public class Board
 	}
 	public void pass (int i)
 	{
+		System.out.println("ALLPASS = "+allPass);
 		if(step>0&&i==-1)
 		{
 			currentPlayer.finished();
 			numFin++;
-			nextTurn();
 			allPass++;
+			nextTurn();
+			
 			if(numFin ==4)
 				auctionDone = true;
 			return;
@@ -598,6 +600,7 @@ public class Board
 			cost = market.get(i).getID();
 		else
 			cost++;
+		
 		allPass = 0;
 		//System.out.println("cost :"+cost);
 		passC = 0;
@@ -608,7 +611,10 @@ public class Board
 		if(!h || currentPlayer.getPowerPlants().size()==4)
 		{
 			System.out.println("CAN'T BID");
-			cost = 0;
+			if(x.equals("first"))
+				cost = 0;
+			else
+				cost--;
 			return false;
 		}
 		if(numFin == 3)
@@ -871,6 +877,7 @@ public class Board
 		}
 		else
 		{
+			//System.out.println("REMOVE LAST CARD");
 			deck.add(market.remove(7));
 			if(deck.get(0).getName().equals("Step 3"))
 			{

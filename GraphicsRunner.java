@@ -180,8 +180,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 						if(game.getDeck().get(0).getName().equals("Step 3"))
 							game.step3 = true;
 						game.getMarket().add(game.getDeck().remove(0));
+						Collections.sort(game.getMarket());
 					}
-					
+					game.allPass = 0;
 					if(game.step3 && game.getStep()==2)
 						game.endStep();
 					
@@ -364,135 +365,137 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					}
 					repaint();
 				}
-				//System.out.println("round "+game.getRound());
 				
-				if(ppVisible) //look at and fill power plants
-					paintPP(g);
-				
-				else //city building
+				if(!game.isOver())
 				{
-					g.drawImage(bg, 0, 0, 1920, 1060, null); //map
+					if(ppVisible) //look at and fill power plants
+					{
+						paintPP(g);
+					}
+					else //city building
+					{
+						g.drawImage(bg, 0, 0, 1920, 1060, null); //map
 					
-					//g.setColor(Color.orange);
+						//g.setColor(Color.orange);
 				
-					try {
-						g.drawImage(ImageIO.read(getClass().getResource("bottom_banner.png")),25, 930, 1330, 110, null);
-					} catch (IOException e1) {}
+						try {
+							g.drawImage(ImageIO.read(getClass().getResource("bottom_banner.png")),25, 930, 1330, 110, null);
+						} catch (IOException e1) {}
 					
-					try {
-						g.drawImage(ImageIO.read(getClass().getResource("top_banner.png")),33, 20, 500, 115, null);
-					} catch (IOException e2) {}
+						try {
+							g.drawImage(ImageIO.read(getClass().getResource("top_banner.png")),33, 20, 500, 115, null);
+						} catch (IOException e2) {}
+						
+						try {
+							g.drawImage(ImageIO.read(getClass().getResource("top_banner.png")),1210, 20, 680, 115, null);
+						} catch (IOException e1) {}
 					
-					try {
-						g.drawImage(ImageIO.read(getClass().getResource("top_banner.png")),1210, 20, 680, 115, null);
-					} catch (IOException e1) {}
+						g.drawImage(game.getPlayers().get(0).getPic(), 1250, 50, 20, 20, null);
+						g.drawString(game.getPlayers().get(0).getCities().size()+"", 1275, 60);
 					
-					g.drawImage(game.getPlayers().get(0).getPic(), 1250, 50, 20, 20, null);
-					g.drawString(game.getPlayers().get(0).getCities().size()+"", 1275, 60);
+						g.drawImage(game.getPlayers().get(1).getPic(), 1350, 50, 20, 20, null);
+						g.drawString(game.getPlayers().get(1).getCities().size()+"", 1375, 60);
 					
-					g.drawImage(game.getPlayers().get(1).getPic(), 1350, 50, 20, 20, null);
-					g.drawString(game.getPlayers().get(1).getCities().size()+"", 1375, 60);
+						g.drawImage(game.getPlayers().get(2).getPic(), 1450, 50, 20, 20, null);
+						g.drawString(game.getPlayers().get(2).getCities().size()+"", 1475, 60);
 					
-					g.drawImage(game.getPlayers().get(2).getPic(), 1450, 50, 20, 20, null);
-					g.drawString(game.getPlayers().get(2).getCities().size()+"", 1475, 60);
+						g.drawImage(game.getPlayers().get(3).getPic(), 1550, 50, 20, 20, null);
+						g.drawString(game.getPlayers().get(3).getCities().size()+"", 1575, 60);
 					
-					g.drawImage(game.getPlayers().get(3).getPic(), 1550, 50, 20, 20, null);
-					g.drawString(game.getPlayers().get(3).getCities().size()+"", 1575, 60);
+						//resources in bottom left corner
 					
-					//resources in bottom left corner
+						g.setFont(new Font("Arial", Font.PLAIN, 20));
 					
-					g.setFont(new Font("Arial", Font.PLAIN, 20));
-					
-					g.drawString("$"+game.calculateCost(Type.Coal), 80, 1015); 
-					g.drawString("$"+game.calculateCost(Type.Oil), 460, 1022);
-					g.drawString("$"+game.calculateCost(Type.Trash), 842, 1022);
-					g.drawString("$"+game.calculateCost(Type.Uranium), 1220, 1022);
+						g.drawString("$"+game.calculateCost(Type.Coal), 80, 1015); 
+						g.drawString("$"+game.calculateCost(Type.Oil), 460, 1022);
+						g.drawString("$"+game.calculateCost(Type.Trash), 842, 1022);
+						g.drawString("$"+game.calculateCost(Type.Uranium), 1220, 1022);
 
-					g.drawImage(coal, 69, 963, 40, 40, null);
-					g.drawImage(oil, 451, 965, 40, 40, null);
-					g.drawImage(trash, 833, 965, 40, 40, null);
-					g.drawImage(uranium, 1215, 965, 40, 40, null);
+						g.drawImage(coal, 69, 963, 40, 40, null);
+						g.drawImage(oil, 451, 965, 40, 40, null);
+						g.drawImage(trash, 833, 965, 40, 40, null);
+						g.drawImage(uranium, 1215, 965, 40, 40, null);
 	
-					g.drawString("x"+game.getResources().get("COAL").size(), 120, 990);
-					g.drawString("x"+game.getResources().get("OIL").size(), 500, 990);
-					g.drawString("x"+game.getResources().get("TRASH").size(), 885, 990);
-					g.drawString("x"+game.getResources().get("URANIUM").size(), 1265, 990);
+						g.drawString("x"+game.getResources().get("COAL").size(), 120, 990);
+						g.drawString("x"+game.getResources().get("OIL").size(), 500, 990);
+						g.drawString("x"+game.getResources().get("TRASH").size(), 885, 990);
+						g.drawString("x"+game.getResources().get("URANIUM").size(), 1265, 990);
 					
 					
 					
-					g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
-					g.setColor(Color.black);
+						g.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 50));
+						g.setColor(Color.black);
 				
-					g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);//player name
+						g.drawString("Player "+game.getPlayers().get(page).getName(), 1625, 900);//player name
 					
-					if(game.getPlayers().get(page).getHouse().equals("red"))
-						g.drawImage(red, 1715, 915, 17, 17, null);
-					if(game.getPlayers().get(page).getHouse().equals("blue"))
-						g.drawImage(blue, 1715, 915, 17, 17, null);
-					if(game.getPlayers().get(page).getHouse().equals("green"))
-						g.drawImage(green, 1715, 915, 17, 17, null);
-					if(game.getPlayers().get(page).getHouse().equals("yellow"))
+						if(game.getPlayers().get(page).getHouse().equals("red"))
+							g.drawImage(red, 1715, 915, 17, 17, null);
+						if(game.getPlayers().get(page).getHouse().equals("blue"))
+							g.drawImage(blue, 1715, 915, 17, 17, null);
+						if(game.getPlayers().get(page).getHouse().equals("green"))
+							g.drawImage(green, 1715, 915, 17, 17, null);
+						if(game.getPlayers().get(page).getHouse().equals("yellow"))
 							g.drawImage(yellow, 1715, 915, 17, 17, null);
 					
-					g.drawString("Step: "+game.getStep(), 900, 60);	//step
-					g.drawString("Phase: "+game.getPhase(), 875, 110); //phase
-					g.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-					if(game.getPlayers().get(page).getName().equals(game.getCurrentPlayer().getName()))
-					{
-						g.drawString("current player",1635, 850);						
-						g.fillOval(910, 865, 100, 50);
-						g.setColor(Color.white);
-						g.setFont(new Font("Arial", Font.BOLD, 25));
-						g.drawString("Finish", 925, 900);
+						g.drawString("Step: "+game.getStep(), 900, 60);	//step
+						g.drawString("Phase: "+game.getPhase(), 875, 110); //phase
+						g.setFont(new Font("Times New Roman", Font.ITALIC, 25));
+						if(game.getPlayers().get(page).getName().equals(game.getCurrentPlayer().getName()))
+						{
+							g.drawString("current player",1635, 850);						
+							g.fillOval(910, 865, 100, 50);
+							g.setColor(Color.white);
+							g.setFont(new Font("Arial", Font.BOLD, 25));
+							g.drawString("Finish", 925, 900);
+						}
+						paintOrder(g);
+					
+						paintCities(g);
+					
+						//cash
+						g.setFont(new Font("Times New Roman", Font.ITALIC| Font.BOLD, 30));
+						g.setColor(Color.black);
+					
+						g.drawImage(cash, 50, 630, 45, 45, null);
+						g.drawString(""+game.getPlayers().get(page).balance(), 110, 665); 	
+				
+						//other resources
+						g.drawImage(coal, 50, 670, 45, 45, null);
+						g.drawString(""+game.getPlayers().get(page).getCoal(), 110, 710); 
+				
+						g.drawImage(oil, 50, 730, 40, 40, null);
+						g.drawString(""+game.getPlayers().get(page).getOil(), 110, 760);
+				
+						g.drawImage(trash, 50, 790, 40, 40, null);
+						g.drawString(""+game.getPlayers().get(page).getTrash(), 110, 825);
+				
+						g.drawImage(uranium, 50, 860, 40, 40, null);
+						g.drawString(""+game.getPlayers().get(page).getUranium(), 110, 890);
+					
+						paintCities(g);
+					
+						//arrows
+						try 
+						{
+							g.drawImage(ImageIO.read(getClass().getResource("arrow3.png")), 1625, 1040, 90, -91, null);
+						} catch (IOException e) {e.printStackTrace();}
+						
+						try {
+							g.drawImage(ImageIO.read(getClass().getResource("arrow3.png")), 1825, 949, -90, 91, null);
+						} catch (IOException e) {e.printStackTrace();}
+					
+						try
+						{
+							g.drawImage(ImageIO.read(getClass().getResource("factory.png")), 1600, 625, 200, 200, null);
+						} catch (IOException e) {}
+				
 					}
-					paintOrder(g);
-					
-					paintCities(g);
-					
-					//cash
-					g.setFont(new Font("Times New Roman", Font.ITALIC| Font.BOLD, 30));
-					g.setColor(Color.black);
-					
-					g.drawImage(cash, 50, 630, 45, 45, null);
-					g.drawString(""+game.getPlayers().get(page).balance(), 110, 665); 	
 				
-					//other resources
-					g.drawImage(coal, 50, 670, 45, 45, null);
-					g.drawString(""+game.getPlayers().get(page).getCoal(), 110, 710); 
-				
-					g.drawImage(oil, 50, 730, 40, 40, null);
-					g.drawString(""+game.getPlayers().get(page).getOil(), 110, 760);
-				
-					g.drawImage(trash, 50, 790, 40, 40, null);
-					g.drawString(""+game.getPlayers().get(page).getTrash(), 110, 825);
-				
-					g.drawImage(uranium, 50, 860, 40, 40, null);
-					g.drawString(""+game.getPlayers().get(page).getUranium(), 110, 890);
-					
-					paintCities(g);
-					
-					//arrows
-					try 
-					{
-						g.drawImage(ImageIO.read(getClass().getResource("arrow3.png")), 1625, 1040, 90, -91, null);
-					} catch (IOException e) {e.printStackTrace();}
-					
-					try {
-						g.drawImage(ImageIO.read(getClass().getResource("arrow3.png")), 1825, 949, -90, 91, null);
-					} catch (IOException e) {e.printStackTrace();}
-					
-					try
-					{
-						g.drawImage(ImageIO.read(getClass().getResource("factory.png")), 1600, 625, 200, 200, null);
-					} catch (IOException e) {}
+					if(buying && game.cityA(cityBuy))
+						paintBuy(g, 835, 465);
 				
 				}
-				
-				if(buying && game.cityA(cityBuy))
-					paintBuy(g, 835, 465);
-				
 			}
-			
 			
 			if(game.getPhase() == 5)
 			{
@@ -2091,7 +2094,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//System.out.println(free);
 				if(coalC+oilC+trashC+uranC == 0)
 				{
-					if(game.step == 0 && free)
+					if(game.step == 0 && (free|| (game.getCurrentPlayer().balance()<game.calculateCost(Type.Oil)||game.getCurrentPlayer().balance()<game.calculateCost(Type.Coal)||game.getCurrentPlayer().balance()<game.calculateCost(Type.Trash)||game.getCurrentPlayer().balance()<game.calculateCost(Type.Uranium))))
 					{
 						game.numFin++;
 						free = false;
