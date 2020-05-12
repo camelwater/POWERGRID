@@ -306,7 +306,7 @@ public class Board
 	
 	public void setupCities () throws IOException
 	{
-		InputStream in = Board.class.getResourceAsStream("cities.txt");
+		InputStream in = Board.class.getResourceAsStream("Cities.txt");
 		Scanner input = new Scanner (in);
 		
 		HashMap <City, HashMap <City, Integer>> map = new HashMap <City, HashMap <City, Integer>> ();
