@@ -562,6 +562,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			//for(City c: p.getCities())
 				if(c.getName().equals("Seattle"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 130, 195);
+					}
 					if(c.getNumOccupants() == 1)
 						g.drawImage(c.getOccupants().get(0).getPic(), 135, 152, 15, 15, null);
 					else if(c.getNumOccupants() ==2)
@@ -580,6 +586,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				
 				if(c.getName().equals("Portland"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 75, 290);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 84, 246, 15, 15, null);
 					else if(c.getNumOccupants() ==2)
@@ -597,6 +609,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("San Francisco"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 76, 552);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 85, 518, 15, 15, null);
 					else if(c.getNumOccupants() ==2)
@@ -614,6 +632,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				
 				if(c.getName().equals("Los Angeles"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 200, 675);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 206, 632, 15, 15, null);
 					
@@ -632,6 +656,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("San Diego"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 275, 720);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 281, 695, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -650,6 +680,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//
 				if(c.getName().equals("Boise"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 318, 345);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 325, 319, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -666,6 +702,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Las Vegas"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 343, 590);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 350, 564, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -682,6 +724,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Salt Lake City"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 464, 453);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 469, 428, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -698,6 +746,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Phoenix"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 460, 687);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 467, 662, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -715,6 +769,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				
 				if(c.getName().equals("Billings"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 600, 280);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 605, 255, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -731,6 +791,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Cheyenne"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 711, 413);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 717, 388, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -747,6 +813,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Denver"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 692, 477);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 697, 452, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -763,6 +835,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Santa Fe"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 655, 620);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 660, 595, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -780,6 +858,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//
 				if(c.getName().equals("Fargo"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 957, 247);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 962, 220, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -796,6 +880,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Duluth"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1108, 217);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1113, 193, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -812,6 +902,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Minneapolis"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1077, 295);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1082, 269, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -828,6 +924,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Omaha"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 982, 430);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 987, 402, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -845,6 +947,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//
 				if(c.getName().equals("Kansas City"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1023, 513);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1030, 488, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -861,6 +969,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Oklahoma City"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 957, 630);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 963, 595, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -877,6 +991,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Dallas"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 980, 707);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 985, 682, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -893,6 +1013,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Houston"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 953, 795);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1000, 770, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -910,6 +1036,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//
 				if(c.getName().equals("Chicago"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1240, 410);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1245, 385, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -926,6 +1058,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("St. Louis"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1177, 517);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1183, 491, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -942,6 +1080,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Memphis"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1176, 630);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1182, 605, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -958,6 +1102,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Birmingham"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1284, 685);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1289, 659, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -974,6 +1124,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("New Orleans"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1177, 792);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1183, 766, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -991,6 +1147,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//
 				if(c.getName().equals("Detroit"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1395, 382);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1400, 357, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1007,6 +1169,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Cincinnati"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1380, 497);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1385, 470, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1023,6 +1191,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Knoxville"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1387, 595);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1393, 570, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1039,6 +1213,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Atlanta"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1395, 685);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1400, 659, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1054,9 +1234,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					}
 				}
 				
-				
 				if(c.getName().equals("Buffalo"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1582, 360);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1588, 335, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1073,6 +1258,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Pittsburgh"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1538, 455);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1543, 430, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1090,6 +1281,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				//
 				if(c.getName().equals("Boston"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1835, 360);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1840, 335, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1106,6 +1303,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("New York"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1757, 418);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1762, 393, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1122,6 +1325,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Philadelphia"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1715, 470);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1720, 445, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1138,6 +1347,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Washington D.C."))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1625, 510);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1630, 483, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1154,6 +1369,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Norfolk"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X",1690, 569);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1695, 544, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1170,6 +1391,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Raleigh"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1595, 615);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1600, 589, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1186,6 +1413,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Savannah"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1512, 710);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1517, 683, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1202,6 +1435,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Jacksonville"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1507, 777);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1513, 752, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1218,6 +1457,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Tampa"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1432, 860);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1437, 835, 15, 15, null);
 					else if(c.getNumOccupants() == 2)
@@ -1234,6 +1479,12 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				}
 				if(c.getName().equals("Miami"))
 				{
+					if(!c.isOpen())
+					{
+						g.setColor(Color.red);
+						g.setFont(new Font("Verdana", Font.BOLD, 50));
+						g.drawString("X", 1545, 925);
+					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1550, 901, 15, 15, null);
 					else if(c.getNumOccupants() == 2)

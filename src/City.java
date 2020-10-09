@@ -80,6 +80,12 @@ public class City
 		
 		return available;
 	}
+	public boolean isOpen()
+	{
+		if(!regionTrue)
+			return false;
+		return true;
+	}
 	
 	public String toString ()
 	{
