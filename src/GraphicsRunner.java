@@ -1017,7 +1017,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					{
 						g.setColor(Color.red);
 						g.setFont(new Font("Verdana", Font.BOLD, 50));
-						g.drawString("X", 995, 795);
+						g.drawString("X", 995, 810);
 					}
 					if(c.getNumOccupants() == 1 )
 						g.drawImage(c.getOccupants().get(0).getPic(), 1000, 770, 15, 15, null);
