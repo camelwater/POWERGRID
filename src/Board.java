@@ -98,151 +98,7 @@ public class Board
 		setupResources();
 		
 		updateGameState();
-		
-		//play();
 	}
-	
-//	public void play() 
-//	{		
-//		while (!isOver)
-//		{
-//			if (phase == 1 && step != 0) //Determining Player Order
-//			{
-//				calculatePlayerOrder();
-//			}
-//			
-//			else if (step == 0) //First time phase 1 is being played
-//			{
-//				Collections.shuffle(players);
-//				step = 1;
-//			}
-//			
-//			else if (phase == 2) //Auctioning Power Plants
-//			{
-//				boolean allPassed = true;
-//				
-//				for (Player x : players)
-//				{
-//					PowerPlant purchase = null; //This will be set to the power plant the player chooses to buy
-//					
-//					int cost = 0; //This will be set to the final cost of the power plant after bidding
-//					
-//					if (x.balance() >= cost)
-//					{
-//						x.buyPowerPlant(purchase, cost);
-//						
-//						market.remove(purchase);
-//						
-//						market.add(deck.remove(0));
-//						
-//						Collections.sort(market, Collections.reverseOrder());
-//						
-//						allPassed = false;
-//					}
-//				}
-//				
-//				if (allPassed)
-//				{
-//					updateMarket();
-//					
-//					for (PowerPlant x : market)
-//					{
-//						if (x.getName().equals("Step 3"))
-//						{
-//							step = 3;
-//							market.remove(x);
-//							market.remove(0);
-//						}
-//					}
-//				}
-//			}
-//			
-//			else if (phase == 3) //Buying Resources
-//			{
-//				Collections.sort(players, Collections.reverseOrder());
-//				
-//				for (Player x : players)
-//				{
-//					ArrayList <Resource> purchase = new ArrayList <Resource> (); //This will be filled with all of the resources the player chooses to buy
-//					
-//					int cost = 0; //This will be set to the final cost of the resources
-//					
-//					if (x.balance() >= cost)
-//					{
-//						for (Resource y : purchase)
-//						{
-//							x.buyResources(y);
-//							
-//							resources.get(y.toString()).pop();
-//						}
-//						
-//						x.pay(cost);
-//					}
-//				}
-//			}
-//			
-//			else if (phase == 4) //Building Cities
-//			{
-//				int highestCityCount = Integer.MIN_VALUE;
-//				
-//				for (Player x : players)
-//				{
-//					ArrayList <City> purchase = new ArrayList <City> (); //This will be filled with all of the cities the player chooses to buy
-//					
-//					int cost = 0; //This will be set to the final cost of all the cities the player wants to buy
-//					
-//					if (x.balance() >= cost)
-//					{
-//						for (City y : purchase)
-//						{
-//						//	x.buyCity(y, graph.calculateCost());		//The second parameter will be determined by the shortest path method
-//						}
-//					}
-//					
-//					if (x.getCities().size() >= 7 && step == 1)
-//						endStep();
-//					
-//					else if (x.getCities().size() == 17 && step == 3)
-//						endGame();
-//					
-//					if (x.getCities().size() > highestCityCount)
-//						highestCityCount = x.getCities().size();
-//				}
-//				
-//				while (highestCityCount >= market.get(0).getID())
-//				{
-//					market.remove(0);
-//					market.add(deck.remove(0));
-//					Collections.sort(market, Collections.reverseOrder());
-//				}
-//				
-//				for (PowerPlant x : market)
-//				{
-//					if (x.getName().equals("Step 3"))
-//					{
-//						step = 3;
-//						market.remove(x);
-//						market.remove(0);
-//					}
-//				}
-//			}
-//			
-//			else if (phase == 5) //Bureaucracy 		We also need to prompt the players on what cities they want to power
-//			{
-//				endRound();
-//				
-//				for (PowerPlant x : market)
-//				{
-//					if (x.getName().equals("Step 3"))
-//					{
-//						step = 3;
-//						market.remove(x);
-//						market.remove(0);
-//					}
-//				}
-//			}
-//		}
-//	}
 	
 	public ArrayList<PowerPlant> getDeck()
 	{
@@ -400,7 +256,7 @@ public class Board
 		
 		if(!b)
 		{
-			System.out.println("CAN'T PLACE RESOURCE");
+			//System.out.println("CAN'T PLACE RESOURCE");
 			return;
 		}
 		if(p.capType.equals("Hybrid"))
@@ -443,7 +299,6 @@ public class Board
 		for(City i: cities)
 			if(i.getName().equals(x))
 				c = i;
-		//.out.println(x);
 		//System.out.println(cities.toString());
 		return c.isAvailable(step, currentPlayer);
 	}
@@ -543,7 +398,7 @@ public class Board
 	}
 	public void pass (int i)
 	{
-		System.out.println("ALLPASS = "+allPass);
+		//System.out.println("ALLPASS = "+allPass);
 		if(step>0&&i==-1)
 		{
 			currentPlayer.finished();
@@ -579,7 +434,7 @@ public class Board
 			Collections.sort(market);
 			if(currentPlayer.getPowerPlants().size()==4)
 			{
-				System.out.println("MAX PP");
+				//System.out.println("MAX PP");
 				return;
 			}
 			currentPlayer.finished();
@@ -611,7 +466,7 @@ public class Board
 		
 		if(!h || currentPlayer.getPowerPlants().size()==4)
 		{
-			System.out.println("CAN'T BID");
+			//System.out.println("CAN'T BID");
 			if(x.equals("first"))
 				cost = 0;
 			else
@@ -629,7 +484,7 @@ public class Board
 			Collections.sort(market);
 			if(currentPlayer.getPowerPlants().size()==4)
 			{
-				System.out.println("MAX PP");
+				//System.out.println("MAX PP");
 				return true;
 			}
 			
@@ -860,7 +715,7 @@ public class Board
 			//System.out.println("STEP3 = "+step3);
 			if(step3)
 			{
-				System.out.println("MADE IT HERE");
+				//System.out.println("MADE IT HERE");
 				Collections.shuffle(deck);
 				market.remove(7);
 				market.remove(0);
@@ -868,7 +723,7 @@ public class Board
 			}
 			else
 			{
-				System.out.println("AND I MADE IT HERE");
+				//System.out.println("AND I MADE IT HERE");
 				if(market.size()>0)
 					market.remove(0);
 				if(deck.size()>0)
