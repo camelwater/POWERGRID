@@ -120,7 +120,7 @@ public class Map
 	        	{
 	        	    //System.out.println("here");
 	        	    isFree=true;
-	        	}
+	        	} 
 		        Integer distU=dist.get(cities.get(u));
 	        	Integer distV=dist.get(cities.get(v));
 	        	
