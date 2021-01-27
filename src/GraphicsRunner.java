@@ -439,14 +439,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					
 						g.drawString("Step: "+game.getStep(), 900, 60);	//step
 						g.drawString("Phase: "+game.getPhase(), 875, 110); //phase
-						g.setFont(new Font("Times New Roman", Font.ITALIC, 25));
+						g.setFont(new Font("Times New Roman", Font.ITALIC | Font.BOLD, 25));
 						if(game.getPlayers().get(page).getName().equals(game.getCurrentPlayer().getName()))
 						{
-							g.drawString("current player",1635, 850);						
+							g.drawString("CURRENT PLAYER",1612, 850);						
 							g.fillOval(910, 865, 100, 50);
 							g.setColor(Color.white);
 							g.setFont(new Font("Arial", Font.BOLD, 25));
-							g.drawString("Finish", 925, 900);
+							g.drawString("FINISH", 920, 900);
 						}
 						paintOrder(g);
 					
@@ -1510,7 +1510,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.fillOval(x, y, 250, 125);
 		g.setColor(Color.black);
 		g.setFont(new Font("Arial", Font.BOLD, 75));
-		g.drawString("BUY", x+50, y+75);
+		g.drawString("BUY", x+50, y+83);
 		g.setFont(new Font("Arial", Font.PLAIN, 20));
 		g.drawString(cityBuy, x+65, y+110);
 
@@ -1909,7 +1909,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		else if (game.getPhase()==4)
 		{
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("orderArrow.png")), 235, 55, -200, 100, null);
+				g.drawImage(ImageIO.read(getClass().getResource("orderArrow.png")), 235, 77, -200, 65, null);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1917,32 +1917,32 @@ public class GraphicsRunner extends JPanel implements MouseListener
 			g.setColor(Color.black);
 			g.setFont(new Font("Arial",  Font.ITALIC, 25));
 			
-			g.drawString("P"+game.getPlayers().get(0).getName(), 50, 40);
-			g.drawString("P"+game.getPlayers().get(1).getName(), 100, 40);
-			g.drawString("P"+game.getPlayers().get(2).getName(), 150, 40);
-			g.drawString("P"+game.getPlayers().get(3).getName(), 200, 40);
+			g.drawString("P"+game.getPlayers().get(0).getName(), 50, 47);
+			g.drawString("P"+game.getPlayers().get(1).getName(), 100, 47);
+			g.drawString("P"+game.getPlayers().get(2).getName(), 150, 47);
+			g.drawString("P"+game.getPlayers().get(3).getName(), 200, 47);
 			
 			for(int i = 0;i<4;i++)
 			{
 				if(game.getPlayers().get(i).getHouse().equals("red"))
-					g.drawImage(red, 50+i*50, 45, 25, 25, null);
+					g.drawImage(red, 50+i*50, 52, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("blue"))
-					g.drawImage(blue, 50+i*50, 45, 25, 25, null);
+					g.drawImage(blue, 50+i*50, 52, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("green"))
-					g.drawImage(green, 50+i*50, 45, 25, 25, null);
+					g.drawImage(green, 50+i*50, 52, 25, 25, null);
 				else if(game.getPlayers().get(i).getHouse().equals("yellow"))
-					g.drawImage(yellow, 50+i*50, 45, 25, 25, null);
+					g.drawImage(yellow, 50+i*50, 52, 25, 25, null);
 			}
-			g.drawString("^", game.getTurn()*50+50, 100);
+			g.drawString("^", game.getTurn()*50+55, 107);
 			g.setFont(new Font("Arial",  Font.ITALIC, 15));
 			if(game.getPlayers().get(0).isFinished())
-				g.drawString("done", 50, 90);
+				g.drawString("done", 46, 97);
 			if(game.getPlayers().get(1).isFinished())
-				g.drawString("done", 100, 90);
+				g.drawString("done", 96, 97);
 			if(game.getPlayers().get(2).isFinished())
-				g.drawString("done", 150, 90);
+				g.drawString("done", 146, 97);
 			if(game.getPlayers().get(3).isFinished())
-				g.drawString("done", 200, 90);
+				g.drawString("done", 196, 97);
 		
 			
 		}
