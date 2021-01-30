@@ -12,7 +12,7 @@ public class Player implements Comparable
 {
 	private ArrayList <PowerPlant> PowerPlants;
 	private ArrayList <City> cities;
-	private HashMap <Type, Stack <Resource>> resources;
+	public HashMap <Type, Stack <Resource>> resources;
 	
 	private int tCash = 0;
 	
@@ -30,7 +30,7 @@ public class Player implements Comparable
 		
 		cities = new ArrayList <City> ();
 		
-		resources = new HashMap <Type, Stack <Resource>> ();
+		resources = new HashMap <Type, Stack <Resource>>();
 		
 		resources.put(Type.Coal,  new Stack<Resource>());
 		
@@ -155,6 +155,26 @@ public class Player implements Comparable
 	{
 		return resources;
 	}
+	
+	public HashMap <Type, Stack <Resource>> getResourcesCopy()
+	{
+		HashMap <Type, Stack <Resource>>temp = new HashMap<Type, Stack<Resource>>();
+		
+		temp.put(Type.Coal,  new Stack<Resource>());
+		temp.put(Type.Oil,  new Stack<Resource>());
+		temp.put(Type.Trash,  new Stack<Resource>());
+		temp.put(Type.Uranium,  new Stack<Resource>());
+		
+		for(Type t: resources.keySet())
+		{
+			for(Resource r: resources.get(t))
+			{
+				temp.get(t).push(r);
+			}
+		}
+		
+		return temp;
+	}
 
 	public int getTrash() 
 	{
@@ -179,6 +199,11 @@ public class Player implements Comparable
 	public ArrayList <City> getCities ()
 	{
 		return cities;
+	}
+	
+	public void setResources(HashMap<Type, Stack<Resource>> replace)
+	{
+		resources = replace;
 	}
 	
 	public PowerPlant discard (PowerPlant x)
