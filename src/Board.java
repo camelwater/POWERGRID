@@ -110,7 +110,7 @@ public class Board
 	}
 	public void setupGame () throws IOException
 	{
-		InputStream in = Board.class.getResourceAsStream("PowerPlants.txt");
+		InputStream in = Board.class.getResourceAsStream("files/PowerPlants.txt");
 		Scanner input = new Scanner (in);
 		
 		while (input.hasNext())
@@ -163,7 +163,7 @@ public class Board
 	
 	public void setupCities () throws IOException
 	{
-		InputStream in = Board.class.getResourceAsStream("Cities.txt");
+		InputStream in = Board.class.getResourceAsStream("files/Cities.txt");
 		Scanner input = new Scanner (in);
 		
 		HashMap <City, HashMap <City, Integer>> map = new HashMap <City, HashMap <City, Integer>> ();

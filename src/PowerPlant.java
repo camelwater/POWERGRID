@@ -258,7 +258,7 @@ public class PowerPlant implements Comparable
 	
 	public void setImage() throws IOException
 	{
-		img = ImageIO.read(getClass().getResource(ID+".png"));
+		img = ImageIO.read(getClass().getResource("resources/"+ID+".png"));
 	}
 	
 	public int compareTo (Object obj)

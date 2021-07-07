@@ -77,28 +77,28 @@ public class Player implements Comparable
 	{
 		if(name.equals("1"))
 			try {
-				return ImageIO.read(getClass().getResource("red_house.png"));
+				return ImageIO.read(getClass().getResource("resources/red_house.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(name.equals("2"))
 			try {
-				return ImageIO.read(getClass().getResource("blue_house.png"));
+				return ImageIO.read(getClass().getResource("resources/blue_house.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(name.equals("3"))
 			try {
-				return ImageIO.read(getClass().getResource("green_house.png"));
+				return ImageIO.read(getClass().getResource("resources/green_house.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(name.equals("4"))
 			try {
-				return ImageIO.read(getClass().getResource("yellow_house.png"));
+				return ImageIO.read(getClass().getResource("resources/yellow_house.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

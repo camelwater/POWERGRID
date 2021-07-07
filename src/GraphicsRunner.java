@@ -89,18 +89,18 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		 frame.setBackground(Color.orange);
 		 setVisible(true);
 
-		 bg = ImageIO.read(getClass().getResource("Powergridmap-Edited.png"));
+		 bg = ImageIO.read(getClass().getResource("resources/Powergridmap-Edited.png"));
 		 
-		 cash = ImageIO.read(getClass().getResource("cash.png"));
-		 coal = ImageIO.read(getClass().getResource("coal.png"));
-		 oil = ImageIO.read(getClass().getResource("oil.png"));
-		 trash = ImageIO.read(getClass().getResource("trash.png"));
-		 uranium = ImageIO.read(getClass().getResource("uranium.png"));
+		 cash = ImageIO.read(getClass().getResource("resources/cash.png"));
+		 coal = ImageIO.read(getClass().getResource("resources/coal.png"));
+		 oil = ImageIO.read(getClass().getResource("resources/oil.png"));
+		 trash = ImageIO.read(getClass().getResource("resources/trash.png"));
+		 uranium = ImageIO.read(getClass().getResource("resources/uranium.png"));
 		 
-		 blue = ImageIO.read(getClass().getResource("blue_house.png"));
-		 red = ImageIO.read(getClass().getResource("red_house.png"));
-		 green = ImageIO.read(getClass().getResource("green_house.png"));
-		 yellow = ImageIO.read(getClass().getResource("yellow_house.png"));
+		 blue = ImageIO.read(getClass().getResource("resources/blue_house.png"));
+		 red = ImageIO.read(getClass().getResource("resources/red_house.png"));
+		 green = ImageIO.read(getClass().getResource("resources/green_house.png"));
+		 yellow = ImageIO.read(getClass().getResource("resources/yellow_house.png"));
 		 
 		 addMouseListener(this);
 		 
@@ -222,7 +222,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				BufferedImage check = null;
 				
 				try {
-					check = ImageIO.read(getClass().getResource("check.png"));
+					check = ImageIO.read(getClass().getResource("resources/check.png"));
 				} catch (IOException e) {}
 				
 				System.out.println("index " +index);
@@ -381,15 +381,15 @@ public class GraphicsRunner extends JPanel implements MouseListener
 						//g.setColor(Color.orange);
 				
 						try {
-							g.drawImage(ImageIO.read(getClass().getResource("bottom_banner.png")),25, 930, 1330, 110, null);
+							g.drawImage(ImageIO.read(getClass().getResource("resources/bottom_banner.png")),25, 930, 1330, 110, null);
 						} catch (IOException e1) {}
 					
 						try {
-							g.drawImage(ImageIO.read(getClass().getResource("top_banner.png")),33, 20, 500, 115, null);
+							g.drawImage(ImageIO.read(getClass().getResource("resources/top_banner.png")),33, 20, 500, 115, null);
 						} catch (IOException e2) {}
 						
 						try {
-							g.drawImage(ImageIO.read(getClass().getResource("top_banner.png")),1210, 20, 680, 115, null);
+							g.drawImage(ImageIO.read(getClass().getResource("resources/top_banner.png")),1210, 20, 680, 115, null);
 						} catch (IOException e1) {}
 					
 						g.drawImage(game.getPlayers().get(0).getPic(), 1250, 50, 20, 20, null);
@@ -478,16 +478,16 @@ public class GraphicsRunner extends JPanel implements MouseListener
 						//arrows
 						try 
 						{
-							g.drawImage(ImageIO.read(getClass().getResource("arrow3.png")), 1625, 1040, 90, -91, null);
+							g.drawImage(ImageIO.read(getClass().getResource("resources/arrow3.png")), 1625, 1040, 90, -91, null);
 						} catch (IOException e) {e.printStackTrace();}
 						
 						try {
-							g.drawImage(ImageIO.read(getClass().getResource("arrow3.png")), 1825, 949, -90, 91, null);
+							g.drawImage(ImageIO.read(getClass().getResource("resources/arrow3.png")), 1825, 949, -90, 91, null);
 						} catch (IOException e) {e.printStackTrace();}
 					
 						try
 						{
-							g.drawImage(ImageIO.read(getClass().getResource("factory.png")), 1600, 625, 200, 200, null);
+							g.drawImage(ImageIO.read(getClass().getResource("resources/factory.png")), 1600, 625, 200, 200, null);
 						} catch (IOException e) {}
 				
 					}
@@ -1527,13 +1527,13 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(s ==1)
 				{
 					try {
-						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 835, 725, 250, 250, null); 
+						g.drawImage(ImageIO.read(getClass().getResource("resources/"+p.getID()+".png")), 835, 725, 250, 250, null); 
 					} catch (IOException e) {}
 				}
 				else
 				{
 					try {
-						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (835/s+150)+i*(1200/s), 725, 250, 250, null); 
+						g.drawImage(ImageIO.read(getClass().getResource("resources/"+p.getID()+".png")), (835/s+150)+i*(1200/s), 725, 250, 250, null); 
 					} catch (IOException e) {}
 				}
 				i++;
@@ -1548,7 +1548,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(s ==1)
 				{
 					try {
-						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 835, 350, 250, 250, null); 
+						g.drawImage(ImageIO.read(getClass().getResource("resources/"+p.getID()+".png")), 835, 350, 250, 250, null); 
 					} catch (IOException e) {}
 					
 					for(int f = 0;f<p.getStorage().size();f++)
@@ -1562,7 +1562,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					if(s==3)
 					{
 						try {
-							g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (835/s+150)+i*(1200/s), 350, 250, 250, null); 
+							g.drawImage(ImageIO.read(getClass().getResource("resources/"+p.getID()+".png")), (835/s+150)+i*(1200/s), 350, 250, 250, null); 
 						} catch (IOException e) {}
 						
 					
@@ -1585,7 +1585,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 					else if (s ==2)
 					{
 						try {
-							g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), (835/s+150)+i*(1200/s), 350, 250, 250, null); 
+							g.drawImage(ImageIO.read(getClass().getResource("resources/"+p.getID()+".png")), (835/s+150)+i*(1200/s), 350, 250, 250, null); 
 						} catch (IOException e) {}
 						
 							for(int f = 0;f<p.getStorage().size();f++)
@@ -1633,10 +1633,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		if(paintO)
 		{
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 650, 20, 20, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/plus.png")),800, 650, 20, 20, null);
 			} catch (IOException e) {}
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 653, 20, 15, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/minus.png")),820, 653, 20, 15, null);
 			} catch (IOException e) {}
 		}
 		
@@ -1651,10 +1651,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		if(paintC)
 		{
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 700, 20, 20, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/plus.png")),800, 700, 20, 20, null);
 			} catch (IOException e) {}
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 703, 20, 15, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/minus.png")),820, 703, 20, 15, null);
 			} catch (IOException e) {}
 			
 		}
@@ -1671,10 +1671,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		if(paintT)
 		{
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 750, 20, 20, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/plus.png")),800, 750, 20, 20, null);
 			} catch (IOException e) {}
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 753, 20, 15, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/minus.png")),820, 753, 20, 15, null);
 			} catch (IOException e) {}
 		}
 		
@@ -1690,10 +1690,10 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		if(paintU)
 		{
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("plus.png")),800, 800, 20, 20, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/plus.png")),800, 800, 20, 20, null);
 			} catch (IOException e) {}
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("minus.png")),820, 803, 20, 15, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/minus.png")),820, 803, 20, 15, null);
 			} catch (IOException e) {}
 		}
 		
@@ -1726,7 +1726,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		//whether card is powered or not
 		BufferedImage check = null;
 		try {
-			check = ImageIO.read(getClass().getResource("check.png"));
+			check = ImageIO.read(getClass().getResource("resources/check.png"));
 		} catch (IOException e) {}
 		if(x == 1)
 		{
@@ -1762,7 +1762,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(p.getName().equals("Step 3"))
 				{
 					try {
-						g.drawImage(ImageIO.read(getClass().getResource("step 3.jpg")), 350*c+300, 280, 200, 200, null);
+						g.drawImage(ImageIO.read(getClass().getResource("resources/step 3.jpg")), 350*c+300, 280, 200, 200, null);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -1772,7 +1772,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				{
 					
 					try {
-						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 350*c+300, 280, 200, 200, null);
+						g.drawImage(ImageIO.read(getClass().getResource("resources/"+p.getID()+".png")), 350*c+300, 280, 200, 200, null);
 					} catch (IOException e) {}
 				}
 				c++;
@@ -1782,7 +1782,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				if(p.getName().equals("Step 3"))
 				{
 					try {
-						g.drawImage(ImageIO.read(getClass().getResource("step 3.jpg")), 350*c+300, 280, 200, 200, null);
+						g.drawImage(ImageIO.read(getClass().getResource("resources/step 3.jpg")), 350*c+300, 280, 200, 200, null);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -1791,7 +1791,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 				else
 				{
 					try {
-						g.drawImage(ImageIO.read(getClass().getResource(p.getID()+".png")), 350*i+300, 50, 200, 200, null);
+						g.drawImage(ImageIO.read(getClass().getResource("resources/"+p.getID()+".png")), 350*i+300, 50, 200, 200, null);
 					} catch (IOException e) {}
 				}
 			
@@ -1803,9 +1803,9 @@ public class GraphicsRunner extends JPanel implements MouseListener
 	public void paintResources(Graphics g) throws IOException
 	{
 		for(int i = 0;i<4;i++)
-			g.drawImage(ImageIO.read(getClass().getResource("minus.png")), 450+i*300, 300, 25, 20, null);
+			g.drawImage(ImageIO.read(getClass().getResource("resources/minus.png")), 450+i*300, 300, 25, 20, null);
 		for(int i = 0;i<4;i++)
-			g.drawImage(ImageIO.read(getClass().getResource("plus.png")), 450 +i*300, 200, 25, 25, null);
+			g.drawImage(ImageIO.read(getClass().getResource("resources/plus.png")), 450 +i*300, 200, 25, 25, null);
 		g.setFont(new Font("Arial", Font.BOLD, 20));
 		g.setColor(Color.black);
 		
@@ -1822,7 +1822,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		g.drawImage(oil, 743, 237, 40, 40, null);
 		g.drawImage(trash, 1043, 237, 40, 40, null);
 		g.drawImage(uranium, 1343, 237, 40, 40, null);
-		g.drawImage(ImageIO.read(getClass().getResource("pay.png")), 540, 300, 750, 350, null);
+		g.drawImage(ImageIO.read(getClass().getResource("resources/pay.png")), 540, 300, 750, 350, null);
 		
 		//amount purchased and left
 		g.drawString("x"+coalC+"/"+game.getResources().get("COAL").size(), 500, 260);
@@ -1840,14 +1840,14 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		{
 			if(game.getPhase()==3)
 				try {
-					g.drawImage(ImageIO.read(getClass().getResource("orderArrow2.png")), 35, 90, 45, 75, null);
+					g.drawImage(ImageIO.read(getClass().getResource("resources/orderArrow2.png")), 35, 90, 45, 75, null);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} 
 			else
 				try {
-					g.drawImage(ImageIO.read(getClass().getResource("orderArrow2.png")), 35, 160, 45, -75, null);
+					g.drawImage(ImageIO.read(getClass().getResource("resources/orderArrow2.png")), 35, 160, 45, -75, null);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1910,7 +1910,7 @@ public class GraphicsRunner extends JPanel implements MouseListener
 		else if (game.getPhase()==4)
 		{
 			try {
-				g.drawImage(ImageIO.read(getClass().getResource("orderArrow.png")), 235, 77, -200, 65, null);
+				g.drawImage(ImageIO.read(getClass().getResource("resources/orderArrow.png")), 235, 77, -200, 65, null);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

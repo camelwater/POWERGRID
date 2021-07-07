@@ -45,28 +45,28 @@ public class Resource
 	{
 		if(type.equals(Type.Oil))
 			try {
-				return ImageIO.read(getClass().getResource("oil.png"));
+				return ImageIO.read(getClass().getResource("resources/oil.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(type.equals(Type.Trash))
 			try {
-				return ImageIO.read(getClass().getResource("trash.png"));
+				return ImageIO.read(getClass().getResource("resources/trash.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(type.equals(Type.Coal))
 			try {
-				return ImageIO.read(getClass().getResource("coal.png"));
+				return ImageIO.read(getClass().getResource("resources/coal.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(type.equals(Type.Uranium))
 			try {
-				return ImageIO.read(getClass().getResource("uranium.png"));
+				return ImageIO.read(getClass().getResource("resources/uranium.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

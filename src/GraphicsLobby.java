@@ -51,7 +51,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		 setVisible(true);
 		 //frame.getContentPane().setBackground(Color.orange);
 		 try {
-			map = ImageIO.read(getClass().getResource("map.png"));
+			map = ImageIO.read(getClass().getResource("resources/map.png"));
 		} catch (IOException e) {}
 		 
 		 addMouseListener(this);
@@ -108,7 +108,7 @@ public class GraphicsLobby extends JPanel implements MouseListener
 		
 		BufferedImage check = null; 
 		try {
-			check = ImageIO.read(getClass().getResource("check.png"));
+			check = ImageIO.read(getClass().getResource("resources/check.png"));
 		} catch (IOException e) {}
 		if(r1)
 		{
