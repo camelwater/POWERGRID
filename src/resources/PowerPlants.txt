@@ -1,0 +1,42 @@
+1 | 03 | 2 Oil
+1 | 04 | 2 Coal
+1 | 05 | 2 Coal, 2 Oil
+1 | 06 | 1 Trash
+2 | 07 | 3 Oil
+2 | 08 | 3 Coal
+1 | 09 | 1 Oil
+2 | 10 | 2 Coal
+2 | 11 | 1 Uranium
+2 | 12 | 2 Coal, 2 Oil
+1 | 13 | Free
+2 | 14 | 2 Trash
+3 | 15 | 2 Coal
+3 | 16 | 2 Oil
+2 | 17 | 1 Uranium
+2 | 18 | Free
+3 | 19 | 2 Trash
+5 | 20 | 3 Coal
+4 | 21 | 2 Coal, 2 Oil
+2 | 22 | Free
+3 | 23 | 1 Uranium
+4 | 24 | 2 Trash
+5 | 25 | 2 Coal
+5 | 26 | 2 Oil
+3 | 27 | Free
+4 | 28 | 1 Uranium
+4 | 29 | 1 Coal, 1 Oil
+6 | 30 | 3 Trash
+6 | 31 | 3 Coal
+6 | 32 | 3 Oil
+4 | 33 | Free
+5 | 34 | 1 Uranium
+5 | 35 | 1 Oil
+7 | 36 | 3 Coal
+4 | 37 | Free
+7 | 38 | 3 Trash
+6 | 39 | 1 Uranium
+6 | 40 | 2 Oil
+6 | 42 | 2 Coal
+5 | 44 | Free
+7 | 46 | 3 Coal, 3 Oil
+6 | 50 | Free
